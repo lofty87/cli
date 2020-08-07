@@ -1,0 +1,13 @@
+{
+  "verbose": true,
+  "watch": [
+    "src"
+  ],
+  "ext": "ts",
+  "ignore": [
+    "packages"
+  ],
+  "execMap": {
+    "ts": "ts-node"
+  }
+}

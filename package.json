@@ -1,0 +1,26 @@
+{
+  "name": "@lofty87/create-backend",
+  "version": "1.0.0",
+  "description": "boilerplate for backend",
+  "author": {
+    "name": "lofty87",
+    "email": "lofty87@daum.net"
+  },
+  "license": "MIT",
+  "main": "build/index.js",
+  "scripts": {
+    "start": "nodemon src/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "commander": "~6.0.0"
+  },
+  "devDependencies": {
+    "@lofty87/eslint-config": "~1.1.17",
+    "@types/node": "~14.0.27",
+    "eslint": "~7.6.0",
+    "nodemon": "~2.0.4",
+    "ts-node": "~8.10.2",
+    "typescript": "~3.9.7"
+  }
+}

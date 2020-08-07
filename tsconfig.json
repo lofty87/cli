@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "charset": "utf8",
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "rootDir": "src",
+    "outDir": "build",
+    "baseUrl": "src",
+    "paths": {
+      "@src*": ["../src*"]
+    },
+    "lib": [
+      "ESNext"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "allowJs": true,
+    "sourceMap": true,
+    "removeComments": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": false,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "packages/**/*"
+  ]
+}
