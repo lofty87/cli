@@ -1,6 +1,8 @@
+#!/usr/bin/env node
+
 import * as path from 'path';
 
-import { command } from 'commander';
+import ad from '@src/test';
 
 console.log(path.resolve('huhudsf'));
-console.log(command('sagd'));
+console.log(ad);

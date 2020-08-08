@@ -5,9 +5,11 @@
   ],
   "ext": "ts",
   "ignore": [
+    "build",
+    "node_modules",
     "packages"
   ],
   "execMap": {
-    "ts": "ts-node"
+    "ts": "ts-node -r tsconfig-paths/register"
   }
 }
