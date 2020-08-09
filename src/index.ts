@@ -1,8 +1,5 @@
-#!/usr/bin/env node
+import { program } from 'commander';
 
-import * as path from 'path';
+import packageJson from '../package.json';
 
-import ad from '@src/test';
-
-console.log(path.resolve('huhudsf'));
-console.log(ad);
+program.version(packageJson.version);

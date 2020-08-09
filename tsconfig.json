@@ -7,9 +7,9 @@
     "moduleResolution": "node",
     
     /* build */
-    "rootDir": "src",
+    "rootDir": ".",
     "outDir": "build",
-    // "sourceMap": true,
+    "sourceMap": true,
     // "declaration": true,
     // "emitDeclarationOnly": true,
     "removeComments": true,
@@ -29,6 +29,7 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
+    "importsNotUsedAsValues": "preserve",
     "isolatedModules": true,
     "noImplicitAny": true,
     "noImplicitThis": false,
@@ -39,6 +40,7 @@
   
   /* compile target */
   "include": [
+    "config/**/*",
     "src/**/*"
   ],
   "exclude": [

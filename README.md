@@ -1,3 +1,3 @@
-# @lofty87/create-backend
+# @lofty87/cli
 
-boilerplate for backend
+lofty87's cli

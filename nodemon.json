@@ -6,6 +6,7 @@
   "ext": "ts",
   "ignore": [
     "build",
+    "config",
     "node_modules",
     "packages"
   ],
