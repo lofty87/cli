@@ -8,16 +8,20 @@ const { rootDir } = paths;
 
 let projectName = '';
 
-program
-  .version(pkg.version)
-  .name('lofty87-cli')
-  .usage('<project-name>')
-  .arguments('<project-name>')
-  .action((name: string) => {
-    ensureDirSync(`${rootDir}/${name}`);
+try {
+  program
+    .version(pkg.version)
+    .name('lofty87-cli')
+    .usage('<project-name>')
+    .arguments('<project-name>')
+    .action((name: string) => {
+      ensureDirSync(`${rootDir}/${name}`);
 
-    projectName = name;
-  })
-  .parse(process.argv);
+      projectName = name;
+    })
+    .parse(process.argv);
 
-console.log(projectName);
+  console.log(projectName);
+} catch(error) {
+  console.log(error);
+}

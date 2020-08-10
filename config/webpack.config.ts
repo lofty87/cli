@@ -1,3 +1,5 @@
+import { basename } from 'path';
+
 import webpack from 'webpack';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'; // ? clean build dir
 import nodeExternals from 'webpack-node-externals'; // ? exclude node_modules
@@ -9,10 +11,8 @@ import WebpackHookPlugin from 'webpack-hook-plugin'; // ? on build end
 import paths, { resolve } from './paths';
 import { buildEndScript } from './scripts';
 
-const SHEBANG = '#!/usr/bin/env node'; // ! required bin
-
-const splittedPackagesDir = paths.packagesDir.split('/');
-const packagesCopyDir = splittedPackagesDir[splittedPackagesDir.length - 1];
+const SHEBANG = '#!/usr/bin/env node'; // ! required for bin
+const packagesCopyDir = basename(paths.packagesDir);
 
 const config: webpack.Configuration = {
   mode: 'production',

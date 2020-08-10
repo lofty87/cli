@@ -1,20 +1,16 @@
 import fs from 'fs';
+import { basename } from 'path';
 
 import chalk from 'chalk';
 
 /**
  * @name ensureDirSync
- * * check existing project's name
+ * * check existing project name
  */
-export const ensureDirSync = (path: string) => {
-  try {
-    fs.accessSync(path, fs.constants.F_OK);
+export const ensureDirSync = (dirPath: string) => {
+  fs.accessSync(dirPath, fs.constants.F_OK);
 
-    const splittedPath = path.split('/');
-    const projectName = splittedPath[splittedPath.length - 1];
+  const projectName = basename(dirPath);
 
-    throw new Error(chalk.red(`existed ${projectName}`));
-  } catch(error) {
-    // ? not existed
-  }
+  throw new Error(chalk.yellow(`existed '${chalk.red(projectName)}' project name`));
 };
