@@ -1,3 +1,3 @@
 # @lofty87/cli
 
-lofty87's cli
+boilerplate cli for backend, frontend, playground
