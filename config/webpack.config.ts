@@ -4,8 +4,10 @@ import nodeExternals from 'webpack-node-externals'; // ? exclude node_modules
 import CopyPlugin from 'copy-webpack-plugin'; // ? copy packages dir
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'; // ? using alias paths in tsconfig.json (like tsconfig-paths)
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'; // ? build performance
+import WebpackHookPlugin from 'webpack-hook-plugin'; // ? on build end
 
 import paths, { resolve } from './paths';
+import { buildEndScript } from './scripts';
 
 const SHEBANG = '#!/usr/bin/env node'; // ! required bin
 
@@ -21,6 +23,7 @@ const config: webpack.Configuration = {
     path: paths.buildDir,
     filename: paths.outputFilename,
   },
+  watch: true,
   devtool: 'inline-source-map',
   module: {
     rules: [
@@ -59,7 +62,7 @@ const config: webpack.Configuration = {
     ], // ? absolute path is recommended
     plugins: [
       new TsconfigPathsPlugin({
-        configFile: 'tsconfig.json', // ? cwd
+        configFile: 'tsconfig.json', // ? cwd()
         extensions: [ '.tsx', '.ts', '.js' ],
       }),
     ],
@@ -82,12 +85,17 @@ const config: webpack.Configuration = {
         files: [
           './config/**/*.{ts,tsx}',
           './src/**/*.{ts,tsx}'
-        ], // ? cwd
+        ], // ? cwd()
       },
     }),
     new webpack.BannerPlugin({
       banner: SHEBANG,
       raw: true,
+    }),
+    new WebpackHookPlugin({
+      onBuildEnd: [
+        buildEndScript
+      ],
     }),
   ],
   stats: {
