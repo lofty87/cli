@@ -2,7 +2,7 @@
 
 boilerplate cli for backend, frontend, playground
 
-## feature
+## cli feature
 
 - webpack watching on dev
 - after webpack build, run 'npm install -g' script ([webpack-hook-plugin](https://github.com/tienne/webpack-hook-plugin))
