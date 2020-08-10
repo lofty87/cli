@@ -1,5 +1,10 @@
-import { program } from 'commander';
+import chalk from 'chalk';
+import { Command } from 'commander';
 
-import packageJson from '../package.json';
+import pkg from '../package.json';
 
-program.version(packageJson.version);
+const program = new Command();
+
+program.version(pkg.version).parse(process.argv);
+
+console.log(chalk.greenBright(pkg.version));
