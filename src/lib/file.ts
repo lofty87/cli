@@ -8,9 +8,17 @@ import chalk from 'chalk';
  * * check existing project name
  */
 export const ensureDirSync = (dirPath: string) => {
-  fs.accessSync(dirPath, fs.constants.F_OK);
+  try {
+    fs.accessSync(dirPath, fs.constants.F_OK);
 
-  const projectName = basename(dirPath);
+    const projectName = basename(dirPath);
 
-  throw new Error(chalk.yellow(`existed '${chalk.red(projectName)}' project name`));
+    throw new Error(chalk.yellow(`existed '${chalk.red(projectName)}' project name`));
+  } catch(error) {
+    const existed = error.code !== 'ENOENT';
+
+    if(existed) {
+      throw error;
+    }
+  }
 };
