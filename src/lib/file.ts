@@ -5,13 +5,14 @@ import chalk from 'chalk';
 
 /**
  * @name ensureDirSync
- * * check existing project name
+ * * check existing project name.
+ * * when not existed, create project dir.
  */
-export const ensureDirSync = (dirPath: string) => {
+export const ensureDirSync = (projectDir: string) => {
   try {
-    fs.accessSync(dirPath, fs.constants.F_OK);
+    fs.accessSync(projectDir, fs.constants.F_OK);
 
-    const projectName = basename(dirPath);
+    const projectName = basename(projectDir);
     const errorMsg = chalk.red(`already existed "${chalk.yellow(projectName)}" project`);
 
     throw new Error(errorMsg);
@@ -20,6 +21,8 @@ export const ensureDirSync = (dirPath: string) => {
 
     if(existed) {
       throw error;
+    } else {
+      fs.mkdirSync(projectDir);
     }
   }
 };
