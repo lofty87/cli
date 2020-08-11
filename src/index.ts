@@ -1,3 +1,5 @@
+// import { execSync } from 'child_process';
+
 import paths from '@config/paths';
 import { checkProjectName, ensureDirSync } from '@lib/index';
 import { program } from 'commander';
@@ -6,6 +8,7 @@ import pkg from '../package.json';
 
 const { rootDir } = paths;
 
+let projectDir = '';
 let projectName = '';
 
 try {
@@ -15,13 +18,15 @@ try {
     .usage('<project-name>')
     .arguments('<project-name>')
     .action((name: string) => {
-      ensureDirSync(`${rootDir}/${name}`);
-      checkProjectName(name);
-
       projectName = name;
+      projectDir = `${rootDir}/${name}`;
+
+      checkProjectName(name);
+      ensureDirSync(projectDir);
     })
     .parse(process.argv);
 
+  console.log(projectDir);
   console.log(projectName);
 } catch(error) {
   console.error(error);
