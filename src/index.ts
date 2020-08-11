@@ -1,5 +1,5 @@
 import paths from '@config/paths';
-import { ensureDirSync } from '@lib/index';
+import { checkProjectName, ensureDirSync } from '@lib/index';
 import { program } from 'commander';
 
 import pkg from '../package.json';
@@ -16,6 +16,7 @@ try {
     .arguments('<project-name>')
     .action((name: string) => {
       ensureDirSync(`${rootDir}/${name}`);
+      checkProjectName(name);
 
       projectName = name;
     })
@@ -23,5 +24,5 @@ try {
 
   console.log(projectName);
 } catch(error) {
-  console.log(error);
+  console.error(error);
 }

@@ -12,8 +12,9 @@ export const ensureDirSync = (dirPath: string) => {
     fs.accessSync(dirPath, fs.constants.F_OK);
 
     const projectName = basename(dirPath);
+    const errorMsg = chalk.red(`already existed "${chalk.yellow(projectName)}" project`);
 
-    throw new Error(chalk.yellow(`existed '${chalk.red(projectName)}' project name`));
+    throw new Error(errorMsg);
   } catch(error) {
     const existed = error.code !== 'ENOENT';
 
