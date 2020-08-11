@@ -1,0 +1,51 @@
+{
+  "extends": "./tsconfig.paths.json",
+  "compilerOptions": {
+    "charset": "utf8",
+    "target": "es6",
+    "module": "es6",
+    "moduleResolution": "node",
+    
+    /* build */
+    "rootDir": ".",
+    "outDir": "build",
+    "sourceMap": true,
+    // "declaration": true,
+    // "emitDeclarationOnly": true,
+    "removeComments": true,
+    // "noEmit": true,
+    
+    /* built in, module resolution */
+    "lib": [
+      "ESNext"
+    ],
+    "typeRoots": [
+      "@types",
+      "node_modules/@types"
+    ],
+    
+    /* options */
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "importsNotUsedAsValues": "preserve",
+    "isolatedModules": true,
+    "noImplicitAny": true,
+    "noImplicitThis": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+  },
+  
+  /* compile target */
+  "include": [
+    "config/**/*",
+    "src/**/*"
+  ],
+  "exclude": [
+    "build/**/*",
+    "node_modules/**/*"
+  ]
+}

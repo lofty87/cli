@@ -1,41 +1,37 @@
 import { basename } from 'path';
 
-import { BannerPlugin, Configuration } from 'webpack';
+import chalk from 'chalk';
+import { Configuration } from 'webpack';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'; // ? clean build dir
 import nodeExternals from 'webpack-node-externals'; // ? exclude node_modules
-import CopyPlugin from 'copy-webpack-plugin'; // ? copy packages dir
+import CopyPlugin from 'copy-webpack-plugin'; // ? copy assets dir
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'; // ? using alias paths in tsconfig.json (like tsconfig-paths)
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'; // ? build performance
-import WebpackHookPlugin from 'webpack-hook-plugin'; // ? on build end
 
+import env from './env';
 import paths, { resolve } from './paths';
-import { buildEndScript } from './scripts';
+import { checkEnvVar, checkNodemonInstall } from './checks';
 
-const SHEBANG = '#!/usr/bin/env node'; // ! required for bin
-const packagesCopyDir = basename(paths.packagesDir);
+checkEnvVar();
+checkNodemonInstall();
+
+console.log(chalk.green(`\n----- build start (mode: ${chalk.greenBright(env.nodeEnv)}) -----\n`));
+
+const assetsCopyDir = basename(paths.assetsDir);
 
 const config: Configuration = {
-  mode: 'production',
+  mode: env.nodeEnv as Configuration['mode'],
   target: 'node',
-  context: paths.rootDir,
+  context: paths.appDir,
   entry: paths.entry,
   output: {
     path: paths.buildDir,
     filename: paths.outputFilename,
   },
-  watch: true,
-  devtool: 'inline-source-map',
+  watch: env.isDev,
+  devtool: env.isDev ? 'inline-source-map' : undefined,
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.tsx?$/,
-        loader: 'eslint-loader',
-        options: {
-          fix: false,
-        },
-        exclude: /node_modules/,
-      },
       {
         test: /\.tsx?$/,
         use: [
@@ -58,7 +54,7 @@ const config: Configuration = {
     extensions: [ '.tsx', '.ts', '.js' ],
     modules: [
       resolve('node_modules'),
-      paths.rootDir
+      paths.appDir
     ], // ? absolute path is recommended
     plugins: [
       new TsconfigPathsPlugin({
@@ -75,28 +71,12 @@ const config: Configuration = {
     new CopyPlugin({
       patterns: [
         {
-          from: paths.packagesDir,
-          to: packagesCopyDir,
+          from: paths.assetsDir,
+          to: assetsCopyDir,
         },
       ],
     }),
-    new ForkTsCheckerWebpackPlugin({
-      eslint: {
-        files: [
-          './config/**/*.{ts,tsx}',
-          './src/**/*.{ts,tsx}'
-        ], // ? cwd()
-      },
-    }),
-    new BannerPlugin({
-      banner: SHEBANG,
-      raw: true,
-    }),
-    new WebpackHookPlugin({
-      onBuildEnd: [
-        buildEndScript
-      ],
-    }),
+    new ForkTsCheckerWebpackPlugin(),
   ],
   stats: {
     builtAt: false,
