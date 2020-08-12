@@ -8,7 +8,7 @@
       "@controllers*" : ["src/controllers*"],
       "@lib*"         : ["src/lib*"],
       "@models*"      : ["src/models*"],
-      "@routes*"      : ["src/routes*"],
+      "@routers*"     : ["src/routers*"],
       "@serverConfig*": ["src/serverConfig*"],
       "@services*"    : ["src/services*"]
     }

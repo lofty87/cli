@@ -17,7 +17,7 @@ export const existEnvFile = (envFilePath: string) => {
 };
 
 export const checkNodemonInstall = () => {
-  if(!nodemon) {
+  if(!nodemon as any) {
     const errorMsg = chalk.red(`nodemon is not installed. (${chalk.yellow('npm install --save nodemon')})`);
 
     throw new Error(errorMsg);
