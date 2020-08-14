@@ -7,10 +7,12 @@ import nodeExternals from 'webpack-node-externals'; // ? exclude node_modules
 import CopyPlugin from 'copy-webpack-plugin'; // ? copy assets dir
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'; // ? using alias paths in tsconfig.json (like tsconfig-paths)
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'; // ? build performance
+import WebpackHookPlugin from 'webpack-hook-plugin'; // ? on build end
 
 import env from './env';
 import paths, { resolve } from './paths';
 import { checkEnvVar, checkNodemonInstall } from './checks';
+import { buildEndScript } from './scripts';
 
 checkEnvVar();
 checkNodemonInstall();
@@ -77,6 +79,9 @@ const config: Configuration = {
       ],
     }),
     new ForkTsCheckerWebpackPlugin(),
+    new WebpackHookPlugin({
+      onBuildEnd: env.isDev ? [ buildEndScript ] : undefined
+    })
   ],
   stats: {
     builtAt: false,

@@ -14,11 +14,11 @@ dotenv.config({
 export default {
   nodeEnv: process.env.NODE_ENV || 'development',
   isDev: process.env.NODE_ENV !== 'production',
-  timezone: process.env.TIMEZONE,
+  timezone: process.env.TIMEZONE as string,
   port: parseInt(process.env.PORT || '3000', 10),
-  publicURL: process.env.PUBLIC_URL,
-  dbHost: process.env.MONGO_DB_HOST,
-  dbUsername: process.env.MONGO_DB_USERNAME,
-  dbPassword: process.env.MONGO_DB_PASSWORD,
-  jwtSecretKey: process.env.JWT_SECRET_KEY,
+  publicURL: process.env.PUBLIC_URL as string,
+  mongoDbHost: process.env.MONGO_DB_HOST as string,
+  mongoDbUsername: process.env.MONGO_DB_USERNAME as string,
+  mongoDbPassword: process.env.MONGO_DB_PASSWORD as string,
+  jwtSecretKey: process.env.JWT_SECRET_KEY as string,
 };

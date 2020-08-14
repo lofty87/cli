@@ -8,7 +8,9 @@ export const existEnvFile = (envFilePath: string) => {
   try {
     fs.accessSync(envFilePath, fs.constants.F_OK);
   } catch(error) {
-    const { base: filename } = parse(envFilePath);
+    const {
+      base: filename
+    } = parse(envFilePath);
 
     const errorMsg = chalk.red(`required "${chalk.yellow(filename)}" file.`);
 
