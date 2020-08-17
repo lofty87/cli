@@ -22,7 +22,7 @@ console.log(chalk.green(`\n----- build start (mode: ${chalk.greenBright(env.node
 const assetsCopyDir = basename(paths.assetsDir);
 
 const config: Configuration = {
-  mode: env.nodeEnv as Configuration['mode'],
+  mode: env.nodeEnv,
   target: 'node',
   context: paths.appDir,
   entry: paths.entry,
@@ -89,7 +89,10 @@ const config: Configuration = {
     }),
     new ForkTsCheckerWebpackPlugin({
       eslint: {
-        files: [ './config/**/*.{ts,tsx}', './src/**/*.{ts,tsx}' ], // ? cwd()
+        files: [
+          './config/**/*.{ts,tsx}',
+          './src/**/*.{ts,tsx}'
+        ], // ? cwd()
       },
     }),
     new WebpackHookPlugin({
