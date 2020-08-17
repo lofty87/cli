@@ -28,14 +28,14 @@ export default class Model<M extends Document> {
   private _collectionName: string;
   private _clientProjection: (keyof M)[];
   private _populateOptions?: QueryPopulateOptions | QueryPopulateOptions[];
-  public _extractDocOrDocs: ReturnType<typeof selectExtractingProjection>;
+  public extractDocOrDocs: ReturnType<typeof selectExtractingProjection>;
   private _Model: MongooseModel<M>;
 
   constructor(schema: Schema, collectionName: string, clientProjection: (keyof M)[], populateOptions?: QueryPopulateOptions | QueryPopulateOptions[]) {
     this._collectionName = collectionName;
     this._clientProjection = clientProjection;
     this._populateOptions = populateOptions;
-    this._extractDocOrDocs = selectExtractingProjection<M>(clientProjection);
+    this.extractDocOrDocs = selectExtractingProjection<M>(clientProjection);
 
     autoIncrement.initialize(connection);
     schema.plugin(autoIncrement.plugin, collectionName);

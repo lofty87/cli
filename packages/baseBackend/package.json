@@ -1,4 +1,6 @@
 {
+  "private": true,
+  "type": "module",
   "scripts": {
     "start": "build/bundle.js",
     "start:dev": "nodemon src/app.ts",
