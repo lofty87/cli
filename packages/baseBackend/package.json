@@ -7,7 +7,7 @@
   "dependencies": {
     "@koa/cors": "~3.1.0",
     "@lofty87/eslint-config": "~1.1.17",
-    "@lofty87/types": "~1.0.5",
+    "@lofty87/types": "~1.0.6",
     "@types/bcrypt": "~3.0.0",
     "@types/chalk": "~2.2.0",
     "@types/clean-webpack-plugin": "~0.1.3",
