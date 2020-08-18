@@ -23,14 +23,16 @@ const { assetsDir } = paths;
 // ! keep order !!
 export default async () =>
   await new Promise<(koa: Koa) => Koa>((resolve) => {
+    const acceptedCookieNames = [ 'cookie' ];
     const allowMethods = ALLOWED_METHOD.join(',');
+
     const middleware = compose([
       serve(basename(assetsDir)),
       bodyParser()
     ]);
 
     resolve((koa) => {
-      cookies.register(koa);
+      cookies.register(koa, acceptedCookieNames);
 
       // * cors, log
       if(isDev) {
