@@ -7,6 +7,19 @@
     "email": "lofty87@daum.net"
   },
   "license": "MIT",
+  "homepage": "https://github.com/lofty87/cli",
+  "bugs": {
+    "url": "https://github.com/lofty87/cli/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lofty87/cli.git"
+  },
+  "keywords": [
+    "lofty87",
+    "cli",
+    "boilerplate"
+  ],
   "bin": {
     "lofty87-cli": "build/bundle.js"
   },
