@@ -35,6 +35,15 @@ const config: Configuration = {
   module: {
     rules: [
       {
+        enforce: 'pre',
+        test: /\.tsx?$/,
+        loader: 'eslint-loader',
+        options: {
+          fix: false,
+        },
+        exclude: /node_modules/,
+      },
+      {
         test: /\.tsx?$/,
         use: [
           {
@@ -78,7 +87,14 @@ const config: Configuration = {
         },
       ],
     }),
-    new ForkTsCheckerWebpackPlugin(),
+    new ForkTsCheckerWebpackPlugin({
+      eslint: {
+        files: [
+          './config/**/*.{ts,tsx}',
+          './src/**/*.{ts,tsx}'
+        ], // ? cwd()
+      },
+    }),
     new WebpackHookPlugin({
       onBuildEnd: env.isDev ? [ buildEndScript ] : undefined
     })

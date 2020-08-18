@@ -1,6 +1,7 @@
 import cluster, { Worker } from 'cluster';
 import os from 'os';
 
+import chalk from 'chalk';
 import { defaultsDeep } from 'lodash';
 
 /**
@@ -21,7 +22,7 @@ export default (startApp: StartApp, customOptions: Options = {}) => {
   } = customOptions;
 
   if(customWorkerCount && (customWorkerCount < 1 || customWorkerCount > MAX_WORKER_COUNT)) {
-    throw new Error(`workerCount option value must be (1 ~ ${MAX_WORKER_COUNT})`);
+    throw new Error(chalk.red(`workerCount option value must be (1 ~ ${MAX_WORKER_COUNT})`));
   }
 
   const options: Required<Options> = defaultsDeep(customOptions, {
@@ -31,11 +32,11 @@ export default (startApp: StartApp, customOptions: Options = {}) => {
   const { workerCount } = options;
 
   cluster.on('online', (worker) => {
-    console.log(`worker(pid:${worker.process.pid}) is created.`);
+    console.log(`${chalk.bgMagenta(`worker(pid:${worker.process.pid})`)}: worker is created.`);
   });
 
   cluster.on('exit', (worker, code) => {
-    console.log(`worker(pid:${worker.process.pid}) died.`);
+    console.log(`${chalk.bgMagenta(`worker(pid:${worker.process.pid})`)}: worker died.`);
 
     if(code === 200) {
       cluster.fork();

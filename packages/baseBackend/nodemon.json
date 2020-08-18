@@ -1,6 +1,7 @@
 {
   "verbose": true,
   "watch": [
+    "@types",
     "config",
     "src"
   ],
