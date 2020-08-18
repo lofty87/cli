@@ -1,3 +1,4 @@
+import { ModelPartial } from '@lofty87/types';
 import {
   connection,
   Document,
@@ -13,7 +14,6 @@ import {
 } from 'mongoose';
 import autoIncrement from 'mongoose-auto-increment';
 import { defaultsDeep, isEmpty, omit } from 'lodash';
-import { ModelPartial } from '@lofty87/types/model';
 import { convertToDot, convertToProjection, selectExtractingProjection } from '@lib/mongoose';
 
 /**

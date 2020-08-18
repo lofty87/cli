@@ -1,5 +1,4 @@
-import { Object } from '@lofty87/types/common';
-import { ModelPartial } from '@lofty87/types/model';
+import { ModelPartial, Object } from '@lofty87/types';
 import { Document } from 'mongoose';
 import { compact, forEach, isArray, isEmpty, isFunction, isMap, isPlainObject, map, pick, transform, uniq } from 'lodash';
 

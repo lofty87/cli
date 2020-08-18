@@ -1,4 +1,4 @@
-import { Object } from '@lofty87/types/common';
+import { Object } from '@lofty87/types';
 import { Document } from 'mongoose';
 import { isEmpty, isNull, isPlainObject, isUndefined, reduce } from 'lodash';
 

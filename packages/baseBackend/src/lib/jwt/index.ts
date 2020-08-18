@@ -1,4 +1,4 @@
-import { Object } from '@lofty87/types/common';
+import { Object } from '@lofty87/types';
 import jsonwebtoken, { SignOptions } from 'jsonwebtoken';
 import { defaultsDeep } from 'lodash';
 import moment from 'moment';
