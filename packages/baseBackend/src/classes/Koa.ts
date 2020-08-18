@@ -24,11 +24,11 @@ export default class Koa extends KoaClass {
       keys: [],
     });
 
-    super.proxy = opts.proxy;
-    super.proxyIpHeader = opts.proxyIpHeader;
-    super.maxIpsCount = opts.maxIpsCount;
-    super.subdomainOffset = opts.subdomainOffset;
-    super.env = opts.env;
-    super.keys = opts.keys;
+    this.proxy = opts.proxy;
+    this.proxyIpHeader = opts.proxyIpHeader;
+    this.maxIpsCount = opts.maxIpsCount;
+    this.subdomainOffset = opts.subdomainOffset;
+    this.env = opts.env;
+    this.keys = opts.keys;
   }
 }

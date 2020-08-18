@@ -11,7 +11,7 @@ export class StatusError extends Error {
     this.status = status;
 
     // ? stack trace
-    super.name = this.constructor.name;
+    this.name = this.constructor.name;
     Error.captureStackTrace(this, this.constructor);
   }
 }
