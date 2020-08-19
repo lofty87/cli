@@ -2,7 +2,8 @@
   "scripts": {
     "start": "node build/bundle.js",
     "start:dev": "nodemon src/app.ts",
-    "build": "webpack --config config/webpack.config.ts --progress"
+    "build": "webpack --config config/webpack.config.ts --progress",
+    "clean": "rm -rf build node_modules"
   },
   "dependencies": {
     "@koa/cors": "~3.1.0",
