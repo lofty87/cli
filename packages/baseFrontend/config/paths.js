@@ -65,6 +65,9 @@ module.exports = {
   proxySetup: resolveApp('src/setupProxy.js'),
   appNodeModules: resolveApp('node_modules'),
   publicUrlOrPath,
+  
+  // lofty87
+  assetsDir: resolveApp('assets')
 };
 
 
