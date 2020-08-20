@@ -14,14 +14,28 @@ module.exports = {
     '@storybook/addon-essentials',
   ],
   webpackFinal: (config) => {
-    config.resolve.modules.concat(paths.appPath);
-    config.resolve.plugins.concat(
+    // * resolve
+    const resolveModules = config.resolve.modules;
+    config.resolve.modules = resolveModules.concat(paths.appPath);
+    
+    const resolvePlugins = config.resolve.plugins;
+    config.resolve.plugins = resolvePlugins.concat(
       new TsconfigPathsPlugin({
         configFile: 'tsconfig.json', // ? cwd()
         extensions: [ '.tsx', '.ts', '.js' ],
       })
     );
-    config.plugins.concat(
+    
+    // * module
+    config.module.rules.push({
+      test: /\.(scss|sass)$/,
+      use: ['style-loader', 'css-loader', 'sass-loader'],
+      include: paths.appPath,
+    });
+    
+    // * plugins
+    const plugins = config.plugins;
+    config.plugins = plugins.concat(
       new CopyPlugin({
         patterns: [
           {
