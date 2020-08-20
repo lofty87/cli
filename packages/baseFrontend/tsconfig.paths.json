@@ -2,15 +2,17 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@config*"      : ["config*"],
-      "@api*"         : ["src/api*"],
-      "@classes*"     : ["src/classes*"],
-      "@controllers*" : ["src/controllers*"],
-      "@lib*"         : ["src/lib*"],
-      "@models*"      : ["src/models*"],
-      "@routers*"     : ["src/routers*"],
-      "@serverConfig*": ["src/serverConfig*"],
-      "@services*"    : ["src/services*"]
+      "$types*"     : ["@types/common*"],
+      "@api*"       : ["src/api*"],
+      "@classes*"   : ["src/classes*"],
+      "@components*": ["src/components*"],
+      "@constants*" : ["src/constants*"],
+      "@containers*": ["src/containers*"],
+      "@lib*"       : ["src/lib*"],
+      "@pages*"     : ["src/pages*"],
+      "@stores*"    : ["src/stores*"],
+      "@styles*"    : ["src/styles*"],
+      "@templates*" : ["src/templates*"]
     }
   }
 }

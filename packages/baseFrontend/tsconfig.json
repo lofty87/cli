@@ -3,7 +3,7 @@
   "compilerOptions": {
     "charset": "utf8",
     "target": "ES5",
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "node",
     
     /* build */
@@ -19,7 +19,7 @@
       "ESNext"
     ],
     "typeRoots": [
-      "@types",
+      "@types/modules",
       "node_modules/@types"
     ],
     
@@ -42,7 +42,6 @@
   
   /* compile target */
   "include": [
-    "config/**/*",
     "src/**/*"
   ],
   "exclude": [
