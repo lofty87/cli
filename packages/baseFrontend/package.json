@@ -64,7 +64,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "browserslist": {
     "production": [
@@ -132,5 +134,12 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "~6.0.13",
+    "@storybook/addon-essentials": "~6.0.13",
+    "@storybook/addon-links": "~6.0.13",
+    "@storybook/react": "~6.0.13",
+    "react-is": "~16.13.1"
   }
 }

@@ -30,8 +30,8 @@ const postcssNormalize = require('postcss-normalize');
 const appPackageJson = require(paths.appPackageJson);
 
 // lofty87
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin'); // ? using alias paths in tsconfig.json (like tsconfig-paths)
+const CopyPlugin = require('copy-webpack-plugin'); // ? copy assets dir
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -319,7 +319,7 @@ module.exports = function(webpackEnv) {
         new TsconfigPathsPlugin({
           configFile: 'tsconfig.json', // ? cwd()
           extensions: [ '.tsx', '.ts', '.js' ],
-        }),
+        })
       ],
     },
     resolveLoader: {
@@ -667,7 +667,7 @@ module.exports = function(webpackEnv) {
             to: path.basename(paths.assetsDir)
           },
         ],
-      }),
+      })
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell webpack to provide empty mocks for them so importing them works.
