@@ -2,7 +2,7 @@
   "private": true,
   "dependencies": {
     "@babel/core": "7.9.0",
-    "@lofty87/eslint-config": "~1.1.17",
+    "@lofty87/eslint-config": "~1.1.18",
     "@svgr/webpack": "4.3.3",
     "@testing-library/jest-dom": "~4.2.4",
     "@testing-library/react": "~9.5.0",
