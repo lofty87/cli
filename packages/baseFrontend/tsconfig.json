@@ -43,6 +43,7 @@
   /* compile target */
   "include": [
     "@types/common/**/*",
+    "@types/external/**/*",
     "src/**/*"
   ],
   "exclude": [
