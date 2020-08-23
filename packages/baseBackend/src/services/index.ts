@@ -1,5 +1,5 @@
-import * as model from './model';
+import * as temp from './temp';
 
 export default {
-  model,
+  temp,
 };

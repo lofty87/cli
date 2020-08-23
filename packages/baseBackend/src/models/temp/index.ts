@@ -1,18 +1,18 @@
 import { Model } from '@classes/index';
 import { Document } from 'mongoose';
 
-import schema from './model.schema';
+import schema from './temp.schema';
 
 // ? e.g.
-interface ModelType extends Document {
+interface TempType extends Document {
   _id: number;
   name: string;
   password: string;
   createdAt: number;
 }
 
-export default new Model<ModelType>(
+export default new Model<TempType>(
   schema,
-  'models',
+  'temps',
   [ '_id', 'name', 'password' ]
 );
