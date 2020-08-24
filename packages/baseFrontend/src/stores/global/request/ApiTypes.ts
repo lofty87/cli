@@ -1,3 +1,5 @@
+type Common = 'common';
+
 type Temp =
   | 'temp/add'
   | 'temp/fetchDocs'
@@ -6,4 +8,6 @@ type Temp =
   | 'temp/removeById'
   | 'temp/fetchCount';
 
-export type ApiTypes = Temp;
+export type ApiTypes =
+  | Common
+  | Temp;
