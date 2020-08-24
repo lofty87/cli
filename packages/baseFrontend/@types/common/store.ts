@@ -42,7 +42,7 @@ export interface ModelFormStore<Model extends Document, Key extends keyof Model,
  * * ModelListStore 작성 시 implement 하여 작성.
  */
 export interface ModelListStore<Model extends Document, Doc = Model, Docs = Doc[]> {
-  // ! private _state: Doc;
+  // ! private _state: Docs;
   // ! private _skip: number;
   // ! private _isLastData: boolean;
   // ! private _search: string;
@@ -63,7 +63,7 @@ export interface ModelListStore<Model extends Document, Doc = Model, Docs = Doc[
   // ? Model List Form
   add?: (doc: Doc) => void;
   prepend?: (id: number, doc: Doc) => void;
-  getDocById?: (id: number) => Doc;
+  getDocById?: (id: number) => null | Doc;
   updateById?: (id: number, doc: ModelPartial<Doc>) => void;
   removeById?: (id: number) => void;
 }
