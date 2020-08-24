@@ -11,11 +11,21 @@ import axios from '@lib/axios';
 import { QP } from '$types/index';
 
 /**
+ * * 지원하는 기본 REST API 명세
+ * * 리소스 생성        - POST    |  /{resource}
+ * * 리소스 리스트 조회 - GET     |  /{resource}
+ * * 리소스 조회        - GET     |  /{resource}/{id}
+ * * 리소스 수정        - PATCH   |  /{resource}/{id}
+ * * 리소스 삭제        - DELETE  |  /{resource}/{id}
+ * * 리소스 전체 수     - GET     |  /{resource}/count
+ */
+
+/**
  * @class Api
  * * Request Store 를 통해
  * * 각 api 들의 request state 를 독립적으로 관리
  *
- * * name 을 통해 기본 api type 이 정의된다.
+ * * name 을 통해 request state 의 기본 api type 이 정의된다.
  * ! api 를 추가할 때 마다,
  * ! Request Store 에도 api type 을 직접 추가해 주어야 한다.
  * ? {name}/add
