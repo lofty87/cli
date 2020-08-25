@@ -2,37 +2,36 @@ import React, { MouseEventHandler } from 'react';
 
 import { NCFC, RRP, SCP } from '$types/index';
 
-const NotFound: NCFC<SCP & RRP> = ({
-  className,
-  history
-}) => {
+const NotFound: NCFC<SCP & RRP> = ({ className, history }) => {
   const goHome: MouseEventHandler = (e) => {
     history.replace('/');
   };
 
   return (
-    <article
+    <div
       className={className}
     >
-      <section
-        className="status"
-      >
-        <h2
-          className="status__code"
+      <article>
+        <section
+          className="status"
         >
-          404
-        </h2>
-        <div
-          className="status__message"
+          <h2
+            className="status__code"
+          >
+            404
+          </h2>
+          <div
+            className="status__message"
+          >
+            NOT FOUND
+          </div>
+        </section>
+        <section
+          className="btn"
         >
-          페이지를 찾을 수 없습니다.
-        </div>
-      </section>
-      <section
-        className="btn"
-      >
-      </section>
-    </article>
+        </section>
+      </article>
+    </div>
   );
 };
 
