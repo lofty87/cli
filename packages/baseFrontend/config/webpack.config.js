@@ -32,7 +32,6 @@ const appPackageJson = require(paths.appPackageJson);
 // lofty87
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin'); // ? using alias paths in tsconfig.json (like tsconfig-paths)
 const CopyPlugin = require('copy-webpack-plugin'); // ? copy assets dir
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'); // ? fast refresh
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -306,6 +305,10 @@ module.exports = function(webpackEnv) {
           'scheduler/tracing': 'scheduler/tracing-profiling',
         }),
         ...(modules.webpackAliases || {}),
+        
+        // lofty87
+        // react-🔥-dom patch is not detected. React 16.6+ features may not work.
+        'react-dom': '@hot-loader/react-dom',
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -394,7 +397,7 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
-                  isEnvDevelopment && require.resolve('react-refresh/babel')
+                  'react-hot-loader/babel'
                 ].filter(Boolean),
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/
@@ -669,8 +672,7 @@ module.exports = function(webpackEnv) {
             to: path.basename(paths.assetsDir)
           },
         ],
-      }),
-      isEnvDevelopment && new ReactRefreshWebpackPlugin()
+      })
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell webpack to provide empty mocks for them so importing them works.

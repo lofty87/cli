@@ -22,7 +22,7 @@ const renderApp = () => (
       >
         <Router>
           <Route
-            render={App}
+            component={App}
           />
         </Router>
       </ThemeProvider>
