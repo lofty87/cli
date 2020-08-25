@@ -17,7 +17,11 @@ const iconConfig: IconContext = {
   },
 };
 
-const ThemeProvider: CFC<Props> = ({ $scTheme, $muiTheme, children }) => (
+const ThemeProvider: CFC<Props> = ({
+  $scTheme,
+  $muiTheme,
+  children
+}) => (
   <>
     <MUICssBaseline />
     <MUIStylesProvider
