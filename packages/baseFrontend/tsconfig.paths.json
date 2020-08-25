@@ -12,7 +12,6 @@
       "@pages*"     : ["src/pages*"],
       "@stores*"    : ["src/stores*"],
       "@styles*"    : ["src/styles*"],
-      "@templates*" : ["src/templates*"],
       "@env"        : ["src/@env"]
     }
   }
