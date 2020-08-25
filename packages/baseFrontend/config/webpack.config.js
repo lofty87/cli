@@ -397,6 +397,8 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
+                  
+                  // lofty87
                   'react-hot-loader/babel'
                 ].filter(Boolean),
                 // This is a feature of `babel-loader` for webpack (not Babel itself).

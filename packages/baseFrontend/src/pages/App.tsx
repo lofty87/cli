@@ -7,7 +7,7 @@ import NotFound from './NotFound';
 
 import { NCFC, RRP } from '$types/index';
 
-const App: NCFC<RRP> = ({ history }) => (
+const App: NCFC<RRP> = () => (
   <Switch>
     <Route
       path="/"
