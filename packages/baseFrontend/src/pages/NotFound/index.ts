@@ -1,5 +1,5 @@
 import { styled } from '@styles/styled-components';
-import { colorOf, fontOf } from '@styles/lib';
+import { colorOf, fontOf, spacingOf } from '@styles/lib';
 
 import NotFound from './NotFound';
 
@@ -19,6 +19,7 @@ const StyledNotFound = styled(NotFound)`
     & > .status > .status {
       &__code {
         margin-top: 0;
+        margin-bottom: 0;
         font-size: ${fontOf(({ h1 }) => h1.size)}rem;
         font-weight: ${fontOf(({ weight }) => weight.bold)};
         color: ${colorOf(({ main }) => main.thick7)};
@@ -32,6 +33,8 @@ const StyledNotFound = styled(NotFound)`
     }
 
     & > .btn {
+      margin-top: ${spacingOf(6)}px;
+      padding: ${spacingOf(0, 10)};
     }
   }
 `;

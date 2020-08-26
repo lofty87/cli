@@ -1,4 +1,5 @@
 import React, { MouseEventHandler } from 'react';
+import { Button } from '@components/atoms';
 
 import { NCFC, RRP, SCP } from '$types/index';
 
@@ -15,11 +16,11 @@ const NotFound: NCFC<SCP & RRP> = ({ className, history }) => {
         <section
           className="status"
         >
-          <h2
+          <h1
             className="status__code"
           >
             404
-          </h2>
+          </h1>
           <div
             className="status__message"
           >
@@ -29,6 +30,14 @@ const NotFound: NCFC<SCP & RRP> = ({ className, history }) => {
         <section
           className="btn"
         >
+          <Button
+            $color="dark"
+            size="large"
+            fullWidth
+            onClick={goHome}
+          >
+            Home
+          </Button>
         </section>
       </article>
     </div>

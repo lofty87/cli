@@ -30,8 +30,8 @@ export const fontOf = (fn: OfFn<Theme['font']>) => {
 };
 
 // ! overloading type
-export const spacingOf = (value1?: SpacingArgument, value2?: SpacingArgument, value3?: SpacingArgument, value4?: SpacingArgument) => {
-  const styleFn = (props: Props) => props.theme.spacing(value1 as any, value2 as any, value3 as any, value4 as any);
+export const spacingOf = (...values: SpacingArgument[]) => {
+  const styleFn = (props: Props) => props.theme.spacing(...(values as [SpacingArgument, SpacingArgument, SpacingArgument, SpacingArgument]));
 
   return styleFn;
 };
