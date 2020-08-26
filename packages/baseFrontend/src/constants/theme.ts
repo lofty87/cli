@@ -161,7 +161,15 @@ const muiTheme = createMuiTheme({
   },
   spacing,
   typography: {
-    fontFamily: '"Spoqa Han Sans", "spoqahansans", "Apple SD Gothic Neo", "Nanum Gothic", "Malgun Gothic", Dotum, sans-serif',
+    fontFamily: [
+      '"Spoqa Han Sans"',
+      '"spoqahansans"',
+      '"Apple SD Gothic Neo"',
+      '"Nanum Gothic"',
+      '"Malgun Gothic"',
+      'Dotum',
+      'sans-serif'
+    ].join(','),
   },
 });
 
@@ -184,8 +192,6 @@ const scTheme = merge(
   },
   {
     colors,
-  },
-  {
     font,
   }
 );
