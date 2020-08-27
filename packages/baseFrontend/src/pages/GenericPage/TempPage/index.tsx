@@ -13,13 +13,13 @@ const TempPage: NCFC<RRP> = ({
       exact
     />
     <Route
-      path={`${match.path}/:id`}
-      render={() => <div>temps/:id</div>}
+      path={`${match.path}/write`}
+      render={() => <div>temps/write</div>}
       exact
     />
     <Route
-      path={`${match.path}/write`}
-      render={() => <div>temps/write</div>}
+      path={`${match.path}/:id`}
+      render={() => <div>temps/:id</div>}
       exact
     />
     <Redirect
