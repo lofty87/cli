@@ -1,9 +1,10 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
+import { Route, Switch } from 'react-router-dom';
 import env from '@env';
 
-import NotFound from './NotFound';
+import GenericPage from './GenericPage';
+import NotFoundPage from './NotFoundPage';
 
 import { NCFC, RRP } from '$types/index';
 
@@ -11,15 +12,17 @@ const App: NCFC<RRP> = () => (
   <Switch>
     <Route
       path="/"
-      render={() => <div>index page</div>}
+      component={GenericPage}
       exact
     />
     <Route
-      path="/temp*"
-      render={() => <div>temp pages</div>}
+      path={[
+        '/temps'
+      ]}
+      component={GenericPage}
     />
     <Route
-      component={NotFound}
+      component={NotFoundPage}
     />
   </Switch>
 );

@@ -3,7 +3,10 @@ import { Button } from '@components/atoms';
 
 import { NCFC, RRP, SCP } from '$types/index';
 
-const NotFound: NCFC<SCP & RRP> = ({ className, history }) => {
+const NotFoundPage: NCFC<SCP & RRP> = ({
+  className,
+  history
+}) => {
   const goHome: MouseEventHandler = (e) => {
     history.replace('/');
   };
@@ -44,4 +47,4 @@ const NotFound: NCFC<SCP & RRP> = ({ className, history }) => {
   );
 };
 
-export default NotFound;
+export default NotFoundPage;

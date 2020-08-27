@@ -1,9 +1,9 @@
 import { styled } from '@styles/styled-components';
 import { colorOf, fontOf, spacingOf } from '@styles/lib';
 
-import NotFound from './NotFound';
+import NotFoundPage from './NotFoundPage';
 
-const StyledNotFound = styled(NotFound)`
+const StyledNotFoundPage = styled(NotFoundPage)`
   position: relative;
   width: 100%;
   height: 100vh;
@@ -39,4 +39,4 @@ const StyledNotFound = styled(NotFound)`
   }
 `;
 
-export default StyledNotFound;
+export default StyledNotFoundPage;
