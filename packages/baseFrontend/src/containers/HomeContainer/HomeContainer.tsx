@@ -9,7 +9,7 @@ const HomeContainer: NCFC<SCP> = ({
   <div
     className={className}
   >
-    Base Frontend
+    Base Frontend Sample
   </div>
 );
 
