@@ -4,15 +4,19 @@ export const routerData = [
     pathname: '/',
   },
   {
-    title: 'Temp List',
+    title: 'Temp-List',
     pathname: '/temps',
   },
   {
-    title: 'Temp',
-    pathname: 'temps/id',
+    title: 'Temp-Form',
+    pathname: '/temps/write',
   },
   {
-    title: 'Temp Form',
-    pathname: 'temps/write',
+    title: 'Temp',
+    pathname: '/temps/id',
+  },
+  {
+    title: 'Not-Found',
+    pathname: '/not-found',
   },
 ];

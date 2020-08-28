@@ -1,5 +1,6 @@
 import React from 'react';
 import { Header } from '@components/organisms';
+import { routerData } from '@constants/router';
 
 import { Props } from './HeaderContainer.props';
 
@@ -10,7 +11,8 @@ const HeaderContainer: NCFC<Props> = ({
   history
 }) => (
   <Header
-    title={history.location.pathname}
+    subTitle={history.location.pathname}
+    routerData={routerData}
   />
 );
 

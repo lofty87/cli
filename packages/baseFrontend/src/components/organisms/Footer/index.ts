@@ -5,7 +5,7 @@ import Footer from './Footer';
 
 const StyledFooter = styled(Footer)`
   padding: ${spacingOf(4, 0)};
-  font-size: ${fontOf(({ h3 }) => h3.size)}rem;
+  font-size: ${fontOf(({ h5 }) => h5.size)}rem;
   font-weight: ${fontOf(({ weight }) => weight.bold)};
   text-align: center;
 `;

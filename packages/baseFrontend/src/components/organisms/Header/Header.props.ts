@@ -1,3 +1,7 @@
 export type Props = {
-  title: string;
+  subTitle: string;
+  routerData: {
+    title: string;
+    pathname: string;
+  }[];
 };
