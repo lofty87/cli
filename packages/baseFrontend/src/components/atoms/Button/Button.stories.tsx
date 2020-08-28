@@ -46,45 +46,45 @@ export const Variant = () => (
 export const Color = () => (
   <>
     <section>
-      <h4>$color="main"</h4>
+      <h4>color="main"</h4>
       <Button
-        $color="main"
+        color="main"
       >
         버튼
       </Button>
     </section>
     <br />
     <section>
-      <h4>$color="dark"</h4>
+      <h4>color="dark"</h4>
       <Button
-        $color="dark"
+        color="dark"
       >
         버튼
       </Button>
     </section>
     <br />
     <section>
-      <h4>$color="red"</h4>
+      <h4>color="red"</h4>
       <Button
-        $color="red"
+        color="red"
       >
         버튼
       </Button>
     </section>
     <br />
     <section>
-      <h4>$color="green"</h4>
+      <h4>color="green"</h4>
       <Button
-        $color="green"
+        color="green"
       >
         버튼
       </Button>
     </section>
     <br />
     <section>
-      <h4>$color="yellow"</h4>
+      <h4>color="yellow"</h4>
       <Button
-        $color="yellow"
+        color="yellow"
       >
         버튼
       </Button>

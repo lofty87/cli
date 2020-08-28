@@ -6,21 +6,21 @@ import { CFC, SCP } from '$types/index';
 
 const GenericTemplate: CFC<SCP & Props> = ({
   className,
-  $Header,
+  Header,
   children,
-  $Footer
+  Footer
 }) => (
   <div
     className={className}
   >
     <header>
-      {$Header}
+      {Header}
     </header>
     <section>
       {children}
     </section>
     <footer>
-      {$Footer}
+      {Footer}
     </footer>
   </div>
 );

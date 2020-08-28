@@ -7,10 +7,10 @@ import { NCFC } from '$types/index';
 
 // * process async, state data
 const HeaderContainer: NCFC<Props> = ({
-  match
+  history
 }) => (
   <Header
-    $title={match.url}
+    title={history.location.pathname}
   />
 );
 

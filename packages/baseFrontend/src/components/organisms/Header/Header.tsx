@@ -6,7 +6,7 @@ import { NCFC, SCP } from '$types/index';
 
 const Header: NCFC<SCP & Props> = ({
   className,
-  $title
+  title
 }) => (
   <div
     className={className}
@@ -14,7 +14,7 @@ const Header: NCFC<SCP & Props> = ({
     <h1
       className="title"
     >
-      {$title}
+      {title}
     </h1>
   </div>
 );

@@ -9,15 +9,15 @@ import TempPage from './TempPage';
 import { NCFC, RRP } from '$types/index';
 
 const GenericPage: NCFC<RRP> = ({
-  match
+  history
 }) => (
   <GenericTemplate
-    $Header={(
+    Header={(
       <HeaderContainer
-        match={match}
+        history={history}
       />
     )}
-    $Footer={<Footer />}
+    Footer={<Footer />}
   >
     <Switch>
       <Route

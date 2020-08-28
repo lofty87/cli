@@ -8,7 +8,7 @@ const Footer: NCFC<SCP> = ({
   <div
     className={className}
   >
-    footer
+    Footer
   </div>
 );
 

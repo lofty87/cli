@@ -34,7 +34,7 @@ const NotFoundPage: NCFC<SCP & RRP> = ({
           className="btn"
         >
           <Button
-            $color="dark"
+            color="dark"
             size="large"
             fullWidth
             onClick={goHome}
