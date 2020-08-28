@@ -31,12 +31,12 @@ const NotFoundPage: NCFC<SCP & RRP> = ({
           </div>
         </section>
         <section
-          className="btn"
+          className="home-btn"
         >
           <Button
             color="dark"
+            length="medium"
             size="large"
-            fullWidth
             onClick={goHome}
           >
             Home

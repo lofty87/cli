@@ -32,9 +32,8 @@ const StyledNotFoundPage = styled(NotFoundPage)`
       }
     }
 
-    & > .btn {
+    & > .home-btn {
       margin-top: ${spacingOf(6)}px;
-      padding: ${spacingOf(0, 10)};
     }
   }
 `;

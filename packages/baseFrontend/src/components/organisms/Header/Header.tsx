@@ -32,7 +32,7 @@ const Header: NCFC<SCP & Props> = ({
       }, i) => (
         <Link
           key={i}
-          className="btn"
+          className="nav-btn"
           to={routerPathname}
         >
           {routerTitle}

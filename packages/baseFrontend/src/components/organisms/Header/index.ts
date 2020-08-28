@@ -27,7 +27,7 @@ const StyledHeader = styled(Header)`
     margin-top: ${spacingOf(2)}px;
     text-align: center;
 
-    & > .btn {
+    & > .nav-btn {
       margin-right: ${spacingOf(2)}px;
       font-size: ${fontOf(({ body1 }) => body1.size)}rem;
       font-weight: ${fontOf(({ weight }) => weight.regular)};

@@ -1,6 +1,6 @@
 import hex2rgba from 'hex2rgba';
 import { css, styled } from '@styles/styled-components';
-import { colorOf, fontOf, mappedBy, selectedBy } from '@styles/lib';
+import { colorOf, fontOf, mappedBy, selectedBy, spacingOf } from '@styles/lib';
 
 import Button from './Button';
 import { Props } from './Button.props';
@@ -44,13 +44,34 @@ const variantStyle = {
   `,
 };
 
+const lengthStyle = {
+  short: css`
+    padding-left: ${spacingOf(1)}px;
+    padding-right: ${spacingOf(1)}px;
+    min-width: 44px;
+  `,
+  medium: css`
+    padding-left: ${spacingOf(4)}px;
+    padding-right: ${spacingOf(4)}px;
+    min-width: 92px;
+  `,
+  long: css`
+    padding-left: ${spacingOf(11)}px;
+    padding-right: ${spacingOf(11)}px;
+    min-width: 204px;
+  `,
+};
+
 const StyledButton = styled(Button).attrs((props) => ({
   color: props.color || 'main',
+  length: props.length || undefined,
   variant: props.variant || 'contained',
 }))`
   font-weight: ${fontOf(({ weight }) => weight.bold)};
 
   ${({ variant }) => mappedBy(variantStyle, variant)};
+
+  ${({ length }) => mappedBy(lengthStyle, length)};
 `;
 
 export default StyledButton;

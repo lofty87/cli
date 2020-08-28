@@ -8,6 +8,7 @@ import { CFC, SCP } from '$types/index';
 const Button: CFC<SCP & Props> = ({
   className,
   color = 'main',
+  length = undefined,
   variant = 'contained',
   ...others
 }) => (
