@@ -22,8 +22,8 @@ export const decorators = [
         {...stores}
       >
         <ThemeProvider
-          $muiTheme={muiTheme}
-          $scTheme={scTheme}
+          muiTheme={muiTheme}
+          scTheme={scTheme}
         >
           <Router>
             <Route

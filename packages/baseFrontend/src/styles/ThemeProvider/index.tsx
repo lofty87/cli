@@ -18,8 +18,8 @@ const iconConfig: IconContext = {
 };
 
 const ThemeProvider: CFC<Props> = ({
-  $scTheme,
-  $muiTheme,
+  scTheme,
+  muiTheme,
   children
 }) => (
   <>
@@ -28,10 +28,10 @@ const ThemeProvider: CFC<Props> = ({
       injectFirst
     >
       <SCThemeProvider
-        theme={$scTheme}
+        theme={scTheme}
       >
         <MUIThemeProvider
-          theme={$muiTheme}
+          theme={muiTheme}
         >
           <GlobalStyle />
           <IconContext.Provider
