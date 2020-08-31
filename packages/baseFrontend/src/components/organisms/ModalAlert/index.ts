@@ -35,8 +35,8 @@ const StyledModalAlert = styled(ModalAlert).attrs((props) => ({
 
       & > .title {
         margin: 0;
-        padding: ${spacingOf(1.5, 3)};
-        font-size: ${fontOf(({ h6 }) => h6.size)}rem;
+        padding: ${spacingOf(1.5, 2)};
+        font-size: ${fontOf(({ subtitle1 }) => subtitle1.size)}rem;
         font-weight: ${fontOf(({ weight }) => weight.bold)};
         color: ${colorOf(({ white }) => white)};
       }
@@ -49,6 +49,7 @@ const StyledModalAlert = styled(ModalAlert).attrs((props) => ({
             margin-bottom: ${spacingOf(3)}px;
             font-size: ${fontOf(({ body1 }) => body1.size)}rem;
             font-weight: ${fontOf(({ weight }) => weight.regular)};
+            line-height: ${fontOf(({ body1 }) => body1.lineHeight)};
             color: ${colorOf(({ dark }) => dark.thick7)};
           }
 
