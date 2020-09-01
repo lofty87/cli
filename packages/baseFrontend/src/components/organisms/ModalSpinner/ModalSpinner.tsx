@@ -20,7 +20,7 @@ const ModalSpinner: NCFC<SCP> = observer(({
   const {
     modalSpinner: {
       state: {
-        show
+        reqState
       },
     },
   } = useStores();
@@ -28,7 +28,7 @@ const ModalSpinner: NCFC<SCP> = observer(({
   return (
     <Modal
       className={className}
-      open={show}
+      open={reqState}
       disableAutoFocus
       disableEscapeKeyDown
       disableRestoreFocus

@@ -1,4 +1,4 @@
-import { action, computed, observable } from 'mobx';
+import { action, observable } from 'mobx';
 
 import { ApiTypes } from './ApiTypes';
 
@@ -23,7 +23,6 @@ export class RequestStore {
     this._state.set(apiType, 'done');
   };
 
-  @computed
   public get(apiType: ApiTypes) {
     return this._state.get(apiType) || 'done';
   }
