@@ -2,6 +2,9 @@ import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 import '@styles/scss/base.scss';
 
+import 'mobx-react-lite/batchingForReactDom';
+// ? https://github.com/mobxjs/mobx-react-lite/#observer-batching
+
 import React from 'react';
 import { render } from 'react-dom';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
