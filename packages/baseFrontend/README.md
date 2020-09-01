@@ -7,6 +7,7 @@ it is a development environment based on [create-react-app](https://create-react
 * [axios](https://github.com/axios/axios)
 * [mobx4](https://mobx.js.org/README.html)(supported IE11)
 * [styled-components](https://styled-components.com/)
+* [스포카 한 산스](https://spoqa.github.io/spoqa-han-sans/ko-KR/)(font)
 * [storybook](https://storybook.js.org/)
 
 ## 1. Installation
