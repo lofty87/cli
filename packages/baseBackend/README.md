@@ -1,9 +1,9 @@
 # baseBackend
 
-it is a development environment based on [nodemon](https://nodemon.io/)([ts-node](https://github.com/TypeStrong/ts-node)) and [webpack](https://webpack.js.org/).
+it is a development environment based on [nodemon](https://nodemon.io/)([ts-node](https://github.com/TypeStrong/ts-node)) and [webpack](https://webpack.js.org/) for the lofty87 backend project.
 
 * [koa](https://koajs.com/)
-* [mongoose](https://mongoosejs.com/)
+* [mongoose](https://mongoosejs.com/)(mongodb)
 * [nodemailer](https://nodemailer.com/about/)(use [pug](https://pugjs.org/api/getting-started.html) template engine)
 
 ## 1. Installation
@@ -40,33 +40,25 @@ GOOGLE_API_OAUTH_TOKEN_EXPIRES
 
 ## 3. Development
 
-you can work in two environments.
+use **nodemon** and **ts-node** and is not build.
 
-#### 1. nodemon(ts-node)
-
-it doesn't build, but you can always work in watch mode.
+you can always work in watch mode.
 
 ```bash
 npm run start:dev
 ```
 
-#### 2. webpack
+## 4. Production
 
-<u>it is built</u> and you can also work in watch mode only when the **NODE_ENV** environment variable is `development`.
+use **webpack** and is build.
+
+if **NODE_ENV** environment variable is `development`, you can also work in watch mode.
 
 ```bash
 npm run build
 ```
 
-## 5. Production
-
-not include build. run after build.
-
-```bash
-npm start
-```
-
-## 4. Clean
+## 5. Clean
 
 remove *build* and *node_modules* dirs.
 
