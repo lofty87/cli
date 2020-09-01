@@ -28,14 +28,14 @@ REACT_APP_ASSETS_URL
 
 ## 3. Development
 
-#### 1. webpack dev server
+#### 1. webpack-dev-server
 set by referring to environment variables in *.env.development* file.
 
 ```bash
 npm start
 ```
 
-#### 2. Storybook
+#### 2. storybook
 
 you can manage components through a storybook.
 
