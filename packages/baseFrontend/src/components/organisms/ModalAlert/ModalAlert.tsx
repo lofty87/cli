@@ -25,7 +25,7 @@ const defaultTitle: Record<Usage, string> = {
   error: '오류',
 };
 
-const ModalAlert: NCFC<SCP> = observer(({
+const ModalAlert: NCFC<SCP> = ({
   className,
   ...others
 }) => {
@@ -96,6 +96,6 @@ const ModalAlert: NCFC<SCP> = observer(({
       </section>
     </Dialog>
   );
-});
+};
 
-export default ModalAlert;
+export default observer(ModalAlert);

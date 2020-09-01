@@ -15,22 +15,20 @@ import { muiTheme, scTheme } from '@constants/theme';
 import App from '@pages/App';
 
 const renderApp = () => (
-  <React.StrictMode>
-    <StoreProvider
-      {...stores}
+  <StoreProvider
+    {...stores}
+  >
+    <ThemeProvider
+      muiTheme={muiTheme}
+      scTheme={scTheme}
     >
-      <ThemeProvider
-        muiTheme={muiTheme}
-        scTheme={scTheme}
-      >
-        <Router>
-          <Route
-            component={App}
-          />
-        </Router>
-      </ThemeProvider>
-    </StoreProvider>
-  </React.StrictMode>
+      <Router>
+        <Route
+          component={App}
+        />
+      </Router>
+    </ThemeProvider>
+  </StoreProvider>
 );
 
 render(

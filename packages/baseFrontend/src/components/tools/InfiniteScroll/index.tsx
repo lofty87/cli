@@ -60,7 +60,7 @@ const getTargetElScrollTop = (targetEl: TargetEl) => {
   );
 };
 
-const InfiniteScroll: CFC<Props> = observer(({
+const InfiniteScroll: CFC<Props> = ({
   onBottom,
   pause = false,
   targetRef: targetEl = undefined,
@@ -99,6 +99,6 @@ const InfiniteScroll: CFC<Props> = observer(({
   });
 
   return children as React.ReactElement;
-});
+};
 
-export default InfiniteScroll;
+export default observer(InfiniteScroll);

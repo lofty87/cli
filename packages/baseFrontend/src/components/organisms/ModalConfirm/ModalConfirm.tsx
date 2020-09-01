@@ -17,7 +17,7 @@ import { NCFC, SCP } from '$types/index';
  * ? 최대한 자연스럽게 동작하도록 작성
  */
 
-const ModalConfirm: NCFC<SCP> = observer(({
+const ModalConfirm: NCFC<SCP> = ({
   className,
   ...others
 }) => {
@@ -113,6 +113,6 @@ const ModalConfirm: NCFC<SCP> = observer(({
       </section>
     </Dialog>
   );
-});
+};
 
-export default ModalConfirm;
+export default observer(ModalConfirm);

@@ -14,7 +14,7 @@ import { NCFC, SCP } from '$types/index';
  * ? axios 를 interceptor 하여 안에서 request state 를 처리
  */
 
-const ModalSpinner: NCFC<SCP> = observer(({
+const ModalSpinner: NCFC<SCP> = ({
   className
 }) => {
   const {
@@ -41,6 +41,6 @@ const ModalSpinner: NCFC<SCP> = observer(({
       </div>
     </Modal>
   );
-});
+};
 
-export default ModalSpinner;
+export default observer(ModalSpinner);
