@@ -23,6 +23,7 @@ set in the *.env.development*, *.env.production(build)* files.
 ```txt
 # required 'REACT_APP_' prefix
 REACT_APP_NODE_ENV
+REACT_APP_TIMEZONE
 REACT_APP_API_URL
 REACT_APP_ASSETS_URL
 ```
