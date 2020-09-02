@@ -1,6 +1,8 @@
 import { createGlobalStyle } from '@styles/styled-components';
 import { breakpoints } from '@styles/lib';
 
+import externalStyles from './externalStyles';
+
 export default createGlobalStyle`
   html {
     font-size: 16px;
@@ -19,4 +21,6 @@ export default createGlobalStyle`
     padding: 0;
     list-style: none;
   }
+
+  ${externalStyles}
 `;

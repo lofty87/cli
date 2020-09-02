@@ -53,6 +53,18 @@ const colors = {
     thick8: '#e03131',
     thick9: '#c92a2a',
   },
+  blue: {
+    thick0: '#e7f5ff',
+    thick1: '#d0ebff',
+    thick2: '#a5d8ff',
+    thick3: '#74c0fc',
+    thick4: '#4dabf7',
+    thick5: '#339af0',
+    thick6: '#228be6',
+    thick7: '#1c7ed6',
+    thick8: '#1971c2',
+    thick9: '#1864ab',
+  },
   green: {
     thick0: '#ebfbee',
     thick1: '#d3f9d8',
