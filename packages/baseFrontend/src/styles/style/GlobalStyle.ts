@@ -1,8 +1,6 @@
 import { createGlobalStyle } from '@styles/styled-components';
 import { breakpoints } from '@styles/lib';
 
-import { datePicker } from './css';
-
 export default createGlobalStyle`
   html {
     font-size: 16px;
@@ -21,6 +19,4 @@ export default createGlobalStyle`
     padding: 0;
     list-style: none;
   }
-
-  ${datePicker}
 `;
