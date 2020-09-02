@@ -2,10 +2,12 @@
   "private": true,
   "dependencies": {
     "@babel/core": "7.9.0",
+    "@date-io/moment": "~2.9.0",
     "@hot-loader/react-dom": "~16.13.0",
     "@lofty87/eslint-config": "~1.1.18",
     "@lofty87/types": "~1.0.7",
     "@material-ui/core": "~4.11.0",
+    "@material-ui/pickers": "~3.2.10",
     "@material-ui/system": "~4.9.14",
     "@svgr/webpack": "4.3.3",
     "@testing-library/jest-dom": "~4.2.4",
