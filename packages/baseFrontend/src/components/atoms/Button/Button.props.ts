@@ -7,4 +7,4 @@ export type CustomProps = {
   length?: 'short' | 'medium' | 'long';
 };
 
-export type Props = CustomProps & Omit<ButtonProps, keyof CustomProps | keyof SCP>;
+export type Props = CustomProps & Omit<ButtonProps, keyof SCP | keyof CustomProps>;
