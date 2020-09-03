@@ -7,4 +7,4 @@ type CustomProps = {
   textAlign?: PropTypes.Alignment;
 };
 
-export type Props = CustomProps & Omit<DatePickerProps, keyof SCP | keyof CustomProps>;
+export type Props = CustomProps & Omit<DatePickerProps, keyof SCP | keyof CustomProps | 'children'>;
