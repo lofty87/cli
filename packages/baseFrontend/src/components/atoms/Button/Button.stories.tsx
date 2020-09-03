@@ -44,6 +44,15 @@ export const Color = () => (
     </section>
     <br />
     <section>
+      <h4>color="blue"</h4>
+      <Button
+        color="blue"
+      >
+        버튼
+      </Button>
+    </section>
+    <br />
+    <section>
       <h4>color="green"</h4>
       <Button
         color="green"
