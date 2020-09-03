@@ -22,6 +22,15 @@ export const Default = () => {
       </section>
       <br />
       <section>
+        <h4>textAlign="center"</h4>
+        <DatePicker
+          value={date}
+          textAlign="center"
+          onChange={setDate as any}
+        />
+      </section>
+      <br />
+      <section>
         <h4>label="날짜"</h4>
         <DatePicker
           label="날짜"
