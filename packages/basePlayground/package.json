@@ -2,7 +2,7 @@
   "scripts": {
     "start": "node build/index.js",
     "start:dev": "nodemon src/index.ts",
-    "build": "tsc",
+    "build": "rm -rf build && tsc",
     "clean": "rm -rf build node_modules"
   },
   "dependencies": {
