@@ -2,7 +2,7 @@
 
 it is a development environment based on [create-react-app](https://create-react-app.dev/) for the lofty87 frontend project.
 
-**HMR** is supported.
+[atomic](https://bradfrost.com/blog/post/atomic-web-design/) design is used and **IE11**, **HMR** is supported.
 
 * [axios](https://github.com/axios/axios)
 * [mobx4](https://mobx.js.org/README.html)(supported IE11)
