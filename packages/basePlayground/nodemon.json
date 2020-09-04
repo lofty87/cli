@@ -8,6 +8,6 @@
     "node_modules"
   ],
   "execMap": {
-    "ts": "ts-node -r tsconfig-paths/register"
+    "ts": "ts-node"
   }
 }
