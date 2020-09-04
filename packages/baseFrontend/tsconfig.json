@@ -9,8 +9,12 @@
     /* build */
     "rootDir": ".",
     "outDir": "build",
-    "sourceMap": true,
     "removeComments": true,
+    
+    /* source map */
+    // "sourceMap": true,
+    "inlineSourceMap": true,
+    "inlineSources":true,
     
     /* built in, module resolution */
     "lib": [

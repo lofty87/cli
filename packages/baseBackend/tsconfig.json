@@ -9,11 +9,15 @@
     /* build */
     "rootDir": ".",
     "outDir": "build",
-    "sourceMap": true,
     // "declaration": true,
     // "emitDeclarationOnly": true,
     "removeComments": true,
     // "noEmit": true,
+    
+    /* source map */
+    // "sourceMap": true,
+    "inlineSourceMap": true,
+    "inlineSources":true,
     
     /* built in, module resolution */
     "lib": [
