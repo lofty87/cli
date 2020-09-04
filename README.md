@@ -1,13 +1,27 @@
 # @lofty87/cli
 
-boilerplate cli for backend, frontend, playground
+boilerplate cli for lofty87 project (backend, frontend, playground)
 
-## cli feature
+### - npx
 
-- webpack watching on dev
-- after webpack build, run 'npm install -g' script ([webpack-hook-plugin](https://github.com/tienne/webpack-hook-plugin))
+```bash
+npx @lofty87/cli [project name]
+```
 
-#### 1. dev and build
+### - npm
+
+```bash
+npm install -g @lofty87/cli
+
+lofty87-cli [project name]
+```
+
+### Development
+
+#### 1. work and build
+
+- work in watch mode.
+- after build, run 'npm install -g' script ([webpack-hook-plugin](https://github.com/tienne/webpack-hook-plugin))
 
 ```ts
 npm run start:dev
