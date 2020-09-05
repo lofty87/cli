@@ -21,11 +21,7 @@ const StyledModalConfirm = styled(ModalConfirm).attrs((props) => ({
     }
 
     & > .title {
-      margin: 0;
-      padding: ${spacingOf(1.5, 2)};
-      font-size: ${fontOf(({ subtitle1 }) => subtitle1.size)}rem;
-      font-weight: ${fontOf(({ weight }) => weight.bold)};
-      color: ${colorOf(({ white }) => white)};
+      padding: ${spacingOf(1.25, 2)};
       background-color: ${colorOf(({ main }) => main.thick7)};
     }
 

@@ -1,5 +1,5 @@
 import React, { MouseEventHandler } from 'react';
-import { Button } from '@components/atoms';
+import { Button, H } from '@components/atoms';
 
 import { NCFC, RRP, SCP } from '$types/index';
 
@@ -19,11 +19,14 @@ const NotFoundPage: NCFC<SCP & RRP> = ({
         <section
           className="status"
         >
-          <h1
+          <H
             className="status__code"
+            type="h1"
+            weight="bold"
+            color="main"
           >
             404
-          </h1>
+          </H>
           <div
             className="status__message"
           >

@@ -8,19 +8,7 @@ const StyledHeader = styled(Header)`
 
   & > .title,
   & > .sub-title {
-    margin-top: 0;
-    margin-bottom: 0;
     text-align: center;
-  }
-
-  & > .title {
-    font-size: ${fontOf(({ h5 }) => h5.size)}rem;
-    font-weight: ${fontOf(({ weight }) => weight.bold)};
-  }
-
-  & > .sub-title {
-    font-size: ${fontOf(({ subtitle1 }) => subtitle1.size)}rem;
-    font-weight: ${fontOf(({ weight }) => weight.regular)};
   }
 
   & > nav {

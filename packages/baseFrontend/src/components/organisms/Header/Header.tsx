@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { H } from '@components/atoms';
 
 import { Props } from './Header.props';
 
@@ -13,18 +14,23 @@ const Header: NCFC<SCP & Props> = ({
   <div
     className={className}
   >
-    <h1
+    <H
       className="title"
+      type="h1"
+      size="h5"
+      weight="bold"
     >
       Header
-    </h1>
-    <h3
+    </H>
+    <H
       className="sub-title"
+      type="h3"
+      size="subtitle1"
     >
       pathname:
       {' '}
       {subTitle}
-    </h3>
+    </H>
     <nav>
       {routerData.map(({
         title: routerTitle,

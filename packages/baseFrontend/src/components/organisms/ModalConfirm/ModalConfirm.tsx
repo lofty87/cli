@@ -2,7 +2,7 @@ import React, { MouseEvent } from 'react';
 import { observer } from 'mobx-react';
 import { throttle } from 'lodash';
 import { Dialog } from '@material-ui/core';
-import { Button } from '@components/atoms';
+import { Button, H } from '@components/atoms';
 import { actions, useStores } from '@stores/index';
 
 import { NCFC, SCP } from '$types/index';
@@ -74,11 +74,15 @@ const ModalConfirm: NCFC<SCP> = ({
       {...others}
     >
       {title && (
-        <h3
+        <H
           className="title"
+          type="h3"
+          size="subtitle1"
+          weight="bold"
+          color="white"
         >
           {title}
-        </h3>
+        </H>
       )}
       <section
         className="content"

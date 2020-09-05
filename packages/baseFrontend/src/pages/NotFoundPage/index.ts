@@ -16,20 +16,11 @@ const StyledNotFoundPage = styled(NotFoundPage)`
     transform: translate(-50%, -50%);
     text-align: center;
 
-    & > .status > .status {
-      &__code {
-        margin-top: 0;
-        margin-bottom: 0;
-        font-size: ${fontOf(({ h1 }) => h1.size)}rem;
-        font-weight: ${fontOf(({ weight }) => weight.bold)};
-        color: ${colorOf(({ main }) => main.thick7)};
-      }
-
-      &__message {
-        font-size: ${fontOf(({ h2 }) => h2.size)}rem;
-        font-weight: ${fontOf(({ weight }) => weight.regular)};
-        color: ${colorOf(({ dark }) => dark.thick8)};
-      }
+    & > .status > .status__message {
+      margin-top: ${spacingOf(1.5)}px;
+      font-size: ${fontOf(({ h2 }) => h2.size)}rem;
+      font-weight: ${fontOf(({ weight }) => weight.regular)};
+      color: ${colorOf(({ dark }) => dark.thick8)};
     }
 
     & > .home-btn {
