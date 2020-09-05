@@ -34,13 +34,13 @@ const variantContainedColorStyle = css<Required<Props>>`
 
 const variantStyle = {
   text: css<Props>`
-    ${(props) => selectedBy(variantTextColorStyle, props.color)};
+    ${(props) => selectedBy(variantTextColorStyle, props.color)}
   `,
   outlined: css<Props>`
-    ${(props) => selectedBy(variantOutlinedColorStyle, props.color)};
+    ${(props) => selectedBy(variantOutlinedColorStyle, props.color)}
   `,
   contained: css<Props>`
-    ${(props) => selectedBy(variantContainedColorStyle, props.color)};
+    ${(props) => selectedBy(variantContainedColorStyle, props.color)}
   `,
 };
 
@@ -70,9 +70,9 @@ const StyledButton = styled(Button).attrs((props) => ({
   font-size: ${fontOf(({ subtitle1 }) => subtitle1.size)}rem;
   font-weight: ${fontOf(({ weight }) => weight.bold)};
 
-  ${({ variant }) => mappedBy(variantStyle, variant)};
+  ${({ variant }) => mappedBy(variantStyle, variant)}
 
-  ${({ length }) => mappedBy(lengthStyle, length)};
+  ${({ length }) => mappedBy(lengthStyle, length)}
 `;
 
 export default StyledButton;

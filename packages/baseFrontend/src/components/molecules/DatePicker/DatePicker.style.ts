@@ -59,11 +59,11 @@ const datePickerStyle = css`
   }
 
   .MuiPickersCalendar-week {
-    div:first-child .MuiPickersDay-day {
+    div:first-child .MuiPickersDay-day:not(.MuiPickersDay-daySelected) {
       color: ${colorOf(({ red }) => red.thick9)};
     }
 
-    div:last-child .MuiPickersDay-day {
+    div:last-child .MuiPickersDay-day:not(.MuiPickersDay-daySelected) {
       color: ${colorOf(({ blue }) => blue.thick9)};
     }
   }

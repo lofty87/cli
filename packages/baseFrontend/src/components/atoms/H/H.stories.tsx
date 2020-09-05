@@ -204,6 +204,15 @@ export const Color = () => (
       </H>
     </section>
     <br />
+    <section>
+      <h4>color="white"</h4>
+      <H
+        type="h4"
+        color="white"
+      >
+        헤드라인
+      </H>
+    </section>
   </>
 );
 
