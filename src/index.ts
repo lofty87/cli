@@ -23,17 +23,17 @@ try {
 
       const answers = await inquirer.prompt([
         {
-          type: 'input',
-          name: 'projectName',
-          message: `What is the project name? ${chalk.green(`(default: ${projectName}`)})`,
-          default: projectName,
-        },
-        {
           type: 'list',
           name: 'type',
           message: 'What kind of project do you want to do?',
           choices: [ 'Backend', 'Frontend', 'Playground' ],
           default: 0,
+        },
+        {
+          type: 'input',
+          name: 'projectName',
+          message: `What is the project name? ${chalk.green(`(default: ${projectName}`)})`,
+          default: projectName,
         },
       ]);
 
