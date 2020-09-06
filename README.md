@@ -5,7 +5,7 @@ boilerplate cli for lofty87 project (backend, frontend, playground)
 ### - npx
 
 ```bash
-npx @lofty87/cli [project name]
+npx @lofty87/cli <project-name>
 ```
 
 ### - npm
@@ -13,7 +13,7 @@ npx @lofty87/cli [project name]
 ```bash
 npm install -g @lofty87/cli
 
-lofty87-cli [project name]
+lofty87-cli <project-name>
 ```
 
 ### Development

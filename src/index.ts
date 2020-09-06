@@ -1,33 +1,26 @@
-// import { execSync } from 'child_process';
-
+import chalk from 'chalk';
+import { program } from 'commander';
 import paths from '@config/paths';
 import { checkProjectName, ensureDirSync } from '@lib/index';
-import { program } from 'commander';
 
-import pkg from '../package.json';
+import info from './info';
 
 const { rootDir } = paths;
 
-let projectDir = '';
-let projectName = '';
-
 try {
   program
-    .version(pkg.version)
-    .name('lofty87-cli')
-    .usage('<project-name>')
+    .version(chalk.greenBright(info.version))
+    .name(chalk.green(info.name))
+    .usage(chalk.greenBright('<project-name>'))
+    .description(chalk.yellow(info.description))
     .arguments('<project-name>')
-    .action((name: string) => {
-      projectName = name;
-      projectDir = `${rootDir}/${name}`;
+    .action((projectName: string) => {
+      const projectDir = `${rootDir}/${projectName}`;
 
-      checkProjectName(name);
+      checkProjectName(projectName);
       ensureDirSync(projectDir);
     })
     .parse(process.argv);
-
-  console.log(projectDir);
-  console.log(projectName);
 } catch(error) {
   console.error(error);
 }

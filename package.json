@@ -1,7 +1,7 @@
 {
   "name": "@lofty87/cli",
   "version": "1.0.0",
-  "description": "boilerplate cli for backend, frontend, playground",
+  "description": "boilerplate cli for lofty87 project (backend, frontend, playground)",
   "author": {
     "name": "lofty87",
     "email": "lofty87@daum.net"
