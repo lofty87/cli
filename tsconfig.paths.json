@@ -2,8 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@config*": ["config*"],
-      "@lib*": ["src/lib*"]
+      "$types*"  : ["@types/common*"],
+      "@config*" : ["config*"],
+      "@lib*"    : ["src/lib*"],
+      "@process*": ["src/process*"],
+      "@info"    : ["src/@info"]
     }
   }
 }

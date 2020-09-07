@@ -24,7 +24,7 @@
       "ESNext"
     ],
     "typeRoots": [
-      "@types",
+      "@types/modules",
       "node_modules/@types"
     ],
     
