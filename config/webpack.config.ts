@@ -47,6 +47,7 @@ const config: Configuration = {
           },
         ],
         include: [
+          paths.typesDir,
           paths.configDir,
           paths.srcDir
         ],
@@ -83,6 +84,7 @@ const config: Configuration = {
     new ForkTsCheckerWebpackPlugin({
       eslint: {
         files: [
+          './@types/**/*.{ts,tsx}',
           './config/**/*.{ts,tsx}',
           './src/**/*.{ts,tsx}'
         ], // ? cwd()

@@ -11,6 +11,7 @@ export const resolve = (relativePath: string) => {
 
 export default {
   rootDir: rootPath,
+  typesDir: resolve('@types'),
   configDir: resolve('config'),
   packagesDir: resolve('packages'),
   srcDir: resolve('src'),

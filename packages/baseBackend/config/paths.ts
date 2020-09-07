@@ -12,6 +12,7 @@ export const resolve = (relativePath: string) => {
 export default {
   dotEnv: resolve('.env'),
   appDir: appPath,
+  typesDir: resolve('@types'),
   assetsDir: resolve('assets'),
   configDir: resolve('config'),
   srcDir: resolve('src'),
