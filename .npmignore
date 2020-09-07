@@ -8,7 +8,6 @@ package-lock.json
 
 # development
 @types
-build/**/*.map
 packages
 src
 .eslintignore
@@ -20,6 +19,8 @@ src
 tsconfig.json
 tsconfig.paths.json
 
+# build (override)
+build/**/*.map
 !build/packages/**/*
 
 # misc
