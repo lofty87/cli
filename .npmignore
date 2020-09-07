@@ -1,28 +1,29 @@
 # local config
-./.vscode
-./config
+.vscode
+config
 
 # dependencies
-./node_modules
-./package-lock.json
+node_modules
+package-lock.json
 
 # development
-./@types
-./packages
-./src
-./.eslintignore
-./.eslintrc.json
-./.gitignore
-./.npmignore
-./.prettierignore
-./.prettierrc
-./tsconfig.json
-./tsconfig.paths.json
+@types
+packages
+src
+.eslintignore
+.eslintrc.json
+.gitignore
+.npmignore
+.prettierignore
+.prettierrc
+tsconfig.json
+tsconfig.paths.json
+!build
 
 # misc
-./.DS_Store
+.DS_Store
 
 # log
-./npm-debug.log*
-./yarn-debug.log*
-./yarn-error.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
