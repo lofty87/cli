@@ -24,7 +24,7 @@ const config: Configuration = {
     filename: paths.outputFilename,
   },
   watch: true,
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   module: {
     rules: [
       {

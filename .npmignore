@@ -8,8 +8,8 @@ package-lock.json
 
 # development
 @types
+build/**/*.map
 packages
-!build/packages/**/*
 src
 .eslintignore
 .eslintrc.json
@@ -19,6 +19,8 @@ src
 .prettierrc
 tsconfig.json
 tsconfig.paths.json
+
+!build/packages/**/*
 
 # misc
 .DS_Store
