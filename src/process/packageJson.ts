@@ -70,7 +70,7 @@ export const setPackageJson = async (projectName: string) => {
 
 export const printPackageJson = (packageJson: PackageJson) => {
   console.log(`
-will create a ${chalk.yellow('package.json')} as follows:
+will create a ${chalk.yellowBright('package.json')} as follows:
   
 {
   "name": "${packageJson.name}",
