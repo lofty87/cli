@@ -31,7 +31,7 @@
     "clean": "npm uninstall -g && rm -rf build"
   },
   "dependencies": {
-    "@lofty87/eslint-config": "~1.1.18",
+    "@lofty87/eslint-config": "~1.1.19",
     "@types/app-root-path": "~1.2.4",
     "@types/chalk": "~2.2.0",
     "@types/clean-webpack-plugin": "~0.1.3",
