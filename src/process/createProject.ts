@@ -3,7 +3,7 @@ import { basename } from 'path';
 import fs from 'fs-extra';
 import { defaultsDeep } from 'lodash';
 import paths from '@config/paths';
-import { getPackageJson, getPackageName, writePackageJson } from '@lib/index';
+import { getPackageJson, getPackageName, getProgressBar, writePackageJson } from '@lib/index';
 
 import { name as moduleName } from '../../package.json';
 
@@ -36,9 +36,13 @@ export const createProject = async (projectDir: string, projectType: ProjectType
     await fs.copy(packageDir, projectDir);
   }
 
+  getProgressBar().increment();
+
   let projectPackageJson = await getPackageJson(projectDir);
 
   projectPackageJson = defaultsDeep(packageJson, projectPackageJson);
 
   await writePackageJson(projectDir, projectPackageJson);
+
+  getProgressBar().increment();
 };

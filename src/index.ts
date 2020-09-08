@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import { program } from 'commander';
 import { confirm, createProject, printPackageJson, setPackageJson } from '@process/index';
-import { checkDirExistsSync, validateProjectName } from '@lib/index';
+import { checkDirExistsSync, initializeProgressBar, printProcess, validateProjectName } from '@lib/index';
 import paths from '@config/paths';
 import info from '@info';
 
@@ -29,6 +29,10 @@ try {
           printPackageJson(packageJson);
 
           await confirm();
+
+          printProcess();
+
+          initializeProgressBar();
 
           await createProject(projectDir, projectType, packageJson);
         })();
