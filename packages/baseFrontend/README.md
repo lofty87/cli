@@ -1,4 +1,4 @@
-# baseFrontend
+# Frontend
 
 it is a development environment based on [create-react-app](https://create-react-app.dev/) for the lofty87 frontend project.
 

@@ -1,4 +1,4 @@
-# baseBackend
+# Backend
 
 it is a development environment based on [nodemon](https://nodemon.io/)([ts-node](https://github.com/TypeStrong/ts-node)) and [webpack](https://webpack.js.org/) for the lofty87 backend project.
 

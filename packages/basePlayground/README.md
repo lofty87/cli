@@ -1,4 +1,4 @@
-# basePlayground
+# Playground
 
 it is a development environment based on [nodemon](https://nodemon.io/)([ts-node](https://github.com/TypeStrong/ts-node)) for the lofty87 playground.
 

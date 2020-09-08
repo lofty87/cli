@@ -1,6 +1,6 @@
 # @lofty87/cli
 
-boilerplate cli for lofty87 project (backend, frontend, playground)
+boilerplate cli for lofty87 project ([backend](https://github.com/lofty87/cli/tree/master/packages/baseBackend), [frontend](https://github.com/lofty87/cli/tree/master/packages/baseFrontend), [playground](https://github.com/lofty87/cli/tree/master/packages/basePlayground) based on [typescript](https://www.typescriptlang.org/))
 
 ### - npx
 
@@ -15,6 +15,18 @@ npm install -g @lofty87/cli
 
 lofty87-cli <project-name>
 ```
+
+### Options
+
+```bash
+lofty87-cli [-i] [--ignore-naming-rules] [-h] [-V] <project-name>
+```
+
+project name should follow [npm package naming rules](https://github.com/npm/validate-npm-package-name#naming-rules),
+
+but you can also use `-i` or `--ignore-naming-rules` option to avoid following npm package naming rules
+
+<br />
 
 ### Development
 
