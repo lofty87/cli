@@ -32,7 +32,7 @@ export const createProject = async (projectDir: string, projectType: ProjectType
     await fs.copy(packageDir, projectDir);
   } catch(error) {
     // ? production
-    packageDir = `${rootDir}/node_modules/${moduleName}/${basename(buildDir)}/${basename(packagesDir)}}/${packageName}`;
+    packageDir = `${rootDir}/node_modules/${moduleName}/${basename(buildDir)}/${basename(packagesDir)}/${packageName}`;
 
     await fs.copy(packageDir, projectDir);
   }
