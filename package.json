@@ -18,7 +18,10 @@
   "keywords": [
     "lofty87",
     "cli",
-    "boilerplate"
+    "boilerplate",
+    "backend",
+    "frontend",
+    "playground"
   ],
   "bin": {
     "lofty87-cli": "build/bundle.js"
