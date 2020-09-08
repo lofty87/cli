@@ -12,11 +12,14 @@ try {
     .usage(chalk.greenBright('<project-name>'))
     .description(chalk.yellow(info.description))
     .arguments('<project-name>')
+    .option('-i, --ignore-naming-rules', 'ignore npm package naming rules', false)
     .action((projectName: string) => {
       try {
         const projectDir = `${paths.cwdDir}/${projectName}`;
 
-        validateProjectName(projectName);
+        if(!program.ignoreNamingRules) {
+          validateProjectName(projectName);
+        }
 
         checkDirExistsSync(projectDir);
 
