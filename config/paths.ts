@@ -1,16 +1,21 @@
 import fs from 'fs';
 import path from 'path';
 
-const rootPath = fs.realpathSync(process.cwd());
+import { path as appRootPath } from 'app-root-path';
+
+/**
+ * * root: real app root
+ * * cwd : command root
+ */
 
 export const resolve = (relativePath: string) => {
-  const resolvedPath = path.resolve(rootPath, relativePath);
+  const resolvedPath = path.resolve(appRootPath, relativePath);
 
   return resolvedPath;
 };
 
 export default {
-  rootDir: rootPath,
+  rootDir: appRootPath,
   typesDir: resolve('@types'),
   configDir: resolve('config'),
   packagesDir: resolve('packages'),
@@ -18,4 +23,5 @@ export default {
   entry: resolve('src/index.ts'),
   buildDir: resolve('build'),
   outputFilename: 'bundle.js',
+  cwdDir: fs.realpathSync(process.cwd()),
 };

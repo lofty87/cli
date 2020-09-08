@@ -5,8 +5,6 @@ import { checkDirExistsSync, validateProjectName } from '@lib/index';
 import paths from '@config/paths';
 import info from '@info';
 
-const { rootDir } = paths;
-
 try {
   program
     .name(chalk.green(info.name))
@@ -15,21 +13,25 @@ try {
     .description(chalk.yellow(info.description))
     .arguments('<project-name>')
     .action((projectName: string) => {
-      const projectDir = `${rootDir}/${projectName}`;
+      try {
+        const projectDir = `${paths.cwdDir}/${projectName}`;
 
-      validateProjectName(projectName);
+        validateProjectName(projectName);
 
-      checkDirExistsSync(projectDir);
+        checkDirExistsSync(projectDir);
 
-      (async () => {
-        const { projectType, packageJson } = await setPackageJson(projectName);
+        (async () => {
+          const { projectType, packageJson } = await setPackageJson(projectName);
 
-        printPackageJson(packageJson);
+          printPackageJson(packageJson);
 
-        await confirm();
+          await confirm();
 
-        createProject(projectDir, projectType, packageJson);
-      })();
+          await createProject(projectDir, projectType, packageJson);
+        })();
+      } catch(error) {
+        console.error(error);
+      }
     })
     .parse(process.argv);
 } catch(error) {

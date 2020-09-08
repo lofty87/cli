@@ -15,8 +15,8 @@
     // "noEmit": true,
     
     /* source map */
-    // "sourceMap": true,
-    "inlineSourceMap": true,
+    "sourceMap": true,
+    // "inlineSourceMap": true,
     "inlineSources":true,
     
     /* built in, module resolution */

@@ -1,7 +1,3 @@
-import { basename } from 'path';
-
-import paths from '@config/paths';
-
 import { author, bin, description, version } from '../package.json';
 
 // * lofty87-cli (command)
@@ -12,5 +8,4 @@ export default {
   version,
   description,
   author: author.name,
-  packagesDir: basename(paths.packagesDir),
 };

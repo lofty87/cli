@@ -1,14 +1,17 @@
+import { basename } from 'path';
+
 import fs from 'fs-extra';
-// import paths from '@config/paths';
+import paths from '@config/paths';
 import { getPackageName } from '@lib/index';
-// import info from '@info';
 
 import { PackageJson, ProjectType } from '$types/index';
 
-export const createProject = (projectDir: string, projectType: ProjectType, packageJson: PackageJson) => {
-  const packageDir = `packages/${getPackageName(projectType)}`;
+export const createProject = async (projectDir: string, projectType: ProjectType, packageJson: PackageJson) => {
+  const packagesDir = `${paths.buildDir}/${basename(paths.packagesDir)}`;
+  const packageName = getPackageName(projectType);
+  const packageDir = `${packagesDir}/${packageName}`;
 
-  fs.copySync(packageDir, projectDir);
+  await fs.copy(packageDir, projectDir);
 
   console.log(projectDir);
   console.log(packageDir);
