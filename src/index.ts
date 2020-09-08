@@ -30,7 +30,7 @@ try {
 
           await confirm();
 
-          printProcess();
+          printProcess(projectType);
 
           initializeProgressBar();
 

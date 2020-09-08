@@ -1,12 +1,14 @@
 import { SingleBar } from 'cli-progress';
 import chalk from 'chalk';
 
+import { ProjectType } from '$types/index';
+
 let progressBar: null | SingleBar = null;
 
 /**
  * @name initializeProgressBar
- * * 1. copy project base
- * * 2. create package.json
+ * * 1. copy {project} base
+ * * 2. create a package.json
  * * 3. download modules (npm install)
  */
 const TOTAL = 3;
@@ -30,11 +32,11 @@ export const getProgressBar = () => {
   return progressBar;
 };
 
-export const printProcess = () => {
+export const printProcess = (projectType: ProjectType) => {
   console.log(
     chalk.yellow(`
-1. copy project base
-2. create package.json
+1. copy ${projectType} base
+2. create a package.json
 3. download modules (npm install)
 `)
   );
