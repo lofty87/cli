@@ -22,18 +22,16 @@ const { buildDir, packagesDir, rootDir } = paths;
  * * production : '~/.npm/_npx/{number}/lib/node_modules/@lofty87/cli/build'
  */
 export const createProject = async (projectDir: string, projectType: ProjectType, packageJson: PackageJson) => {
-  let packageDir;
-
   const packageName = getPackageName(projectType);
 
   try {
     // ? development
-    packageDir = `${buildDir}/${basename(packagesDir)}/${packageName}`;
+    const packageDir = `${buildDir}/${basename(packagesDir)}/${packageName}`;
 
     await fs.copy(packageDir, projectDir);
   } catch(error) {
     // ? production
-    packageDir = `${rootDir}/node_modules/${moduleName}/${basename(buildDir)}/${basename(packagesDir)}/${packageName}`;
+    const packageDir = `${rootDir}/node_modules/${moduleName}/${basename(buildDir)}/${basename(packagesDir)}/${packageName}`;
 
     await fs.copy(packageDir, projectDir);
   }
