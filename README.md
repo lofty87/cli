@@ -1,6 +1,6 @@
 # @lofty87/cli
 
-boilerplate cli for lofty87 project ([backend](https://github.com/lofty87/cli/tree/master/packages/baseBackend), [frontend](https://github.com/lofty87/cli/tree/master/packages/baseFrontend), [playground](https://github.com/lofty87/cli/tree/master/packages/basePlayground) based on [typescript](https://www.typescriptlang.org/))
+boilerplate cli for lofty87 project ([backend](https://github.com/lofty87/cli/tree/master/packages/baseBackend#backend), [frontend](https://github.com/lofty87/cli/tree/master/packages/baseFrontend#frontend), [playground](https://github.com/lofty87/cli/tree/master/packages/basePlayground#playground) based on [typescript](https://www.typescriptlang.org/))
 
 ### - npx
 
