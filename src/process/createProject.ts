@@ -12,12 +12,13 @@ const { buildDir, packagesDir, rootDir } = paths;
 
 /**
  * @name createProject
- * * development 와 production 환경의 경로 구조가 달라서
- * * package 를 copy 할 때 서로 다르게 처리했다.
+ * * 개발환경과 실제 설치되었을 때 환경이 서로 달라
+ * * app-root-path 값이 최상위 node_modules 를 기준으로 하는 특성상
+ * * 두 가지 방법으로 copy 를 처리하였다.
  *
- * * build dir (use app-root-path)
- * * development: '~/module/build'
- * * production : '~/.npm/_npx/{random}/lib/node_modules/module/build'
+ * * build path 차이
+ * * development: '~/@lofty87/cli/build'
+ * * production : '~/.npm/_npx/{number}/lib/node_modules/@lofty87/cli/build'
  */
 export const createProject = async (projectDir: string, projectType: ProjectType, packageJson: PackageJson) => {
   let packageDir;
