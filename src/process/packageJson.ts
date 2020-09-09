@@ -1,4 +1,5 @@
 import inquirer from 'inquirer';
+import normalizeVersion from 'normalize-version';
 import info from '@info';
 
 import { ProjectType } from '$types/index';
@@ -60,7 +61,7 @@ export const setPackageJson = async (projectName: string) => {
     projectType: answer1.projectType,
     packageJson: {
       name: answer1.projectName,
-      version: answer1.projectVersion,
+      version: normalizeVersion(answer1.projectVersion, 3), // keep semver
       description: answer2.projectDescription,
       author: answer2.projectAuthor,
     },
