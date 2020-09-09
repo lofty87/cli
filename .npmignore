@@ -13,7 +13,6 @@ src
 .eslintignore
 .eslintrc.json
 .gitignore
-.npmignore
 .prettierignore
 .prettierrc
 tsconfig.json
