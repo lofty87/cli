@@ -1,3 +1,5 @@
+import { exec } from 'child_process';
+
 import fs from 'fs-extra';
 
 import { PackageJson, ProjectType } from '$types/index';
@@ -25,3 +27,14 @@ export const writePackageJson = async (projectDir: string, packageJson: PackageJ
     EOL: '\n',
   });
 };
+
+export const execScript = (script: string) =>
+  new Promise<string>((resolve, reject) => {
+    exec(script, (error, stdout, stderr) => {
+      if(error) {
+        reject(stderr);
+      }
+
+      resolve(stdout);
+    });
+  });

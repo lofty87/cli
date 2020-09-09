@@ -20,13 +20,13 @@ will create a ${chalk.yellow('package.json')} as follows:
   `);
 };
 
-export const printProcess = (projectType: ProjectType) => {
+export const printProcess = (projectType: ProjectType, useGit: boolean) => {
   console.log(`
 Creating...
     ${chalk.yellow(`
 1. copy ${projectType} base
 2. create a package.json
-3. download modules (npm install)
+3. download modules (npm install)${useGit ? '\n4. initialize git' : ''}
   `)}`);
 };
 

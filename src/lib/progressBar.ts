@@ -9,11 +9,12 @@ let stepTimer: null | NodeJS.Timeout = null;
  * * 1. copy {project} base
  * * 2. create a package.json
  * * 3. download modules (npm install)
+ * * 4. initialize git (option)
  *
  * * 각 step 들의 bar 상태를 dynamic 하게 만들기 위해
  * * {value} 대신 {step} payload 를 사용
  */
-export const initializeProgressBar = (total = 3) => {
+export const initializeProgressBar = (total = 4) => {
   progressBar = new SingleBar({
     format: `{title}: [${chalk.cyan('{bar}')}] {step}/${chalk.green('{total}')}`,
     barCompleteChar: '=',

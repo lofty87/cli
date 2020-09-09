@@ -1,5 +1,8 @@
 {
   "extends": [
     "@lofty87/eslint-config"
-  ]
+  ],
+  "rules": {
+    "@typescript-eslint/no-implied-eval": "off"
+  }
 }

@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import { program } from 'commander';
-import { confirm, createProject, downloadModules, setPackageJson } from '@process/index';
+import { confirm, createProject, downloadModules, git, initializeGit, setPackageJson } from '@process/index';
 import { checkDirExistsSync, getProgressBar, initializeProgressBar, printEpilogue, printPackageJson, printProcess, validateProjectName } from '@lib/index';
 import paths from '@config/paths';
 import info from '@info';
@@ -26,17 +26,21 @@ try {
         (async () => {
           const { projectType, packageJson } = await setPackageJson(projectName);
 
+          const useGit = await git();
+
           printPackageJson(packageJson);
 
           await confirm();
 
-          printProcess(projectType);
+          printProcess(projectType, useGit);
 
-          initializeProgressBar();
+          initializeProgressBar(useGit ? 4 : 3);
 
           await createProject(projectDir, projectType, packageJson);
 
           await downloadModules(projectDir);
+
+          useGit && (await initializeGit(projectDir));
 
           getProgressBar().end();
 
