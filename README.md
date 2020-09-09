@@ -26,8 +26,6 @@ project name should follow [npm package naming rules](https://github.com/npm/val
 
 but you can also use `-i` or `--ignore-naming-rules` option to avoid following npm package naming rules.
 
-<br />
-
 ### Development
 
 #### 1. work and build
