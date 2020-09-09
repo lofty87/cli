@@ -1,4 +1,9 @@
 import fs from 'fs-extra';
+import { map } from 'lodash';
+import chalk from 'chalk';
+import info from '@info';
+
+import { name } from '../../package.json';
 
 import { PackageJson, ProjectType } from '$types/index';
 
@@ -24,4 +29,32 @@ export const writePackageJson = async (projectDir: string, packageJson: PackageJ
     spaces: 2,
     EOL: '\n',
   });
+};
+
+export const printEpilogue = async (projectDir: string) => {
+  const packageJson = await getPackageJson(projectDir);
+  const projectName = packageJson.name;
+  const scripts = map(packageJson.scripts, (value, key) => `          ${chalk.cyan(key)}`);
+
+  console.log(`
+
+
+      Success! Created '${chalk.green(projectName)}' at ${projectDir}
+
+      Thank you for using ${chalk.yellowBright(name)}
+
+      homepage: ${info.homepage}
+      bugs    : ${info.bugsUrl}
+      license : ${info.license}
+
+
+      ${chalk.yellowBright(`cd ${projectName}`)}
+
+
+      scripts:
+
+${scripts.join('\n\n')}
+
+
+  `);
 };
