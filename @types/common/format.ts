@@ -3,4 +3,5 @@ export type PackageJson = {
   version: string;
   description: string;
   author: string;
+  scripts?: object;
 };

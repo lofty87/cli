@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import { program } from 'commander';
-import { confirm, createProject, printPackageJson, setPackageJson } from '@process/index';
+import { confirm, createProject, downloadModules, printPackageJson, setPackageJson } from '@process/index';
 import { checkDirExistsSync, initializeProgressBar, printProcess, validateProjectName } from '@lib/index';
 import paths from '@config/paths';
 import info from '@info';
@@ -35,6 +35,8 @@ try {
           initializeProgressBar();
 
           await createProject(projectDir, projectType, packageJson);
+
+          await downloadModules(projectDir);
         })();
       } catch(error) {
         console.error(error);

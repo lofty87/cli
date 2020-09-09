@@ -22,6 +22,9 @@ const { buildDir, packagesDir, rootDir } = paths;
  * * production : '~/.npm/_npx/{number}/lib/node_modules/@lofty87/cli/build'
  */
 export const createProject = async (projectDir: string, projectType: ProjectType, packageJson: PackageJson) => {
+  // ? step 1
+  getProgressBar().nextStep();
+
   const packageName = getPackageName(projectType);
 
   try {
@@ -36,13 +39,12 @@ export const createProject = async (projectDir: string, projectType: ProjectType
     await fs.copy(packageDir, projectDir);
   }
 
-  getProgressBar().increment();
+  // ? step 2
+  getProgressBar().nextStep();
 
   let projectPackageJson = await getPackageJson(projectDir);
 
   projectPackageJson = defaultsDeep(packageJson, projectPackageJson);
 
   await writePackageJson(projectDir, projectPackageJson);
-
-  getProgressBar().increment();
 };
