@@ -110,6 +110,5 @@ Creating...
 1. copy ${projectType} base
 2. create a package.json
 3. download modules (npm install)
-    `)}
-  `);
+  `)}`);
 };
