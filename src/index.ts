@@ -1,13 +1,13 @@
 import chalk from 'chalk';
 import { program } from 'commander';
-import { confirm, createProject, downloadModules, printPackageJson, setPackageJson } from '@process/index';
-import { checkDirExistsSync, getProgressBar, initializeProgressBar, printEpilogue, printProcess, validateProjectName } from '@lib/index';
+import { confirm, createProject, downloadModules, setPackageJson } from '@process/index';
+import { checkDirExistsSync, getProgressBar, initializeProgressBar, printEpilogue, printPackageJson, printProcess, validateProjectName } from '@lib/index';
 import paths from '@config/paths';
 import info from '@info';
 
 try {
   program
-    .name(chalk.green(info.name))
+    .name(chalk.green(info.binName))
     .version(chalk.green(info.version))
     .usage(`${chalk.red('<')}project-name${chalk.red('>')}`)
     .description(chalk.yellow(info.description))

@@ -16,8 +16,8 @@ const execPromise = (projectDir: string) => {
   });
 };
 
-export const downloadModules = async (projectDir: string) => {
+export const downloadModules = (projectDir: string) => {
   getProgressBar().nextStep();
 
-  await execPromise(projectDir);
+  return execPromise(projectDir);
 };

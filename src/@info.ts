@@ -1,10 +1,11 @@
-import { author, bin, bugs, description, homepage, license, version } from '../package.json';
+import { author, bin, bugs, description, homepage, license, name, version } from '../package.json';
 
 // * lofty87-cli (command)
-const name = Object.keys(bin)[0];
+const binName = Object.keys(bin)[0];
 
 export default {
   name,
+  binName,
   version,
   description,
   author: author.name,

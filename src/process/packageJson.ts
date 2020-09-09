@@ -1,8 +1,7 @@
 import inquirer from 'inquirer';
-import chalk from 'chalk';
 import info from '@info';
 
-import { PackageJson, ProjectType } from '$types/index';
+import { ProjectType } from '$types/index';
 
 const projectTypes: ProjectType[] = [ 'backend', 'frontend', 'playground' ];
 
@@ -66,17 +65,4 @@ export const setPackageJson = async (projectName: string) => {
       author: answer2.projectAuthor,
     },
   };
-};
-
-export const printPackageJson = (packageJson: PackageJson) => {
-  console.log(`
-will create a ${chalk.yellow('package.json')} as follows:
-  
-{
-  "name": "${packageJson.name}",
-  "version": "${packageJson.version}",
-  "description": "${packageJson.description}",
-  "author": "${packageJson.author}"
-}
-  `);
 };

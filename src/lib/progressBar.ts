@@ -1,8 +1,6 @@
 import { SingleBar } from 'cli-progress';
 import chalk from 'chalk';
 
-import { ProjectType } from '$types/index';
-
 let progressBar: null | SingleBar = null;
 let stepTimer: null | NodeJS.Timeout = null;
 
@@ -101,14 +99,4 @@ export const getProgressBar = () => {
       stop(total);
     },
   };
-};
-
-export const printProcess = (projectType: ProjectType) => {
-  console.log(`
-Creating...
-    ${chalk.yellow(`
-1. copy ${projectType} base
-2. create a package.json
-3. download modules (npm install)
-  `)}`);
 };
