@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start:dev": "webpack --config config/webpack.config.ts --progress",
-    "clean": "npm uninstall -g && rm -rf build"
+    "clean": "npm uninstall -g"
   },
   "dependencies": {
     "@lofty87/eslint-config": "~1.1.19",
