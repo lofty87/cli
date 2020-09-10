@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import { program } from 'commander';
-import { confirm, createProject, downloadModules, git, initializeGit, setPackageJson } from '@process/index';
+import { confirm, createProject, downloadModules, git, initializeGit, processGitignore, setPackageJson } from '@process/index';
 import { checkDirExistsSync, getProgressBar, initializeProgressBar, printEpilogue, printPackageJson, printProcess, validateProjectName } from '@lib/index';
 import paths from '@config/paths';
 import info from '@info';
@@ -41,6 +41,8 @@ try {
           await downloadModules(projectDir);
 
           useGit && (await initializeGit(projectDir));
+
+          await processGitignore(projectDir, useGit);
 
           getProgressBar().end();
 
