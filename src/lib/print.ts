@@ -37,23 +37,21 @@ export const printEpilogue = async (projectDir: string) => {
 
   console.log(`
 
-
       Success! Created '${chalk.green(projectName)}' at ${projectDir}
-
+      
       Thank you for using ${chalk.yellowBright(info.name)}
 
       homepage: ${info.homepage}
       bugs    : ${info.bugsUrl}
       license : ${info.license}
-
-
+      
+      
       ${chalk.yellowBright(`cd ${basename(projectDir)}`)}
-
-
+      
+      
       scripts:
 
 ${scripts.join('\n\n')}
-
 
   `);
 };
