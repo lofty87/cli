@@ -47,6 +47,12 @@ try {
 
         await printEpilogue(projectDir);
       } catch(error) {
+        try {
+          getProgressBar().end();
+        } catch(noneError) {
+          // do nothing
+        }
+
         console.error(error);
       }
     })

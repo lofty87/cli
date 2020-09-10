@@ -13,7 +13,7 @@ export const git = async () => {
     {
       type: 'confirm',
       name: 'useGit',
-      message: 'use git?',
+      message: 'use git? (required git install)',
       default: true,
     },
   ]);
