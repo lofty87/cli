@@ -13,7 +13,7 @@ try {
     .description(chalk.yellow(info.description))
     .arguments('<project-name>')
     .option('-i, --ignore-naming-rules', 'ignore npm package naming rules', false)
-    .action((projectName: string) => {
+    .action(async (projectName: string) => {
       try {
         const projectDir = `${paths.cwdDir}/${projectName}`;
 
@@ -23,35 +23,31 @@ try {
 
         checkDirExistsSync(projectDir);
 
-        (async () => {
-          const { projectType, packageJson } = await setPackageJson(projectName);
+        const { projectType, packageJson } = await setPackageJson(projectName);
 
-          const useGit = await git();
+        const useGit = await git();
 
-          printPackageJson(packageJson);
+        printPackageJson(packageJson);
 
-          await confirm();
+        await confirm();
 
-          printProcess(projectType, useGit);
+        printProcess(projectType, useGit);
 
-          initializeProgressBar(useGit ? 4 : 3);
+        initializeProgressBar(useGit ? 4 : 3);
 
-          await createProject(projectDir, projectType, packageJson);
+        await createProject(projectDir, projectType, packageJson);
 
-          await downloadModules(projectDir);
+        await downloadModules(projectDir);
 
-          useGit && (await initializeGit(projectDir));
+        useGit && (await initializeGit(projectDir));
 
-          await processGitignore(projectDir, useGit);
-
-          getProgressBar().end();
-
-          await printEpilogue(projectDir);
-        })();
-      } catch(error) {
-        console.error(error);
+        await processGitignore(projectDir, useGit);
 
         getProgressBar().end();
+
+        await printEpilogue(projectDir);
+      } catch(error) {
+        console.error(error);
       }
     })
     .parse(process.argv);
