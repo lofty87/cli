@@ -5,7 +5,7 @@ boilerplate cli for lofty87 project ([backend](https://github.com/lofty87/cli/tr
 ### - npx
 
 ```bash
-npx @lofty87/cli <project-name>
+npx @lofty87/cli [-i] [--ignore-naming-rules] [-h] [-V] <project-name>
 ```
 
 ### - npm
@@ -13,14 +13,10 @@ npx @lofty87/cli <project-name>
 ```bash
 npm install -g @lofty87/cli
 
-lofty87-cli <project-name>
+lofty87-cli [-i] [--ignore-naming-rules] [-h] [-V] <project-name>
 ```
 
 ### Options
-
-```bash
-lofty87-cli [-i] [--ignore-naming-rules] [-h] [-V] <project-name>
-```
 
 project name should follow [npm package naming rules](https://github.com/npm/validate-npm-package-name#naming-rules),
 
