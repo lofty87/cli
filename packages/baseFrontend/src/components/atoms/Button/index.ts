@@ -67,7 +67,7 @@ const StyledButton = styled(Button).attrs((props) => ({
   length: props.length || undefined,
   variant: props.variant || 'contained',
 }))`
-  font-size: ${fontOf(({ subtitle1 }) => subtitle1.size)}rem;
+  font-size: ${fontOf(({ button }) => button.size)}rem;
   font-weight: ${fontOf(({ weight }) => weight.bold)};
 
   ${({ variant }) => mappedBy(variantStyle, variant)}

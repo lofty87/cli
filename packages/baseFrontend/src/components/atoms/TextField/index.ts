@@ -74,7 +74,7 @@ const StyledTextField = styled(TextField).attrs((props) => ({
   & > .tf__input {
     &:not(.tf__input--disabled) {
       &:not(.tf__input--error) {
-        font-size: ${fontOf(({ subtitle1 }) => subtitle1.size)}rem;
+        font-size: ${fontOf(({ body1 }) => body1.size)}rem;
         font-weight: ${fontOf(({ weight }) => weight.regular)};
         color: ${colorOf(({ dark }) => dark.thick7)};
 
@@ -85,7 +85,7 @@ const StyledTextField = styled(TextField).attrs((props) => ({
     }
 
     &--multiline {
-      line-height: ${fontOf(({ subtitle1 }) => subtitle1.lineHeight)};
+      line-height: ${fontOf(({ body1 }) => body1.lineHeight)};
     }
 
     & > .tf__input-element {

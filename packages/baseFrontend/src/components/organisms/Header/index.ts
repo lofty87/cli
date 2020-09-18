@@ -17,7 +17,7 @@ const StyledHeader = styled(Header)`
 
     & > .nav-btn {
       margin-right: ${spacingOf(2)}px;
-      font-size: ${fontOf(({ body1 }) => body1.size)}rem;
+      font-size: ${fontOf(({ button }) => button.size)}rem;
       font-weight: ${fontOf(({ weight }) => weight.regular)};
 
       &:last-child {
