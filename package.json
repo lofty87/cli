@@ -1,6 +1,6 @@
 {
   "name": "@lofty87/cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "boilerplate cli for lofty87 project (backend, frontend, playground based on typescript)",
   "author": {
     "name": "lofty87",
@@ -31,7 +31,7 @@
     "clean": "npm uninstall -g"
   },
   "dependencies": {
-    "@lofty87/eslint-config": "~1.1.19",
+    "@lofty87/eslint-config": "~1.1.20",
     "@types/app-root-path": "~1.2.4",
     "@types/chalk": "~2.2.0",
     "@types/clean-webpack-plugin": "~0.1.3",
