@@ -4,9 +4,7 @@ import path from 'path';
 const appPath = fs.realpathSync(process.cwd());
 
 export const resolve = (relativePath: string) => {
-  const resolvedPath = path.resolve(appPath, relativePath);
-
-  return resolvedPath;
+  return path.resolve(appPath, relativePath);
 };
 
 export default {

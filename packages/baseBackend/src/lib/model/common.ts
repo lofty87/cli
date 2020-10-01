@@ -12,7 +12,8 @@ export const makeUpdated = (userId?: number) =>
     {
       updated: {
         userId,
-        at: moment().valueOf(),
+        at: moment()
+          .valueOf(),
       },
     },
     isNumber

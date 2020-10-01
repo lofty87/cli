@@ -22,7 +22,8 @@ const schema = new Schema(
     },
     createdAt: {
       type: Number,
-      default: () => moment().valueOf(),
+      default: () => moment()
+        .valueOf(),
       required: true,
     },
   },

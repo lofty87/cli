@@ -11,8 +11,4 @@ interface TempType extends Document {
   createdAt: number;
 }
 
-export default new Model<TempType>(
-  schema,
-  'temps',
-  [ '_id', 'name', 'password' ]
-);
+export default new Model<TempType>(schema, 'temps', [ '_id', 'name', 'password' ]);

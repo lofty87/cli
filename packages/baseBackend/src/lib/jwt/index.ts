@@ -14,7 +14,8 @@ const defaultOptions: SignOptions = {
 
 const sign = <Payload extends Object>(payload: Payload, options: SignOptions = {}) => {
   defaultsDeep(payload, {
-    iat: moment().valueOf(),
+    iat: moment()
+      .valueOf(),
   });
 
   defaultsDeep(options, defaultOptions);
@@ -33,14 +34,11 @@ type Result<Payload> = {
 const verify = <Payload extends Object>(token: string, options: SignOptions = {}) => {
   defaultsDeep(options, defaultOptions);
 
-  const {
-    iat,
-    exp,
-    aud,
-    iss,
-    sub,
-    ...ohters
-  } = jsonwebtoken.verify(token, jwtSecretKey, options) as Result<Payload>;
+  const { iat, exp, aud, iss, sub, ...ohters } = jsonwebtoken.verify(
+    token,
+    jwtSecretKey,
+    options
+  ) as Result<Payload>;
 
   return {
     iat: parseInt(iat, 10),

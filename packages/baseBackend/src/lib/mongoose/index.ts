@@ -1,6 +1,18 @@
 import { ModelPartial, Object } from '@lofty87/types';
 import { Document } from 'mongoose';
-import { compact, forEach, isArray, isEmpty, isFunction, isMap, isPlainObject, map, pick, transform, uniq } from 'lodash';
+import {
+  compact,
+  forEach,
+  isArray,
+  isEmpty,
+  isFunction,
+  isMap,
+  isPlainObject,
+  map,
+  pick,
+  transform,
+  uniq,
+} from 'lodash';
 
 /**
  * @name convertToDot
@@ -99,7 +111,8 @@ export const convertToDotArray = <Model extends Document>(condition?: ModelParti
  */
 export const convertToProjection = (projection?: string[]) => {
   if(projection) {
-    return uniq(compact(projection)).join(' ');
+    return uniq(compact(projection))
+      .join(' ');
   }
 
   return projection;
@@ -120,7 +133,9 @@ export const convertToProjection = (projection?: string[]) => {
  * ? input 과 output 타입을 일치시키기 위해
  * ? 어쩔 수 없이 많이 사용하게 되었다.
  */
-export const selectExtractingProjection = <Model extends Document>(keys: (keyof Model)[]) => <D>(docOrDocs: D) => {
+export const selectExtractingProjection = <Model extends Document>(keys: (keyof Model)[]) => <D>(
+  docOrDocs: D
+) => {
   let isDocs = false;
   let docs = docOrDocs;
 

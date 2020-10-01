@@ -17,9 +17,7 @@ type Options = {
 const MAX_WORKER_COUNT = os.cpus().length;
 
 export default (startApp: StartApp, customOptions: Options = {}) => {
-  const {
-    workerCount: customWorkerCount
-  } = customOptions;
+  const { workerCount: customWorkerCount } = customOptions;
 
   if(customWorkerCount && (customWorkerCount < 1 || customWorkerCount > MAX_WORKER_COUNT)) {
     throw new Error(chalk.red(`workerCount option value must be (1 ~ ${MAX_WORKER_COUNT})`));

@@ -98,8 +98,8 @@ const config: Configuration = {
       },
     }),
     new WebpackHookPlugin({
-      onBuildEnd: env.isDev ? [ buildEndScript ] : undefined
-    })
+      onBuildEnd: env.isDev ? [ buildEndScript ] : undefined,
+    }),
   ],
   stats: {
     builtAt: false,

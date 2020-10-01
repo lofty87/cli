@@ -8,10 +8,7 @@ export const existEnvFile = (envFilePath: string) => {
   try {
     fs.accessSync(envFilePath, fs.constants.F_OK);
   } catch(error) {
-    const {
-      base: filename
-    } = parse(envFilePath);
-
+    const { base: filename } = parse(envFilePath);
     const errorMsg = chalk.red(`required "${chalk.yellow(filename)}" file.`);
 
     throw new Error(errorMsg);
@@ -20,7 +17,9 @@ export const existEnvFile = (envFilePath: string) => {
 
 export const checkNodemonInstall = () => {
   if(!nodemon as any) {
-    const errorMsg = chalk.red(`nodemon is not installed. (${chalk.yellow('npm install --save nodemon')})`);
+    const errorMsg = chalk.red(
+      `nodemon is not installed. (${chalk.yellow('npm install --save nodemon')})`
+    );
 
     throw new Error(errorMsg);
   }
@@ -37,7 +36,11 @@ export const checkEnvVar = () => {
     throw new Error(makeErrorMsg('PUBLIC_URL'));
   }
 
-  if(!process.env.MONGO_DB_HOST || !process.env.MONGO_DB_USERNAME || !process.env.MONGO_DB_PASSWORD) {
+  if(
+    !process.env.MONGO_DB_HOST ||
+    !process.env.MONGO_DB_USERNAME ||
+    !process.env.MONGO_DB_PASSWORD
+  ) {
     throw new Error(makeErrorMsg('MONGO_DB_HOST\', \'MONGO_DB_USERNAME\', \'MONGO_DB_PASSWORD'));
   }
 

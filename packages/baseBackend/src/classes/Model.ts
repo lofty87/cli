@@ -31,7 +31,12 @@ export default class Model<M extends Document> {
   public extractDocOrDocs: ReturnType<typeof selectExtractingProjection>;
   private _Model: MongooseModel<M>;
 
-  constructor(schema: Schema, collectionName: string, clientProjection: (keyof M)[], populateOptions?: QueryPopulateOptions | QueryPopulateOptions[]) {
+  constructor(
+    schema: Schema,
+    collectionName: string,
+    clientProjection: (keyof M)[],
+    populateOptions?: QueryPopulateOptions | QueryPopulateOptions[]
+  ) {
     this._collectionName = collectionName;
     this._clientProjection = clientProjection;
     this._populateOptions = populateOptions;
@@ -56,30 +61,48 @@ export default class Model<M extends Document> {
   }
 
   public add = async (doc: ModelPartial<M>, options: SaveOptions = {}) => {
-    const savedDoc = await new this._Model(doc).save(options);
+    const savedDoc = await new this._Model(doc)
+      .save(options);
 
     return savedDoc;
   };
 
-  public find = (filter?: ModelPartial<M>, projection?: string[], options: QueryFindOptions = {}) => {
+  public find = (
+    filter?: ModelPartial<M>,
+    projection?: string[],
+    options: QueryFindOptions = {}
+  ) => {
     const convertedFilter = convertToDot<M>(filter);
     const convertedProjection = convertToProjection(projection);
 
-    return this._Model.find(convertedFilter, convertedProjection, options).populate(this._populateOptions);
+    return this._Model
+      .find(convertedFilter, convertedProjection, options)
+      .populate(this._populateOptions);
   };
 
-  public findById = async (id: number, filter?: ModelPartial<M>, projection?: string[], options: QueryFindOptions = {}) => {
+  public findById = async (
+    id: number,
+    filter?: ModelPartial<M>,
+    projection?: string[],
+    options: QueryFindOptions = {}
+  ) => {
     filter = defaultsDeep({ _id: id }, filter);
 
     const convertedFilter = convertToDot<M>(filter);
     const convertedProjection = convertToProjection(projection);
 
-    const docs = await this._Model.find(convertedFilter, convertedProjection, options).populate(this._populateOptions);
+    const docs = await this._Model
+      .find(convertedFilter, convertedProjection, options)
+      .populate(this._populateOptions);
 
     return isEmpty(docs) ? null : docs[0];
   };
 
-  public updateById = async (id: number, doc: ModelPartial<M>, options: ModelUpdateOptions = {}) => {
+  public updateById = async (
+    id: number,
+    doc: ModelPartial<M>,
+    options: ModelUpdateOptions = {}
+  ) => {
     const filter = { _id: id } as FilterQuery<M>;
     const convertedDoc = convertToDot<M>(omit(doc, '_id'));
 

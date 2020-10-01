@@ -14,7 +14,11 @@ import { refCount } from './number';
  * ! depth 걱정없이 완벽하게 compact 하기 위해
  * ? e.g. { sign: { email: { certification: null, at: null } } }
  */
-const compactObjectRecursive = <T extends object | Document>(obj: T, filter: (val: any) => boolean, notFilteringCount?: ReturnType<typeof refCount>) => {
+const compactObjectRecursive = <T extends object | Document>(
+  obj: T,
+  filter: (val: any) => boolean,
+  notFilteringCount?: ReturnType<typeof refCount>
+) => {
   const keyLength = Object.keys(obj).length;
 
   let keyCount = 1;
@@ -38,7 +42,10 @@ const compactObjectRecursive = <T extends object | Document>(obj: T, filter: (va
   ) as T;
 };
 
-export const compactObject = <T extends object | Document>(obj: T, filter = (val: any) => !(isUndefined(val) || isNull(val))) => {
+export const compactObject = <T extends object | Document>(
+  obj: T,
+  filter = (val: any) => !(isUndefined(val) || isNull(val))
+) => {
   if(!isPlainObject(obj)) {
     throw Error(`not supported ${typeof obj} type. (plain object type or mongoose Document type)`);
   }
