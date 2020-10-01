@@ -7,8 +7,10 @@ import { PackageJson, ProjectType } from '$types/index';
 const PACKAGE_JSON = 'package.json';
 
 export const getPackageName = (projectType: ProjectType) => {
-  const startChar = projectType.slice(0, 1).toUpperCase();
-  const restChars = projectType.slice(1, projectType.length).toLowerCase();
+  const startChar = projectType.slice(0, 1)
+    .toUpperCase();
+  const restChars = projectType.slice(1, projectType.length)
+    .toLowerCase();
 
   return `base${startChar}${restChars}`;
 };

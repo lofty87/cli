@@ -9,9 +9,7 @@ import { path as appRootPath } from 'app-root-path';
  */
 
 export const resolve = (relativePath: string) => {
-  const resolvedPath = path.resolve(appRootPath, relativePath);
-
-  return resolvedPath;
+  return path.resolve(appRootPath, relativePath);
 };
 
 export default {

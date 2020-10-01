@@ -1,7 +1,23 @@
 import chalk from 'chalk';
 import { program } from 'commander';
-import { confirm, createProject, downloadModules, git, initializeGit, processGitignore, setPackageJson } from '@process/index';
-import { checkDirExistsSync, getProgressBar, initializeProgressBar, printEpilogue, printPackageJson, printProcess, validateProjectName } from '@lib/index';
+import {
+  confirm,
+  createProject,
+  downloadModules,
+  git,
+  initializeGit,
+  processGitignore,
+  setPackageJson,
+} from '@process/index';
+import {
+  checkDirExistsSync,
+  getProgressBar,
+  initializeProgressBar,
+  printEpilogue,
+  printPackageJson,
+  printProcess,
+  validateProjectName,
+} from '@lib/index';
 import paths from '@config/paths';
 import info from '@info';
 
@@ -43,12 +59,14 @@ try {
 
         await processGitignore(projectDir, useGit);
 
-        getProgressBar().end();
+        getProgressBar()
+          .end();
 
         await printEpilogue(projectDir);
       } catch(error) {
         try {
-          getProgressBar().end();
+          getProgressBar()
+            .end();
         } catch(noneError) {
           // do nothing
         }

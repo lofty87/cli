@@ -47,7 +47,9 @@ export const setPackageJson = async (projectName: string) => {
       type: 'input',
       name: 'projectDescription',
       message: 'description:',
-      default: `${info.author} ${projectType === 'playground' ? projectType : `${projectType} project`}`,
+      default: `${info.author} ${
+        projectType === 'playground' ? projectType : `${projectType} project`
+      }`,
     },
     {
       type: 'input',

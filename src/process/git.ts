@@ -22,7 +22,8 @@ export const git = async () => {
 };
 
 export const initializeGit = (projectDir: string) => {
-  getProgressBar().nextStep();
+  getProgressBar()
+    .nextStep();
 
   return execScript(`cd ${projectDir} && git init`);
 };

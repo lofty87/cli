@@ -20,9 +20,14 @@ const { buildDir, packagesDir, rootDir } = paths;
  * ? app-root-path(build) : app-root-path 가 바로 build 경로를 가리킬 때
  * ? app-root-path(module): app-root-path 가 module 을 가리키고 node_modules 아래에 cli 가 설치되어 있을 때
  */
-export const createProject = async (projectDir: string, projectType: ProjectType, packageJson: PackageJson) => {
+export const createProject = async (
+  projectDir: string,
+  projectType: ProjectType,
+  packageJson: PackageJson
+) => {
   // ? step 1
-  getProgressBar().nextStep();
+  getProgressBar()
+    .nextStep();
 
   const packageName = getPackageName(projectType);
 
@@ -39,14 +44,16 @@ export const createProject = async (projectDir: string, projectType: ProjectType
       await fs.copy(packageDir, projectDir);
     } catch(prodError) {
       // ? app-root-path(module)
-      const packageDir = `${rootDir}/node_modules/${info.name}/${basename(buildDir)}/${basename(packagesDir)}/${packageName}`;
+      const packageDir =
+        `${rootDir}/node_modules/${info.name}/${basename(buildDir)}/${basename(packagesDir)}/${packageName}`;
 
       await fs.copy(packageDir, projectDir);
     }
   }
 
   // ? step 2
-  getProgressBar().nextStep();
+  getProgressBar()
+    .nextStep();
 
   let projectPackageJson = await getPackageJson(projectDir);
 

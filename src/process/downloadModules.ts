@@ -1,7 +1,8 @@
 import { execScript, getProgressBar } from '@lib/index';
 
 export const downloadModules = (projectDir: string) => {
-  getProgressBar().nextStep();
+  getProgressBar()
+    .nextStep();
 
   return execScript(`cd ${projectDir} && npm install`);
 };
