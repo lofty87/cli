@@ -11,9 +11,8 @@ export const lengthOf = (obj: Object) => {
 
 /**
  * @name advancedDefaultsDeep
- * @return new object
- * * defaultsDeep 처리에서 배열 값을 제외한
- * * advanced 한 defaultsDeep (immutate)
+ * @return new object (immutate)
+ * * 배열은 defaultsDeep 처리에서 제외한 커스텀 defaultsDeep
  *
  * ! defaultsDeep({ values: [ 1 ] }, { values: [ 3, 4 ] })
  * ! result : { imgSrc: [ 1, 4 ] }
@@ -31,12 +30,12 @@ const loadArrayValueKeysRecursive = (obj: Object, keyPath: string, arrayValueKey
   });
 };
 
-export const advancedDefaultsDeep = (obj: Object, ...sources: Object[]) => {
+export const advancedDefaultsDeep = (obj: Object, source: Object) => {
   const arrayValueKeys: string[] = [];
 
   loadArrayValueKeysRecursive(obj, '', arrayValueKeys);
 
-  const result = defaultsDeep({}, obj, ...sources);
+  const result = defaultsDeep({}, obj, source);
 
   // ? overwrite
   arrayValueKeys.forEach((key) => {
