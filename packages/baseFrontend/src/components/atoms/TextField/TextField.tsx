@@ -10,12 +10,14 @@ const TextField: NCFC<SCP & Props> = ({
   textAlign = 'left',
   variant = 'outlined',
   ...others
-}) => (
-  <MuiTextField
-    className={className}
-    variant={variant}
-    {...others}
-  />
-);
+}) => {
+  return (
+    <MuiTextField
+      className={className}
+      variant={variant}
+      {...others}
+    />
+  );
+};
 
 export default TextField;

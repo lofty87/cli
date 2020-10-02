@@ -9,13 +9,15 @@ const AccordionBase: CFC<SCP & Props> = ({
   className,
   children,
   ...others
-}) => (
-  <MuiAccordion
-    className={className}
-    {...others}
-  >
-    {children}
-  </MuiAccordion>
-);
+}) => {
+  return (
+    <MuiAccordion
+      className={className}
+      {...others}
+    >
+      {children}
+    </MuiAccordion>
+  );
+};
 
 export default AccordionBase;

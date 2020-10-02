@@ -11,13 +11,9 @@ export const splitBy = (str: string, separator: string) => {
 };
 
 export const splitByColon = (str: string) => {
-  const result = splitBy(str, ':');
-
-  return result;
+  return splitBy(str, ':');
 };
 
 export const splitByComma = (str: string) => {
-  const result = splitBy(str, ',');
-
-  return result;
+  return splitBy(str, ',');
 };

@@ -6,5 +6,8 @@ export type Props = {
   Tabs: ReactElement[];
   TabViews: ReactElement[];
   tabsProps?: Omit<Partial<TabsProps>, 'value' | 'onChange'>;
-  tabViewsProps?: Omit<Partial<SwipeableViewsProps>, keyof HTMLProps<HTMLDivElement> | 'index' | 'onChangeIndex'>;
+  tabViewsProps?: Omit<
+    Partial<SwipeableViewsProps>,
+    keyof HTMLProps<HTMLDivElement> | 'index' | 'onChangeIndex'
+  >;
 };

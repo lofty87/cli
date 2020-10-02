@@ -39,8 +39,7 @@ const initialState: State = {
 };
 
 export class ModalAlertStore {
-  @observable
-  private _state = initialState;
+  @observable private _state = initialState;
 
   @computed
   public get state() {

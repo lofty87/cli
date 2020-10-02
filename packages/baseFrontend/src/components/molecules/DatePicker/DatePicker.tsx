@@ -19,22 +19,24 @@ const CustomTextField: NCFC<any> = ({
   variant = 'outlined',
   InputProps,
   ...others
-}) => (
-  <TextField
-    variant={variant}
-    InputProps={{
-      ...InputProps,
-      endAdornment: (
-        <InputAdornment
-          position="end"
-        >
-          <FaCalendarAlt />
-        </InputAdornment>
-      ),
-    }}
-    {...others}
-  />
-);
+}) => {
+  return (
+    <TextField
+      variant={variant}
+      InputProps={{
+        ...InputProps,
+        endAdornment: (
+          <InputAdornment
+            position="end"
+          >
+            <FaCalendarAlt />
+          </InputAdornment>
+        ),
+      }}
+      {...others}
+    />
+  );
+};
 
 const DatePicker: NCFC<SCP & Props> = ({
   className,
@@ -46,22 +48,24 @@ const DatePicker: NCFC<SCP & Props> = ({
   TextFieldComponent = CustomTextField,
   variant = 'inline',
   ...others
-}) => (
-  <MuiPickersUtilsProvider
-    locale="ko"
-    utils={MomentUtils}
-  >
-    <MuiDatePicker
-      className={className}
-      autoOk={autoOk}
-      disableToolbar={disableToolbar}
-      format={format}
-      inputVariant={inputVariant}
-      TextFieldComponent={TextFieldComponent}
-      variant={variant}
-      {...others}
-    />
-  </MuiPickersUtilsProvider>
-);
+}) => {
+  return (
+    <MuiPickersUtilsProvider
+      locale="ko"
+      utils={MomentUtils}
+    >
+      <MuiDatePicker
+        className={className}
+        autoOk={autoOk}
+        disableToolbar={disableToolbar}
+        format={format}
+        inputVariant={inputVariant}
+        TextFieldComponent={TextFieldComponent}
+        variant={variant}
+        {...others}
+      />
+    </MuiPickersUtilsProvider>
+  );
+};
 
 export default DatePicker;

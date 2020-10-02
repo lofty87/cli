@@ -48,9 +48,7 @@ const getTargetElScrollTop = (targetEl: TargetEl) => {
   const targetElCurrent = targetEl && targetEl.current;
 
   if(targetElCurrent) {
-    return Math.ceil(
-      targetElCurrent.scrollTop
-    );
+    return Math.ceil(targetElCurrent.scrollTop);
   }
 
   return Math.ceil(
@@ -64,7 +62,7 @@ const InfiniteScroll: CFC<Props> = ({
   onBottom,
   pause = false,
   targetRef: targetEl = undefined,
-  children
+  children,
 }) => {
   const { request } = useStores();
   const reqState = request.get('common');

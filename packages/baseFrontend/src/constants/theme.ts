@@ -180,7 +180,7 @@ const muiTheme = createMuiTheme({
       '"Nanum Gothic"',
       '"Malgun Gothic"',
       'Dotum',
-      'sans-serif'
+      'sans-serif',
     ].join(','),
   },
 });
@@ -190,7 +190,7 @@ const {
   shadows: muiShadows,
   spacing: muiSpacing,
   transitions: muiTransitions,
-  zIndex: muiZIndex
+  zIndex: muiZIndex,
 } = muiTheme;
 
 // ? styled-components

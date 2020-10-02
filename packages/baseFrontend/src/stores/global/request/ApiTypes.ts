@@ -8,6 +8,4 @@ type Temp =
   | 'temp/removeById'
   | 'temp/fetchCount';
 
-export type ApiTypes =
-  | Common
-  | Temp;
+export type ApiTypes = Common | Temp;

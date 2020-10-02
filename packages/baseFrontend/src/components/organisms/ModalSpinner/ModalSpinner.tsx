@@ -19,9 +19,7 @@ const ModalSpinner: NCFC<SCP> = ({
 }) => {
   const {
     modalSpinner: {
-      state: {
-        reqState
-      },
+      state: { reqState },
     },
   } = useStores();
 

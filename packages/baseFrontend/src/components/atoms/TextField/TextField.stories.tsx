@@ -112,13 +112,12 @@ export const Advanced = () => (
         label="내용"
         placeholder="내용을 입력해 주세요."
         InputProps={{
-          endAdornment: (
-            <InputAdornment
-              position="end"
-            >
-              Kg
-            </InputAdornment>
-          ),
+          endAdornment:
+  <InputAdornment
+    position="end"
+  >
+    Kg
+  </InputAdornment>,
         }}
       />
     </section>

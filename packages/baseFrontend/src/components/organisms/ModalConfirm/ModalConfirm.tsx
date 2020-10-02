@@ -23,13 +23,7 @@ const ModalConfirm: NCFC<SCP> = ({
 }) => {
   const {
     modalConfirm: {
-      state: {
-        open,
-        title,
-        message,
-        agreeCallback,
-        disAgreeCallback
-      },
+      state: { open, title, message, agreeCallback, disAgreeCallback },
     },
   } = useStores();
 

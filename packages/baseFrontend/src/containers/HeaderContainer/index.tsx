@@ -9,11 +9,13 @@ import { NCFC } from '$types/index';
 // * process async, state data
 const HeaderContainer: NCFC<Props> = ({
   history
-}) => (
-  <Header
-    subTitle={history.location.pathname}
-    routerData={routerData}
-  />
-);
+}) => {
+  return (
+    <Header
+      subTitle={history.location.pathname}
+      routerData={routerData}
+    />
+  );
+};
 
 export default HeaderContainer;

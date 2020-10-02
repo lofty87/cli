@@ -18,7 +18,7 @@ import {
   TempListStore,
   TempListStoreActions,
   TempStore,
-  TempStoreActions
+  TempStoreActions,
 } from './temp';
 
 /**

@@ -1,7 +1,10 @@
 import React from 'react';
 import { IconContext } from 'react-icons';
 import { CssBaseline as MUICssBaseline } from '@material-ui/core';
-import { StylesProvider as MUIStylesProvider, ThemeProvider as MUIThemeProvider } from '@material-ui/core/styles';
+import {
+  StylesProvider as MUIStylesProvider,
+  ThemeProvider as MUIThemeProvider,
+} from '@material-ui/core/styles';
 import { ThemeProvider as SCThemeProvider } from '@styles/styled-components';
 import { GlobalStyle, Typography } from '@styles/style';
 
@@ -21,30 +24,32 @@ const ThemeProvider: CFC<Props> = ({
   scTheme,
   muiTheme,
   children
-}) => (
-  <>
-    <MUICssBaseline />
-    <MUIStylesProvider
-      injectFirst
-    >
-      <SCThemeProvider
-        theme={scTheme}
+}) => {
+  return (
+    <>
+      <MUICssBaseline />
+      <MUIStylesProvider
+        injectFirst
       >
-        <MUIThemeProvider
-          theme={muiTheme}
+        <SCThemeProvider
+          theme={scTheme}
         >
-          <GlobalStyle />
-          <IconContext.Provider
-            value={iconConfig}
+          <MUIThemeProvider
+            theme={muiTheme}
           >
-            <Typography>
-              {children}
-            </Typography>
-          </IconContext.Provider>
-        </MUIThemeProvider>
-      </SCThemeProvider>
-    </MUIStylesProvider>
-  </>
-);
+            <GlobalStyle />
+            <IconContext.Provider
+              value={iconConfig}
+            >
+              <Typography>
+                {children}
+              </Typography>
+            </IconContext.Provider>
+          </MUIThemeProvider>
+        </SCThemeProvider>
+      </MUIStylesProvider>
+    </>
+  );
+};
 
 export default ThemeProvider;

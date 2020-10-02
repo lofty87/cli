@@ -9,20 +9,22 @@ const GenericTemplate: CFC<SCP & Props> = ({
   Header,
   children,
   Footer
-}) => (
-  <div
-    className={className}
-  >
-    <header>
-      {Header}
-    </header>
-    <section>
-      {children}
-    </section>
-    <footer>
-      {Footer}
-    </footer>
-  </div>
-);
+}) => {
+  return (
+    <div
+      className={className}
+    >
+      <header>
+        {Header}
+      </header>
+      <section>
+        {children}
+      </section>
+      <footer>
+        {Footer}
+      </footer>
+    </div>
+  );
+};
 
 export default GenericTemplate;

@@ -48,9 +48,7 @@ export const convertGoogleDriveImageShareLink = (googleDriveImageShareLink: stri
  * * 가독성을 높이기 위해 작성
  */
 export const mappingImage = (localImageFilename: string, googleDriveImageShareLink: string) => {
-  const result = `${localImageFilename},${googleDriveImageShareLink}`;
-
-  return result;
+  return `${localImageFilename},${googleDriveImageShareLink}`;
 };
 
 /**
@@ -85,7 +83,9 @@ export const normalizeImages = <T extends Images>(images: T, path?: string) => {
     if(isString(value)) {
       const [ localImageFilename, googleDriveImageShareLink ] = splitByComma(value);
 
-      result[key] = isDev ? `${path}/${localImageFilename}` : convertGoogleDriveImageShareLink(googleDriveImageShareLink);
+      result[key] = isDev ?
+        `${path}/${localImageFilename}` :
+        convertGoogleDriveImageShareLink(googleDriveImageShareLink);
     } else {
       result[key] = isDev ? normalizeImages(value, `${path}/${key}`) : normalizeImages(value);
     }

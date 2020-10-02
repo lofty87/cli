@@ -18,22 +18,24 @@ import env from '@env';
 
 moment.tz.setDefault(env.timezone);
 
-const renderApp = () => (
-  <StoreProvider
-    {...stores}
-  >
-    <ThemeProvider
-      muiTheme={muiTheme}
-      scTheme={scTheme}
+const renderApp = () => {
+  return (
+    <StoreProvider
+      {...stores}
     >
-      <Router>
-        <Route
-          component={App}
-        />
-      </Router>
-    </ThemeProvider>
-  </StoreProvider>
-);
+      <ThemeProvider
+        muiTheme={muiTheme}
+        scTheme={scTheme}
+      >
+        <Router>
+          <Route
+            component={App}
+          />
+        </Router>
+      </ThemeProvider>
+    </StoreProvider>
+  );
+};
 
 render(
   renderApp(),

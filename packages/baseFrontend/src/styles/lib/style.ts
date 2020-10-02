@@ -18,46 +18,35 @@ type Props = { theme: Theme };
 type OfFn<T> = (param: T) => string | number;
 
 export const colorOf = (fn: OfFn<Theme['colors']>) => {
-  const styleFn = (props: Props) => fn(props.theme.colors);
-
-  return styleFn;
+  return (props: Props) => fn(props.theme.colors);
 };
 
 export const fontOf = (fn: OfFn<Theme['font']>) => {
-  const styleFn = (props: Props) => fn(props.theme.font);
-
-  return styleFn;
+  return (props: Props) => fn(props.theme.font);
 };
 
 // ! overloading type
 export const spacingOf = (...values: SpacingArgument[]) => {
-  const styleFn = (props: Props) => props.theme.spacing(...(values as [SpacingArgument, SpacingArgument, SpacingArgument, SpacingArgument]));
-
-  return styleFn;
+  return (props: Props) =>
+    props.theme.spacing(
+      ...(values as [SpacingArgument, SpacingArgument, SpacingArgument, SpacingArgument])
+    );
 };
 
 export const zIndexOf = (key: keyof ZIndex) => {
-  const styleFn = (props: Props) => props.theme.zIndex[key];
-
-  return styleFn;
+  return (props: Props) => props.theme.zIndex[key];
 };
 
 export const shadowOf = (key: keyof Shadows) => {
-  const styleFn = (props: Props) => props.theme.shadows[key];
-
-  return styleFn;
+  return (props: Props) => props.theme.shadows[key];
 };
 
 export const easingOf = (key: keyof Easing) => {
-  const styleFn = (props: Props) => props.theme.transitions.easing[key];
-
-  return styleFn;
+  return (props: Props) => props.theme.transitions.easing[key];
 };
 
 export const durationOf = (key: keyof Duration) => {
-  const styleFn = (props: Props) => props.theme.transitions.duration[key];
-
-  return styleFn;
+  return (props: Props) => props.theme.transitions.duration[key];
 };
 
 /**
@@ -74,7 +63,8 @@ export const breakpoints = {
   only: (key: Breakpoint) => (props: Props) => props.theme.breakpoints.only(key),
   up: (key: BreakpointKeys) => (props: Props) => props.theme.breakpoints.up(key),
   down: (key: BreakpointKeys) => (props: Props) => props.theme.breakpoints.down(key),
-  between: (start: BreakpointKeys, end: BreakpointKeys) => (props: Props) => props.theme.breakpoints.between(start, end),
+  between: (start: BreakpointKeys, end: BreakpointKeys) => (props: Props) =>
+    props.theme.breakpoints.between(start, end),
 };
 
 /**
@@ -106,7 +96,11 @@ export const mappedBy = <S extends object>(styleMap: S, by?: keyof S) => {
  * * 2. prop 값이 있더라도 부분적인 매핑된 style 또는 단일 style 을 리턴
  * * 3. prop 값이 없더라도 'default' 가 설정되어 있으면 단일 style 을 리턴
  */
-export const selectedBy = <Key extends any>(style: object, by?: Key, partial: (Key | 'default')[] = []) => {
+export const selectedBy = <Key extends any>(
+  style: object,
+  by?: Key,
+  partial: (Key | 'default')[] = []
+) => {
   if(!by) {
     if(includes(partial, 'default')) {
       return isPlainObject(style) ? '' : style;

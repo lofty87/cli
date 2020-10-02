@@ -11,14 +11,16 @@ const AccordionSummary: CFC<SCP & Props> = ({
   expandIcon = <MdExpandMore />,
   children,
   ...others
-}) => (
-  <MuiAccordionSummary
-    className={className}
-    expandIcon={expandIcon}
-    {...others}
-  >
-    {children}
-  </MuiAccordionSummary>
-);
+}) => {
+  return (
+    <MuiAccordionSummary
+      className={className}
+      expandIcon={expandIcon}
+      {...others}
+    >
+      {children}
+    </MuiAccordionSummary>
+  );
+};
 
 export default AccordionSummary;

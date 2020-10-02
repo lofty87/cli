@@ -18,8 +18,7 @@ const initialState: State = {
 };
 
 export class ModalSpinnerStore {
-  @observable
-  private _state = initialState;
+  @observable private _state = initialState;
 
   @computed
   public get state() {

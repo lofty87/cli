@@ -1,5 +1,5 @@
 import { action, computed, observable, runInAction, toJS } from 'mobx';
-import { defaultsDeep } from 'lodash';
+import { advancedDefaultsDeep } from '@lib/util';
 import { ModelPartial } from '@lofty87/types';
 import api from '@api/index';
 
@@ -12,19 +12,11 @@ type State = TempType[];
 const initialState: State = [];
 
 export class TempListStore implements ModelListStore<TempType> {
-  @observable
-  private _state = initialState;
-
+  @observable private _state = initialState;
   private _skip = 0;
-
-  @observable
-  private _isLastData = false;
-
-  @observable
-  private _search = '';
-
-  @observable
-  private _count = 0;
+  @observable private _isLastData = false;
+  @observable private _search = '';
+  @observable private _count = 0;
 
   @computed
   public get state() {
@@ -150,7 +142,7 @@ export class TempListStore implements ModelListStore<TempType> {
     if(index !== -1) {
       const originalTemp = toJS(this._state[index]);
 
-      this._state[index] = defaultsDeep({}, temp, originalTemp);
+      this._state[index] = advancedDefaultsDeep(temp, originalTemp);
     }
   };
 

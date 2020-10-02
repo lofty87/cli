@@ -17,8 +17,8 @@ const H: CFC<SCP & Props> = ({
   color = 'dark',
   thick = 'thick7',
   ...others
-}) =>
-  createElement(type, {
+}) => {
+  return createElement(type, {
     className,
     type,
     size,
@@ -27,5 +27,6 @@ const H: CFC<SCP & Props> = ({
     thick,
     ...others,
   });
+};
 
 export default H;

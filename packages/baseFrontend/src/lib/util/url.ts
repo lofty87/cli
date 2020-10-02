@@ -6,9 +6,7 @@ import { compact } from 'lodash';
  * @returns [ 'path', 'name' ]
  */
 export const splitPathname = (pathname: string) => {
-  const result = compact(pathname.split('/'));
-
-  return result;
+  return compact(pathname.split('/'));
 };
 
 /**
@@ -21,7 +19,5 @@ export const splitPathname = (pathname: string) => {
  * ? isModelDetailPage('/pathname/subpathname', 2) === false
  */
 export const isModelDetailPage = (pathname: string, idIndex: number) => {
-  const result = idIndex === splitPathname(pathname).length - 1;
-
-  return result;
+  return idIndex === splitPathname(pathname).length - 1;
 };

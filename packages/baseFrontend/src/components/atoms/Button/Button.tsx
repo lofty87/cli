@@ -11,12 +11,14 @@ const Button: CFC<SCP & Props> = ({
   length = undefined,
   variant = 'contained',
   ...others
-}) => (
-  <MuiButton
-    className={className}
-    variant={variant}
-    {...others}
-  />
-);
+}) => {
+  return (
+    <MuiButton
+      className={className}
+      variant={variant}
+      {...others}
+    />
+  );
+};
 
 export default Button;

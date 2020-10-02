@@ -31,12 +31,7 @@ const ModalAlert: NCFC<SCP> = ({
 }) => {
   const {
     modalAlert: {
-      state: {
-        usage,
-        title,
-        message,
-        open
-      },
+      state: { usage, title, message, open },
     },
   } = useStores();
 

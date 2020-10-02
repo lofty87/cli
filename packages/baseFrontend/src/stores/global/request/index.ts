@@ -10,8 +10,7 @@ import { ApiTypes } from './ApiTypes';
  * ! api type 도 직접 추가해야 한다.
  */
 export class RequestStore {
-  @observable
-  private _state = new Map<ApiTypes, 'pending' | 'done'>();
+  @observable private _state = new Map<ApiTypes, 'pending' | 'done'>();
 
   @action
   public setPending = (apiType: ApiTypes) => {

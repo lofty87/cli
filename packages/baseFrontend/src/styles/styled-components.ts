@@ -17,5 +17,5 @@ export const {
   default: styled,
   css,
   keyframes,
-  createGlobalStyle
+  createGlobalStyle,
 } = themedStyledComponents;

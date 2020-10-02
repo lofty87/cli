@@ -10,30 +10,32 @@ import { NCFC, RRP } from '$types/index';
 
 const GenericPage: NCFC<RRP> = ({
   history
-}) => (
-  <GenericTemplate
-    Header={(
-      <HeaderContainer
-        history={history}
-      />
-    )}
-    Footer={<Footer />}
-  >
-    <Switch>
-      <Route
-        path="/"
-        component={HomeContainer}
-        exact
-      />
-      <Route
-        path="/temps"
-        component={TempPage}
-      />
-      <Redirect
-        to="/no-match"
-      />
-    </Switch>
-  </GenericTemplate>
-);
+}) => {
+  return (
+    <GenericTemplate
+      Header={(
+        <HeaderContainer
+          history={history}
+        />
+      )}
+      Footer={<Footer />}
+    >
+      <Switch>
+        <Route
+          path="/"
+          component={HomeContainer}
+          exact
+        />
+        <Route
+          path="/temps"
+          component={TempPage}
+        />
+        <Redirect
+          to="/no-match"
+        />
+      </Switch>
+    </GenericTemplate>
+  );
+};
 
 export default GenericPage;

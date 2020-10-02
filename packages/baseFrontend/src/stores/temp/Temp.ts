@@ -9,8 +9,7 @@ type State = null | TempType;
 const initialState: State = null;
 
 export class TempStore implements ModelStore<TempType> {
-  @observable
-  private _state = initialState;
+  @observable private _state = initialState;
 
   @computed
   public get state() {

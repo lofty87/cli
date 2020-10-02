@@ -81,21 +81,18 @@ const iconStyle = {
 };
 
 const tabIcons: Record<number, React.ReactElement> = {
-  0: (
-    <AiFillGoogleCircle
-      style={iconStyle}
-    />
-  ),
-  1: (
-    <AiFillApple
-      style={iconStyle}
-    />
-  ),
-  2: (
-    <AiFillFacebook
-      style={iconStyle}
-    />
-  ),
+  0:
+  <AiFillGoogleCircle
+    style={iconStyle}
+  />,
+  1:
+  <AiFillApple
+    style={iconStyle}
+  />,
+  2:
+  <AiFillFacebook
+    style={iconStyle}
+  />,
 };
 
 export const IconTab = () => (

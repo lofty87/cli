@@ -18,19 +18,21 @@ const Carousel: CFC<SCP & Props> = ({
   speed = 500,
   children,
   ...others
-}) => (
-  <Slider
-    className={className}
-    autoplay={autoplay}
-    dots={dots}
-    dotsClass={dotsClass}
-    infinite={infinite}
-    pauseOnHover={pauseOnHover}
-    speed={speed}
-    {...others}
-  >
-    {children}
-  </Slider>
-);
+}) => {
+  return (
+    <Slider
+      className={className}
+      autoplay={autoplay}
+      dots={dots}
+      dotsClass={dotsClass}
+      infinite={infinite}
+      pauseOnHover={pauseOnHover}
+      speed={speed}
+      {...others}
+    >
+      {children}
+    </Slider>
+  );
+};
 
 export default Carousel;

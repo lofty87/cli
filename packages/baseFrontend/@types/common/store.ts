@@ -27,7 +27,11 @@ export interface ModelStore<Model extends Document, Doc = null | Model> {
  *
  * ? Form 에 필요한 key 들로만 picked 된 state.
  */
-export interface ModelFormStore<Model extends Document, Key extends keyof Model, Doc = Pick<Model, Key>> {
+export interface ModelFormStore<
+  Model extends Document,
+  Key extends keyof Model,
+  Doc = Pick<Model, Key>
+> {
   // ! private _state: Doc;
   readonly state: Doc;
   setState: (state: Doc) => void;

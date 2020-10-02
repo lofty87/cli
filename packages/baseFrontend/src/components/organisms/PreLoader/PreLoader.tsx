@@ -15,7 +15,7 @@ const PreLoader: NCFC<SCP & Props> = ({
   color = 'dark',
   verticalPadding = 3,
   reqState,
-  isLastData = false
+  isLastData = false,
 }) => {
   if(isLastData) {
     return (
@@ -80,7 +80,7 @@ const PreLoader: NCFC<SCP & Props> = ({
     );
   }
 
-  return <section></section>;
+  return <></>;
 };
 
 export default PreLoader;

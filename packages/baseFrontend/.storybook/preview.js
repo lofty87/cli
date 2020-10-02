@@ -18,25 +18,27 @@ moment.tz.setDefault(env.timezone);
 
 export const parameters = {
   actions: {
-    argTypesRegex: "^on[A-Z].*",
+    argTypesRegex: '^on[A-Z].*',
   },
-}
+};
 
 export const decorators = [
-  (Story) => (
-    <StoreProvider
-      {...stores}
-    >
-      <ThemeProvider
-        muiTheme={muiTheme}
-        scTheme={scTheme}
+  (Story) => {
+    return (
+      <StoreProvider
+        {...stores}
       >
-        <Router>
-          <Route
-            component={Story}
-          />
-        </Router>
-      </ThemeProvider>
-    </StoreProvider>
-  )
+        <ThemeProvider
+          muiTheme={muiTheme}
+          scTheme={scTheme}
+        >
+          <Router>
+            <Route
+              component={Story}
+            />
+          </Router>
+        </ThemeProvider>
+      </StoreProvider>
+    );
+  },
 ];

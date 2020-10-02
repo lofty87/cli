@@ -6,4 +6,5 @@ export type CustomProps = {
   textAlign?: PropTypes.Alignment;
 };
 
-export type Props = CustomProps & Omit<TextFieldProps, keyof SCP | keyof CustomProps | 'children' | 'color'>;
+export type Props = CustomProps &
+  Omit<TextFieldProps, keyof SCP | keyof CustomProps | 'children' | 'color'>;
