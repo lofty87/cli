@@ -3,18 +3,18 @@ import path from 'path';
 
 const appPath = fs.realpathSync(process.cwd());
 
-export const resolve = (relativePath: string) => {
+export const resolveApp = (relativePath: string) => {
   return path.resolve(appPath, relativePath);
 };
 
 export default {
-  dotEnv: resolve('.env'),
+  dotEnv: resolveApp('.env'),
   appDir: appPath,
-  typesDir: resolve('@types'),
-  assetsDir: resolve('assets'),
-  configDir: resolve('config'),
-  srcDir: resolve('src'),
-  entry: resolve('src/app.ts'),
-  buildDir: resolve('build'),
+  typesDir: resolveApp('@types'),
+  assetsDir: resolveApp('assets'),
+  configDir: resolveApp('config'),
+  srcDir: resolveApp('src'),
+  entry: resolveApp('src/app.ts'),
+  buildDir: resolveApp('build'),
   outputFilename: 'bundle.js',
 };

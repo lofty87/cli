@@ -8,7 +8,7 @@ import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'; // ? using alia
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'; // ? build performance
 import WebpackHookPlugin from 'webpack-hook-plugin'; // ? on build end
 
-import paths, { resolve } from './paths';
+import paths, { resolveApp } from './paths';
 import { buildEndScript } from './scripts';
 
 const SHEBANG = '#!/usr/bin/env node'; // ! required for bin
@@ -58,7 +58,7 @@ const config: Configuration = {
   resolve: {
     extensions: [ '.tsx', '.ts', '.js' ],
     modules: [
-      resolve('node_modules'),
+      resolveApp('node_modules'),
       paths.rootDir
     ], // ? absolute path is recommended
     plugins: [

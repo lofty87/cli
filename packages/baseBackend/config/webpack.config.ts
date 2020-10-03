@@ -10,7 +10,7 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'; // ? bu
 import WebpackHookPlugin from 'webpack-hook-plugin'; // ? on build end
 
 import env from './env';
-import paths, { resolve } from './paths';
+import paths, { resolveApp } from './paths';
 import { checkEnvVar, checkNodemonInstall } from './checks';
 import { buildEndScript } from './scripts';
 
@@ -65,7 +65,7 @@ const config: Configuration = {
   resolve: {
     extensions: [ '.tsx', '.ts', '.js' ],
     modules: [
-      resolve('node_modules'),
+      resolveApp('node_modules'),
       paths.appDir
     ], // ? absolute path is recommended
     plugins: [

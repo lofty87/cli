@@ -8,18 +8,18 @@ import { path as appRootPath } from 'app-root-path';
  * * cwd : command root
  */
 
-export const resolve = (relativePath: string) => {
+export const resolveApp = (relativePath: string) => {
   return path.resolve(appRootPath, relativePath);
 };
 
 export default {
   rootDir: appRootPath,
-  typesDir: resolve('@types'),
-  configDir: resolve('config'),
-  packagesDir: resolve('packages'),
-  srcDir: resolve('src'),
-  entry: resolve('src/index.ts'),
-  buildDir: resolve('build'),
+  typesDir: resolveApp('@types'),
+  configDir: resolveApp('config'),
+  packagesDir: resolveApp('packages'),
+  srcDir: resolveApp('src'),
+  entry: resolveApp('src/index.ts'),
+  buildDir: resolveApp('build'),
   outputFilename: 'bundle.js',
   cwdDir: fs.realpathSync(process.cwd()),
 };
