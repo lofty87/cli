@@ -25,8 +25,8 @@ const url = format({
  * * and will automatically increment with each new document
  */
 
-export default async () =>
-  await connect(url, {
+export default async () => {
+  return await connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -40,3 +40,4 @@ export default async () =>
 
       throw new Error(error);
     });
+};
