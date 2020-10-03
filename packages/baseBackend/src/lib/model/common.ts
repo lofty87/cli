@@ -1,6 +1,6 @@
 import { isNumber } from 'lodash';
 import moment from 'moment';
-import { compactObject } from '@lib/util';
+import { compactObject } from '@lofty87/util';
 
 /**
  * @name makeUpdated
