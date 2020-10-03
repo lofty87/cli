@@ -1,5 +1,5 @@
 import { action, computed, observable, runInAction, toJS } from 'mobx';
-import { advancedDefaultsDeep } from '@lib/util';
+import { advancedDefaultsDeep } from '@lofty87/util';
 import { ModelPartial } from '@lofty87/types';
 import api from '@api/index';
 

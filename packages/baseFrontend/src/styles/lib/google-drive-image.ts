@@ -1,6 +1,6 @@
 import { entries, isString } from 'lodash';
 import queryString from 'query-string';
-import { splitByComma } from '@lib/util';
+import { splitByComma } from '@lofty87/util';
 import env from '@env';
 
 const { isDev, imagesUrl } = env;
