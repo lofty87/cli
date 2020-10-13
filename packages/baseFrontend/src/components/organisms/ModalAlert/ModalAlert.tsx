@@ -8,13 +8,11 @@ import { actions, useStores } from '@stores/index';
 import { NCFC, SCP } from '$types/index';
 
 /**
- * * ModalAlertStore 를 통해 state 를 관리.
- * * Enter 키를 통해 close 가능.
+ * * store 를 통해 modalAlert state 를 관리
+ * * enter 키를 통해 close 가능
  *
- * ? fade 전환 효과중에 발생하는
- * ? initialize(), event issue 를
- * ? setTimeout 과 throttle 을 사용하여
- * ? 최대한 자연스럽게 동작하도록 작성
+ * ? fade 전환 효과중에 발생하는 initialize(), event issue 를
+ * ? setTimeout 과 throttle 을 사용하여 최대한 자연스럽게 동작하도록 작성
  */
 
 type Usage = 'inform' | 'warn' | 'error';
@@ -30,16 +28,18 @@ const ModalAlert: NCFC<SCP> = ({
   ...others
 }) => {
   const {
-    modalAlert: {
-      state: { usage, title, message, open },
+    global: {
+      modalAlert: {
+        state: { usage, title, message, open },
+      },
     },
   } = useStores();
 
   const handleClose = throttle(() => {
-    actions.modalAlert.close();
+    actions.global.modalAlert.close();
 
     setTimeout(() => {
-      actions.modalAlert.initialize();
+      actions.global.modalAlert.initialize();
     }, 150);
   }, 1000);
 

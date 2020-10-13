@@ -64,7 +64,9 @@ const InfiniteScroll: CFC<Props> = ({
   targetRef: targetEl = undefined,
   children,
 }) => {
-  const { request } = useStores();
+  const {
+    global: { request },
+  } = useStores();
   const reqState = request.get('common');
 
   const scrollEvent = useCallback(

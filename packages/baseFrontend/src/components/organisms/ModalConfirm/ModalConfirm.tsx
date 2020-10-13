@@ -8,13 +8,11 @@ import { actions, useStores } from '@stores/index';
 import { NCFC, SCP } from '$types/index';
 
 /**
- * * ModalConfirmStore 를 통해 state 를 관리.
- * * Enter 키를 통해 close 가능.
+ * * store 를 통해 modalConfirm state 를 관리
+ * * enter 키를 통해 close 가능
  *
- * ? fade 전환 효과중에 발생하는
- * ? initialize(), event issue 를
- * ? setTimeout 과 throttle 을 사용하여
- * ? 최대한 자연스럽게 동작하도록 작성
+ * ? fade 전환 효과중에 발생하는 initialize(), event issue 를
+ * ? setTimeout 과 throttle 을 사용하여 최대한 자연스럽게 동작하도록 작성
  */
 
 const ModalConfirm: NCFC<SCP> = ({
@@ -22,28 +20,30 @@ const ModalConfirm: NCFC<SCP> = ({
   ...others
 }) => {
   const {
-    modalConfirm: {
-      state: { open, title, message, agreeCallback, disAgreeCallback },
+    global: {
+      modalConfirm: {
+        state: { open, title, message, agreeCallback, disAgreeCallback },
+      },
     },
   } = useStores();
 
   const handleAgreeCallback = throttle((e: MouseEvent) => {
-    actions.modalConfirm.close();
+    actions.global.modalConfirm.close();
 
     agreeCallback && agreeCallback(e);
 
     setTimeout(() => {
-      actions.modalConfirm.initialize();
+      actions.global.modalConfirm.initialize();
     }, 150);
   }, 1000);
 
   const handleDisAgreeCallback = throttle((e: MouseEvent) => {
-    actions.modalConfirm.close();
+    actions.global.modalConfirm.close();
 
     disAgreeCallback && disAgreeCallback(e);
 
     setTimeout(() => {
-      actions.modalConfirm.initialize();
+      actions.global.modalConfirm.initialize();
     }, 150);
   }, 1000);
 

@@ -1,9 +1,10 @@
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 import { Function } from '@lofty87/types';
 
 /**
  * * ModalConfirm Component State
  */
+
 type State = {
   title: undefined | string;
   message: undefined | string;
@@ -20,20 +21,30 @@ const initialState: State = {
   disAgreeCallback: undefined,
 };
 
-export class ModalConfirmStore {
-  @observable private _state = initialState;
+type PrivateMembers = '_state' | 'open';
 
-  @computed
+export class ModalConfirm {
+  private _state = initialState;
+
+  constructor() {
+    makeObservable<this, PrivateMembers>(this, {
+      _state: observable,
+      state: computed,
+      initialize: action,
+      open: action,
+      close: action,
+      config: action,
+    });
+  }
+
   public get state() {
     return this._state;
   }
 
-  @action
   public initialize = () => {
     this._state = initialState;
   };
 
-  @action
   private open = (agreeCallback?: Function, disAgreeCallback?: Function) => {
     this._state = {
       ...this._state,
@@ -43,12 +54,10 @@ export class ModalConfirmStore {
     };
   };
 
-  @action
   public close = () => {
     this._state.open = false;
   };
 
-  @action
   public config = (title: string, message?: string) => {
     this._state = {
       ...this.state,
@@ -70,4 +79,4 @@ export class ModalConfirmStore {
   };
 }
 
-export type ModalConfirmStoreActions = Omit<ModalConfirmStore, 'state'>;
+export type ModalConfirmActions = Omit<ModalConfirm, 'state'>;

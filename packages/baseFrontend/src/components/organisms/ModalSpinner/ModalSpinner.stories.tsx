@@ -9,8 +9,8 @@ export default {
 
 export const Default = () => {
   useEffect(() => {
-    actions.modalSpinner.show();
-    actions.modalSpinner.pending();
+    actions.global.modalSpinner.show();
+    actions.global.modalSpinner.pending();
   });
 
   return <ModalSpinner />;

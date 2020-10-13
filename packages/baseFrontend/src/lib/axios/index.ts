@@ -34,9 +34,9 @@ const validateStatus = (status: number) => {
  * * throttle(500ms) 을 사용하여 다발성 error 처리 (최초 error 우선 처리).
  */
 const errorThrottle = throttle((error: RequestError) => {
-  actions.request.setDone('common');
-  actions.modalSpinner.done();
-  actions.modalAlert.error(error.message).open();
+  actions.global.request.doneOn('common');
+  actions.global.modalSpinner.done();
+  actions.global.modalAlert.error(error.message).open();
 }, 500);
 
 const handleError = () => {
@@ -54,11 +54,11 @@ const handleError = () => {
  * * throttle(500ms) 을 사용하여 다발성 error 처리 (최초 error 우선 처리).
  */
 const responseErrorThrottle = throttle((status: number, message: string) => {
-  actions.request.setDone('common');
-  actions.modalSpinner.done();
+  actions.global.request.doneOn('common');
+  actions.global.modalSpinner.done();
 
   if(statusCodes['unauthorized'] === status) {
-    actions.modalAlert.error(message).open();
+    actions.global.modalAlert.error(message).open();
   }
 }, 500);
 
@@ -83,8 +83,8 @@ const initialize = (axios: AxiosInstance) => {
 
       // putCookieInHeaders(config);
 
-      actions.request.setPending('common');
-      actions.modalSpinner.pending();
+      actions.global.request.pendingOn('common');
+      actions.global.modalSpinner.pending();
 
       return config;
     },
@@ -95,8 +95,8 @@ const initialize = (axios: AxiosInstance) => {
 
   axios.interceptors.response.use(
     ({ data }) => {
-      actions.request.setDone('common');
-      actions.modalSpinner.done();
+      actions.global.request.doneOn('common');
+      actions.global.modalSpinner.done();
 
       return data;
     },

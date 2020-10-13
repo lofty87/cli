@@ -12,7 +12,7 @@ const ModalAlertContainer: NCFC<ModalAlertContainerProps> = ({
   onClick
 }) => {
   useEffect(() => () => {
-    actions.modalAlert.close();
+    actions.global.modalAlert.close();
   });
 
   return (
@@ -37,7 +37,7 @@ export const Inform = () => {
   const handleOpen: MouseEventHandler = (e) => {
     e.preventDefault();
 
-    actions.modalAlert.inform('알림 메시지입니다.').open();
+    actions.global.modalAlert.inform('알림 메시지입니다.').open();
   };
 
   return (
@@ -51,7 +51,7 @@ export const Warn = () => {
   const handleOpen: MouseEventHandler = (e) => {
     e.preventDefault();
 
-    actions.modalAlert.warn('경고', '경고 메시지입니다.').open();
+    actions.global.modalAlert.warn('경고', '경고 메시지입니다.').open();
   };
 
   return (
@@ -65,7 +65,7 @@ export const Error = () => {
   const handleOpen: MouseEventHandler = (e) => {
     e.preventDefault();
 
-    actions.modalAlert.error('오류', '오류 메시지입니다.').open();
+    actions.global.modalAlert.error('오류', '오류 메시지입니다.').open();
   };
 
   return (

@@ -1,8 +1,9 @@
-import { action, computed, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
 /**
  * * ModalAlert Component State
  */
+
 type Usage = 'inform' | 'warn' | 'error';
 
 type State = {
@@ -38,30 +39,40 @@ const initialState: State = {
   open: false,
 };
 
-export class ModalAlertStore {
-  @observable private _state = initialState;
+type PrivateMembers = '_state' | 'open';
 
-  @computed
+export class ModalAlert {
+  private _state = initialState;
+
+  constructor() {
+    makeObservable<this, PrivateMembers>(this, {
+      _state: observable,
+      state: computed,
+      initialize: action,
+      open: action,
+      close: action,
+      inform: action,
+      warn: action,
+      error: action,
+    });
+  }
+
   public get state() {
     return this._state;
   }
 
-  @action
   public initialize = () => {
     this._state = initialState;
   };
 
-  @action
   private open = () => {
     this._state.open = true;
   };
 
-  @action
   public close = () => {
     this._state.open = false;
   };
 
-  @action
   public inform = (title: string, message?: string) => {
     this._state = makeState('inform', title, message);
 
@@ -70,7 +81,6 @@ export class ModalAlertStore {
     };
   };
 
-  @action
   public warn = (title: string, message?: string) => {
     this._state = makeState('warn', title, message);
 
@@ -79,7 +89,6 @@ export class ModalAlertStore {
     };
   };
 
-  @action
   public error = (title: string, message?: string) => {
     this._state = makeState('error', title, message);
 
@@ -89,4 +98,4 @@ export class ModalAlertStore {
   };
 }
 
-export type ModalAlertStoreActions = Omit<ModalAlertStore, 'state'>;
+export type ModalAlertStoreActions = Omit<ModalAlert, 'state'>;

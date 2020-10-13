@@ -12,7 +12,7 @@ const ModalConfirmContainer: NCFC<ModalConfirmContainerProps> = ({
   onClick
 }) => {
   useEffect(() => () => {
-    actions.modalConfirm.close();
+    actions.global.modalConfirm.close();
   });
 
   return (
@@ -45,7 +45,9 @@ export const Default = () => {
   const handleOpen: MouseEventHandler = (e) => {
     e.preventDefault();
 
-    actions.modalConfirm.config('확인', '확인 메시지입니다.').open(agreeCallback, disAgreeCallback);
+    actions.global.modalConfirm
+      .config('확인', '확인 메시지입니다.')
+      .open(agreeCallback, disAgreeCallback);
   };
 
   return (
@@ -59,7 +61,7 @@ export const Message = () => {
   const handleOpen: MouseEventHandler = (e) => {
     e.preventDefault();
 
-    actions.modalConfirm.config('확인 메시지입니다.').open(agreeCallback, disAgreeCallback);
+    actions.global.modalConfirm.config('확인 메시지입니다.').open(agreeCallback, disAgreeCallback);
   };
 
   return (
