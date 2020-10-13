@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 import { useStores } from '@stores/index';
 
 import { Props } from './InfiniteScroll.props';

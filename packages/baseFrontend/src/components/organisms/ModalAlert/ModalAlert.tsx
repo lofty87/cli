@@ -1,5 +1,5 @@
 import React from 'react';
-import { observer } from 'mobx-react';
+import { observer } from 'mobx-react-lite';
 import { throttle } from 'lodash';
 import { Dialog } from '@material-ui/core';
 import { Button, H } from '@components/atoms';

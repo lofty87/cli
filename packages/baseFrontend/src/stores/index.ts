@@ -1,6 +1,4 @@
-import { useContext } from 'react';
 import { configure } from 'mobx';
-import { MobXProviderContext } from 'mobx-react';
 
 import {
   ModalAlertStore,
@@ -22,17 +20,12 @@ import {
 } from './temp';
 
 /**
- * * 명시적 타입 정의를 통해,
- * * state 들은 stores 로 분류하고
- * * action 들은 actions 로 분류했다.
- *
- * ? 1. state 변경은 action 을 통해서만 할 수 있도록 설정했다.
- * ? 2. useStores() hook 을 통해 observing state 를 사용하면 된다.
- *
- * TODO: 심플하게 정리할 수 있는 방법 찾기
+ * * 1. state 변경은 action 을 통해서만 가능
+ * * 2. useStores() 를 통해 observable state 를 사용
  */
 
 configure({
+  useProxies: 'ifavailable',
   enforceActions: 'always',
 });
 
@@ -43,6 +36,8 @@ const requestStore = new RequestStore();
 const tempFormStore = new TempFormStore();
 const tempListStore = new TempListStore();
 const tempStore = new TempStore();
+
+export { useStores } from './StoreProvider';
 
 export const stores = {
   modalAlert: modalAlertStore as Omit<ModalAlertStore, keyof ModalAlertStoreActions>,
@@ -63,6 +58,3 @@ export const actions = {
   tempList: tempListStore as TempListStoreActions,
   temp: tempStore as TempStoreActions,
 };
-
-// ! stores hook (required wrapping observer for using component)
-export const useStores = () => useContext(MobXProviderContext) as typeof stores;
