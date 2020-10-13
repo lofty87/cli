@@ -3,7 +3,15 @@ import { Document } from 'mongoose';
 // ? e.g.
 export interface TempType extends Document {
   _id: number;
-  name: string;
-  password: string;
+  profile: {
+    email: string;
+    name: string;
+  };
+  info: {
+    roles: string[];
+  };
+  secure: {
+    password: string;
+  };
   createdAt: number;
 }

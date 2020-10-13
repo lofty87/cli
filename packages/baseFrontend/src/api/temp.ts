@@ -1,11 +1,11 @@
 import { Api } from '@classes/index';
-import { TempType } from '@stores/temp/type';
+import { TempType } from '@stores/temp/TempType';
 
 const NAME = 'temp';
 const PATHNAME = '/temps';
 
-const temp = new Api<TempType>(NAME, PATHNAME);
+const api = new Api<TempType>(NAME, PATHNAME);
 
 export default {
-  ...temp,
+  ...api,
 };
