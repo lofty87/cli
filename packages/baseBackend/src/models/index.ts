@@ -1,3 +1,3 @@
 import './customCasting';
 
-export { default as temp } from './temp';
+export { default as example } from './example';

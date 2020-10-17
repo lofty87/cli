@@ -1,4 +1,3 @@
-import { ModelPartial } from '@lofty87/types';
 import {
   connection,
   Document,
@@ -14,21 +13,23 @@ import {
 } from 'mongoose';
 import autoIncrement from 'mongoose-auto-increment';
 import { defaultsDeep, isEmpty, omit } from 'lodash';
+import { ModelPartial } from '@lofty87/types';
+import { compactObject, isNotEmpty } from '@lofty87/util';
 import { convertToDot, convertToProjection, selectExtractingProjection } from '@lib/mongoose';
 
 /**
  * @class Model
  * * 1. 기본 CRUD 를 갖춘 mongoose model
- * * 2. id 에 auto_increment 가 적용된 model (no hash)
+ * * 2. id 에 auto_increment 가 적용된 model (not use hash id)
  * * 3. collection name 을 직접 지정
- * * 4. clientProjection 과 extractDocOrDocs 를 통해,
- * *    master, manager 와 client 를 구분하여 결과값을 리턴
+ * * 4. clientProjection 과 extractData 를 통해,
+ * *    admin, manager 와 client 를 구분하여 결과값을 리턴
  */
 export default class Model<M extends Document> {
   private _collectionName: string;
   private _clientProjection: (keyof M)[];
   private _populateOptions?: QueryPopulateOptions | QueryPopulateOptions[];
-  public extractDocOrDocs: ReturnType<typeof selectExtractingProjection>;
+  public extractData: ReturnType<typeof selectExtractingProjection>;
   private _Model: MongooseModel<M>;
 
   constructor(
@@ -40,7 +41,7 @@ export default class Model<M extends Document> {
     this._collectionName = collectionName;
     this._clientProjection = clientProjection;
     this._populateOptions = populateOptions;
-    this.extractDocOrDocs = selectExtractingProjection<M>(clientProjection);
+    this.extractData = selectExtractingProjection<M>(clientProjection);
 
     autoIncrement.initialize(connection);
     schema.plugin(autoIncrement.plugin, collectionName);
@@ -60,14 +61,16 @@ export default class Model<M extends Document> {
     return this._Model;
   }
 
-  public add = async (doc: ModelPartial<M>, options: SaveOptions = {}) => {
-    const savedDoc = await new this._Model(doc)
+  public add = async (source: ModelPartial<M>, options: SaveOptions = {}) => {
+    source = compactObject(source, isNotEmpty);
+
+    const data = await new this._Model(source)
       .save(options);
 
-    return savedDoc;
+    return data;
   };
 
-  public find = (
+  public findAll = (
     filter?: ModelPartial<M>,
     projection?: string[],
     options: QueryFindOptions = {}
@@ -80,7 +83,7 @@ export default class Model<M extends Document> {
       .populate(this._populateOptions);
   };
 
-  public findById = async (
+  public findOneById = async (
     id: number,
     filter?: ModelPartial<M>,
     projection?: string[],
@@ -91,22 +94,25 @@ export default class Model<M extends Document> {
     const convertedFilter = convertToDot<M>(filter);
     const convertedProjection = convertToProjection(projection);
 
-    const docs = await this._Model
+    const data = await this._Model
       .find(convertedFilter, convertedProjection, options)
       .populate(this._populateOptions);
 
-    return isEmpty(docs) ? null : docs[0];
+    return isEmpty(data) ? null : data[0];
   };
 
   public updateById = async (
     id: number,
-    doc: ModelPartial<M>,
+    source: ModelPartial<M>,
     options: ModelUpdateOptions = {}
   ) => {
-    const filter = { _id: id } as FilterQuery<M>;
-    const convertedDoc = convertToDot<M>(omit(doc, '_id'));
+    source = omit(source, '_id');
+    source = compactObject(source, isNotEmpty);
 
-    const { nModified, ok } = await this._Model.updateMany(filter, convertedDoc, options);
+    const filter = { _id: id } as FilterQuery<M>;
+    const convertedSource = convertToDot<M>(source);
+
+    const { nModified, ok } = await this._Model.updateMany(filter, convertedSource, options);
 
     return {
       modified: !!parseInt(nModified, 10),
@@ -125,7 +131,7 @@ export default class Model<M extends Document> {
     };
   };
 
-  public count = (filter?: ModelPartial<M>) => {
+  public getCount = (filter?: ModelPartial<M>) => {
     const convertedFilter = convertToDot<M>(filter);
 
     return this._Model.countDocuments(convertedFilter);

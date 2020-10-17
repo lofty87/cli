@@ -2,7 +2,7 @@ import { Document } from 'mongoose';
 import { isEmpty, isNaN, isNumber } from 'lodash';
 import validator from 'validator';
 import { BadRequestError, NotFoundError } from '@classes/index';
-import { notFoundDocMessage } from '@lib/statusMessage';
+import { notFoundModelMessage } from '@lib/statusMessage';
 
 export const checkRequired = (value: any, message = '필수 입력입니다.') => {
   if(!isNumber(value) && isEmpty(value)) {
@@ -60,14 +60,14 @@ export const checkContentValidation = (content: string) => {
   }
 };
 
-export const checkDocId = (name: string, id: any, parsedId: any) => {
+export const checkModelId = (name: string, id: any, parsedId: any) => {
   if(isNaN(parsedId)) {
-    throw new NotFoundError(notFoundDocMessage(name, id));
+    throw new NotFoundError(notFoundModelMessage(name, id));
   }
 };
 
-export const checkExistDoc = (name: string, id: any, doc: null | Document) => {
-  if(!doc) {
-    throw new NotFoundError(notFoundDocMessage(name, id));
+export const checkExistModel = (name: string, id: any, data: null | Document) => {
+  if(!data) {
+    throw new NotFoundError(notFoundModelMessage(name, id));
   }
 };

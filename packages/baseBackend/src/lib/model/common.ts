@@ -4,7 +4,7 @@ import { compactObject } from '@lofty87/util';
 
 /**
  * @name makeUpdated
- * * document 를 업데이트 할 때,
+ * * 업데이트 할 때,
  * * updated 값을 편하게 작성하기 위해
  */
 export const makeUpdated = (userId?: number) =>

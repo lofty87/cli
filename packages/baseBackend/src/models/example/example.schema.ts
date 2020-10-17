@@ -10,15 +10,30 @@ const schema = new Schema(
       type: Number,
       unique: true,
     },
-    name: {
-      type: String,
-      required: true,
-      index: true,
+    profile: {
+      email: {
+        type: String,
+        required: true,
+        index: true,
+      },
+      name: {
+        type: String,
+        required: true,
+        index: true,
+      },
     },
-    password: {
-      type: String,
-      required: true,
-      set: setPassword,
+    info: {
+      roles: {
+        type: Array,
+        required: true,
+      },
+    },
+    security: {
+      password: {
+        type: String,
+        required: true,
+        set: setPassword,
+      },
     },
     createdAt: {
       type: Number,

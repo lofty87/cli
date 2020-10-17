@@ -1,5 +1,5 @@
-import * as temp from './temp';
+import * as example from './example';
 
 export default {
-  temp,
+  example,
 };
