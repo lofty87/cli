@@ -121,35 +121,32 @@ export const convertToProjection = (projection?: string[]) => {
 /**
  * @name selectExtractingProjection
  * @param projection
- * @return (null | document | documents) => null | document | documents
- * ! 보안 상 query 결과값(doc, docs)을
- * ! master, manager 와 client 에 따라
- * ! 다르게 리턴해 줄 필요가 있어 작성
+ * @return (null | data(item or arr) => null | data(item or arr)
+ * ! 보안상 query 결과값을
+ * ! admin, manager 와 client 에 따라 다르게 리턴해 줄 필요가 있어 작성.
  *
- * * Model 객체 생성 시
- * * extractDocOrDocs 메서드 추가에 사용된다.
+ * * Model 객체 생성 시 extractData 메서드 추가에 사용된다.
  *
  * ? any 타입 사용을 지양하지만
- * ? input 과 output 타입을 일치시키기 위해
- * ? 어쩔 수 없이 많이 사용하게 되었다.
+ * ? input 과 output 타입을 일치시키기 위해 어쩔 수 없이 많이 사용하게 되었다.
  */
 export const selectExtractingProjection = <Model extends Document>(keys: (keyof Model)[]) => <D>(
-  docOrDocs: D
+  data: D
 ) => {
-  let isDocs = false;
-  let docs = docOrDocs;
+  let isArr = false;
+  let arr = data;
 
-  if(isArray(docs)) {
-    isDocs = true;
+  if(isArray(arr)) {
+    isArr = true;
   } else {
-    docs = compact([ docs ]) as any;
+    arr = compact([ arr ]) as any;
   }
 
-  docs = map(docs as any, (doc) => pick(doc, keys)) as any;
+  arr = map(arr as any, (item) => pick(item, keys)) as any;
 
-  if(isDocs) {
-    return docs;
+  if(isArr) {
+    return arr;
   }
 
-  return isEmpty(docs) ? null : ((docs as any)[0] as D);
+  return isEmpty(arr) ? null : ((arr as any)[0] as D);
 };
