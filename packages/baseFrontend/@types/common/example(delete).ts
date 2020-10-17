@@ -9,7 +9,7 @@ export interface ExampleType extends Document {
   info: {
     roles: string[];
   };
-  secure: {
+  security: {
     password: string;
   };
   createdAt: number;
