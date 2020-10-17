@@ -23,7 +23,7 @@ const initialState: State = {
 
 type PrivateMembers = '_state' | 'open';
 
-export class ModalConfirm {
+export default class ModalConfirm {
   private _state = initialState;
 
   constructor() {
@@ -78,5 +78,3 @@ export class ModalConfirm {
     };
   };
 }
-
-export type ModalConfirmActions = Omit<ModalConfirm, 'state'>;

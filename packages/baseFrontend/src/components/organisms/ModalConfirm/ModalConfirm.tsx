@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { throttle } from 'lodash';
 import { Dialog } from '@material-ui/core';
 import { Button, H } from '@components/atoms';
-import { actions, useStores } from '@stores/index';
+import actions, { useStores } from '@stores/index';
 
 import { NCFC, SCP } from '$types/index';
 

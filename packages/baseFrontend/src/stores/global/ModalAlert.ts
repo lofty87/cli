@@ -41,7 +41,7 @@ const initialState: State = {
 
 type PrivateMembers = '_state' | 'open';
 
-export class ModalAlert {
+export default class ModalAlert {
   private _state = initialState;
 
   constructor() {
@@ -97,5 +97,3 @@ export class ModalAlert {
     };
   };
 }
-
-export type ModalAlertStoreActions = Omit<ModalAlert, 'state'>;

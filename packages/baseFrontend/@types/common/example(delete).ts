@@ -1,7 +1,6 @@
 import { Document } from 'mongoose';
 
-// ? e.g.
-export interface TempType extends Document {
+export interface ExampleType extends Document {
   _id: number;
   profile: {
     email: string;

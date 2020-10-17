@@ -1,11 +1,11 @@
 type Common = 'common';
 
-type Temp =
-  | 'temp/add'
-  | 'temp/fetchDocs'
-  | 'temp/fetchDocById'
-  | 'temp/updateById'
-  | 'temp/removeById'
-  | 'temp/fetchCount';
+type Example =
+  | 'example/add'
+  | 'example/fetchAll'
+  | 'example/fetchOneById'
+  | 'example/updateById'
+  | 'example/removeById'
+  | 'example/fetchCount';
 
-export type ApiType = Common | Temp;
+export type ApiType = Common | Example;

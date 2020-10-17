@@ -1,4 +1,4 @@
-import { stores } from '@stores/index';
+import stores from '@stores/index';
 
 export type Props = {
   stores: typeof stores;

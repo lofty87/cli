@@ -6,13 +6,12 @@ import { ApiType } from './ApiTypes';
  * * 각 api 마다 독립적인 request state 를 관리하기 위해,
  * * Map 객체를 통해 state 를 작성.
  *
- * ! api 를 추가할 때 마다,
- * ! api type 도 직접 추가해야 한다.
+ * ! api 를 추가할 때 마다 api type 도 직접 추가.
  */
 
 type PrivateMembers = '_state';
 
-export class Request {
+export default class Request {
   private _state = new Map<ApiType, 'pending' | 'done'>();
 
   constructor() {
@@ -37,4 +36,4 @@ export class Request {
   }
 }
 
-export type RequestActions = Omit<Request, 'get'>;
+export type { ApiType };

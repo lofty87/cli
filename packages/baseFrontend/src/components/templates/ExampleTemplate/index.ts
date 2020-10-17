@@ -1,9 +1,9 @@
 import { styled } from '@styles/styled-components';
 import { colorOf, fontOf, spacingOf } from '@styles/lib';
 
-import TempTemplate from './TempTemplate';
+import ExampleTemplate from './ExampleTemplate';
 
-const StyledTempTemplate = styled(TempTemplate)`
+const StyledExampleTemplate = styled(ExampleTemplate)`
   padding: ${spacingOf(8, 0)};
   font-size: ${fontOf(({ h3 }) => h3.size)}rem;
   font-weight: ${fontOf(({ weight }) => weight.regular)};
@@ -11,4 +11,4 @@ const StyledTempTemplate = styled(TempTemplate)`
   text-align: center;
 `;
 
-export default StyledTempTemplate;
+export default StyledExampleTemplate;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { CFC, SCP } from '$types/index';
 
-const TempTemplate: CFC<SCP> = ({
+const ExampleTemplate: CFC<SCP> = ({
   className,
   children
 }) => {
@@ -15,4 +15,4 @@ const TempTemplate: CFC<SCP> = ({
   );
 };
 
-export default TempTemplate;
+export default ExampleTemplate;

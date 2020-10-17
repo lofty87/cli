@@ -20,7 +20,7 @@ const initialState: State = {
 
 type PrivateMembers = '_state';
 
-export class ModalSpinner {
+export default class ModalSpinner {
   private _state = initialState;
 
   constructor() {
@@ -51,5 +51,3 @@ export class ModalSpinner {
     this._state = initialState;
   };
 }
-
-export type ModalSpinnerActions = Omit<ModalSpinner, 'state'>;

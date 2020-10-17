@@ -1,41 +1,48 @@
 import { configure } from 'mobx';
+import { DomainStore } from '@classes/index';
+import api from '@api/index';
 
-import { globalActions, globalStore } from './global/index';
-import {
-  TempFormStore,
-  TempFormStoreActions,
-  TempListStore,
-  TempListStoreActions,
-  TempStore,
-  TempStoreActions,
-} from './temp';
+import GlobalStore, { ApiType } from './global/index';
+
+import { ExampleType } from '$types/example(delete)';
 
 /**
- * * 1. store 와 action 을 구분하여 사용할 수 있도록 구성
- * * 2. component 안에서 useStores() 를 통해 observable state 를 참조
+ * * 1. component 안에서 useStores() 를 통해 observable 값을 참조.
+ * * 2. @stores/index 를 import 해도 useStores() 와 동일한 값이지만
+ * *    action 과 observable 값을 구분하기 위해 actions 는 import 를 사용.
+ * * 3. flow annotation 으로 wrapping 한 멤버 함수들의 결과값은 Promise 인데,
+ * *    타입스크립트가 Generator 까지만 타입을 인식해 주는 문제가 있음.
+ * !    >> 멤버 함수 사용시 올바른 결과 타입을 위해 flowResult 를 사용!!
+ * ?    https://mobx.js.org/actions.html#using-flow-instead-of-async--await-
+ *
+ * TODO: observable, getter 와 action, method 를 구분하여 사용할 수 있는 방법
  */
+
+class Stores {
+  private _global: GlobalStore;
+  private _example: DomainStore<ExampleType, this>;
+
+  constructor() {
+    this._global = new GlobalStore();
+    this._example = new DomainStore<ExampleType, this>('example', this, api.example);
+  }
+
+  public get global() {
+    return this._global;
+  }
+
+  public get example() {
+    return this._example;
+  }
+}
 
 configure({
   useProxies: 'ifavailable',
-  enforceActions: 'always',
+  enforceActions: 'observed',
 });
-
-const tempFormStore = new TempFormStore();
-const tempListStore = new TempListStore();
-const tempStore = new TempStore();
 
 export { useStores } from './StoreProvider';
 
-export const stores = {
-  global: globalStore,
-  tempForm: tempFormStore as Omit<TempFormStore, keyof TempFormStoreActions>,
-  tempList: tempListStore as Omit<TempListStore, keyof TempListStoreActions>,
-  temp: tempStore as Omit<TempStore, keyof TempStoreActions>,
-};
+export type { ApiType, Stores };
 
-export const actions = {
-  global: globalActions,
-  tempForm: tempFormStore as TempFormStoreActions,
-  tempList: tempListStore as TempListStoreActions,
-  temp: tempStore as TempStoreActions,
-};
+export default new Stores();

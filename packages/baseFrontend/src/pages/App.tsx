@@ -19,7 +19,9 @@ const App: NCFC<RRP> = () => {
           exact
         />
         <Route
-          path={[ '/temps' ]}
+          path={[
+            '/examples'
+          ]}
           component={GenericPage}
         />
         <Route

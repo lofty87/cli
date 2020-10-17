@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, useEffect } from 'react';
 import { ModalConfirm } from '@components/organisms';
-import { actions } from '@stores/index';
+import actions from '@stores/index';
 
 import { NCFC } from '$types/index';
 

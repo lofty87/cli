@@ -8,7 +8,7 @@ import { Route, BrowserRouter as Router } from 'react-router-dom';
 import moment from 'moment-timezone';
 import StoreProvider from '@stores/StoreProvider';
 import ThemeProvider from '@styles/ThemeProvider';
-import { stores } from '@stores/index';
+import stores from '@stores/index';
 import { muiTheme, scTheme } from '@constants/theme';
 import App from '@pages/App';
 import env from '@env';

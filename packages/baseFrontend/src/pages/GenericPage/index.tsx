@@ -4,7 +4,7 @@ import { Footer } from '@components/organisms';
 import { GenericTemplate } from '@components/templates';
 import { HeaderContainer, HomeContainer } from '@containers/index';
 
-import TempPage from './TempPage';
+import ExamplePage from './ExamplePage';
 
 import { NCFC, RRP } from '$types/index';
 
@@ -27,8 +27,8 @@ const GenericPage: NCFC<RRP> = ({
           exact
         />
         <Route
-          path="/temps"
-          component={TempPage}
+          path="/examples"
+          component={ExamplePage}
         />
         <Redirect
           to="/no-match"

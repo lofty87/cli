@@ -2,7 +2,7 @@ import originAxios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { throttle } from 'lodash';
 import cookies from 'js-cookie';
 import { RequestError, StatusError } from '@classes/index';
-import { actions } from '@stores/index';
+import actions from '@stores/index';
 import statusCodes from '@constants/status-codes';
 import env from '@env';
 

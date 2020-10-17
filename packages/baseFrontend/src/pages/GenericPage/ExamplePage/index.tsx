@@ -1,36 +1,34 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { TempTemplate } from '@components/templates';
+import { ExampleTemplate } from '@components/templates';
 
 import { NCFC, RRP } from '$types/index';
 
-const TempPage: NCFC<RRP> = ({
-  match
-}) => {
+const ExamplePage: NCFC<RRP> = ({ match }) => {
   return (
-    <TempTemplate>
+    <ExampleTemplate>
       <Switch>
         <Route
           path={`${match.path}`}
-          render={() => <div>Temp-List</div>}
+          render={() => <div>Example-List</div>}
           exact
         />
         <Route
-          path={`${match.path}/write`}
-          render={() => <div>Temp-Form</div>}
+          path={`${match.path}/editor`}
+          render={() => <div>Example-Form</div>}
           exact
         />
         <Route
           path={`${match.path}/:id`}
-          render={() => <div>Temp</div>}
+          render={() => <div>Example</div>}
           exact
         />
         <Redirect
           to="/no-match"
         />
       </Switch>
-    </TempTemplate>
+    </ExampleTemplate>
   );
 };
 
-export default TempPage;
+export default ExamplePage;

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { ModalSpinner } from '@components/organisms';
-import { actions } from '@stores/index';
+import actions from '@stores/index';
 
 export default {
   component: ModalSpinner,

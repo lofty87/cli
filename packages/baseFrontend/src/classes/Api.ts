@@ -3,9 +3,8 @@ import url from 'url';
 
 import { Document } from 'mongoose';
 import { defaults } from 'lodash';
-import { actions } from '@stores/index';
-import { ApiType } from '@stores/global/request/ApiTypes';
 import { ModelPartial, Object } from '@lofty87/types';
+import { ApiType, Stores } from '@stores/index';
 import axios from '@lib/axios';
 
 import { QP } from '$types/index';
@@ -28,8 +27,8 @@ import { QP } from '$types/index';
  * ! api 를 추가할 때 마다 ApiType 을 직접 추가!!
  * ! name 값을 통해 아래와 같은 기본 ApiType 을 사용!!
  * ? {name}/add
- * ? {name}/fetchDocs
- * ? {name}/fetchDocById
+ * ? {name}/fetchAll
+ * ? {name}/fetchOneById
  * ? {name}/updateById
  * ? {name}/removeById
  * ? {name}/fetchCount
@@ -50,95 +49,97 @@ const defaultOptions: Options = {
 
 export default class Api<Model extends Document> {
   private _pathname: string;
+  private _stores: Stores;
 
   private _apiTypeAdd: ApiType;
-  private _apiTypeFetchDocs: ApiType;
-  private _apiTypeFetchDocById: ApiType;
+  private _apiTypeFetchAll: ApiType;
+  private _apiTypeFetchOneById: ApiType;
   private _apiTypeUpdateById: ApiType;
   private _apiTypeRemoveById: ApiType;
   private _apiTypeFetchCount: ApiType;
 
-  constructor(name: string, pathname: string) {
+  constructor(name: string, pathname: string, stores: Stores) {
     if(!pathname.startsWith('/')) {
       throw Error(`${name} pathname must start with '/'`);
     }
 
     this._pathname = pathname;
+    this._stores = stores;
 
     this._apiTypeAdd = `${name}/add` as ApiType;
-    this._apiTypeFetchDocs = `${name}/fetchDocs` as ApiType;
-    this._apiTypeFetchDocById = `${name}/fetchDocById` as ApiType;
+    this._apiTypeFetchAll = `${name}/fetchAll` as ApiType;
+    this._apiTypeFetchOneById = `${name}/fetchOneById` as ApiType;
     this._apiTypeUpdateById = `${name}/updateById` as ApiType;
     this._apiTypeRemoveById = `${name}/removeById` as ApiType;
     this._apiTypeFetchCount = `${name}/fetchCount` as ApiType;
   }
 
-  public add = async (doc: ModelPartial<Model>) => {
+  public add = async (source: ModelPartial<Model>) => {
     try {
-      actions.global.request.pendingOn(this._apiTypeAdd);
+      this._stores.global.request.pendingOn(this._apiTypeAdd);
 
-      const addedDoc = await axios.api.post<any, Model>(this._pathname, doc);
+      const data = await axios.api.post<any, Model>(this._pathname, source);
 
-      actions.global.request.doneOn(this._apiTypeAdd);
+      this._stores.global.request.doneOn(this._apiTypeAdd);
 
-      return addedDoc;
+      return data;
     } catch(error) {
-      actions.global.request.doneOn(this._apiTypeAdd);
+      this._stores.global.request.doneOn(this._apiTypeAdd);
 
       throw error;
     }
   };
 
-  public fetchDocs = async (customOptions: Partial<Options> = {}) => {
+  public fetchAll = async (customOptions: Partial<Options> = {}) => {
     const { subPathnames, queryParams } = defaults(customOptions, defaultOptions);
 
     try {
-      actions.global.request.pendingOn(this._apiTypeFetchDocs);
+      this._stores.global.request.pendingOn(this._apiTypeFetchAll);
 
-      const docs = await axios.api.get<any, Model[]>(
+      const data = await axios.api.get<any, Model[]>(
         url.format({
           pathname: path.join(this._pathname, ...subPathnames),
           query: queryParams,
         })
       );
 
-      actions.global.request.doneOn(this._apiTypeFetchDocs);
+      this._stores.global.request.doneOn(this._apiTypeFetchAll);
 
-      return docs;
+      return data;
     } catch(error) {
-      actions.global.request.doneOn(this._apiTypeFetchDocs);
+      this._stores.global.request.doneOn(this._apiTypeFetchAll);
 
       throw error;
     }
   };
 
-  public fetchDocById = async (id: number) => {
+  public fetchOneById = async (id: number) => {
     try {
-      actions.global.request.pendingOn(this._apiTypeFetchDocById);
+      this._stores.global.request.pendingOn(this._apiTypeFetchOneById);
 
-      const doc = await axios.api.get<any, null | Model>(`${this._pathname}/${id}`);
+      const data = await axios.api.get<any, null | Model>(`${this._pathname}/${id}`);
 
-      actions.global.request.doneOn(this._apiTypeFetchDocById);
+      this._stores.global.request.doneOn(this._apiTypeFetchOneById);
 
-      return doc;
+      return data;
     } catch(error) {
-      actions.global.request.doneOn(this._apiTypeFetchDocById);
+      this._stores.global.request.doneOn(this._apiTypeFetchOneById);
 
       throw error;
     }
   };
 
-  public updateById = async (id: number, doc: ModelPartial<Model>) => {
+  public updateById = async (id: number, source: ModelPartial<Model>) => {
     try {
-      actions.global.request.pendingOn(this._apiTypeUpdateById);
+      this._stores.global.request.pendingOn(this._apiTypeUpdateById);
 
-      const result = await axios.api.patch<any, string>(`${this._pathname}/${id}`, doc);
+      const data = await axios.api.patch<any, string>(`${this._pathname}/${id}`, source);
 
-      actions.global.request.doneOn(this._apiTypeUpdateById);
+      this._stores.global.request.doneOn(this._apiTypeUpdateById);
 
-      return result;
+      return data;
     } catch(error) {
-      actions.global.request.doneOn(this._apiTypeUpdateById);
+      this._stores.global.request.doneOn(this._apiTypeUpdateById);
 
       throw error;
     }
@@ -146,15 +147,15 @@ export default class Api<Model extends Document> {
 
   public removeById = async (id: number) => {
     try {
-      actions.global.request.pendingOn(this._apiTypeRemoveById);
+      this._stores.global.request.pendingOn(this._apiTypeRemoveById);
 
-      const result = await axios.api.delete<any, string>(`${this._pathname}/${id}`);
+      const data = await axios.api.delete<any, string>(`${this._pathname}/${id}`);
 
-      actions.global.request.doneOn(this._apiTypeRemoveById);
+      this._stores.global.request.doneOn(this._apiTypeRemoveById);
 
-      return result;
+      return data;
     } catch(error) {
-      actions.global.request.doneOn(this._apiTypeRemoveById);
+      this._stores.global.request.doneOn(this._apiTypeRemoveById);
 
       throw error;
     }
@@ -164,20 +165,20 @@ export default class Api<Model extends Document> {
     const { subPathnames, queryParams } = defaults(customOptions, defaultOptions);
 
     try {
-      actions.global.request.pendingOn(this._apiTypeFetchCount);
+      this._stores.global.request.pendingOn(this._apiTypeFetchCount);
 
-      const count = await axios.api.get<any, number>(
+      const data = await axios.api.get<any, number>(
         url.format({
           pathname: path.join(this._pathname, ...subPathnames, 'count'),
           query: queryParams,
         })
       );
 
-      actions.global.request.doneOn(this._apiTypeFetchCount);
+      this._stores.global.request.doneOn(this._apiTypeFetchCount);
 
-      return count;
+      return data;
     } catch(error) {
-      actions.global.request.doneOn(this._apiTypeFetchCount);
+      this._stores.global.request.doneOn(this._apiTypeFetchCount);
 
       throw error;
     }
