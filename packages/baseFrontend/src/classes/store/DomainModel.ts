@@ -7,7 +7,7 @@ import { ModelPartial } from '@lofty87/types';
 
 type PrivateMembers = '_storeName' | '_api' | '_data' | '_filled' | '_saved';
 
-export default class DomainObject<Model extends Document> {
+export default class DomainModel<Model extends Document> {
   private _storeName: string;
   private _api: Api<Model>;
   private _data: Model;
@@ -15,6 +15,12 @@ export default class DomainObject<Model extends Document> {
   private _saved: boolean;
 
   constructor(storeName: string, api: Api<Model>, source: ModelPartial<Model>, saved = false) {
+    this._storeName = storeName;
+    this._api = api;
+    this._data = source as Model;
+    this._filled = false;
+    this._saved = saved;
+
     makeObservable<this, PrivateMembers>(this, {
       _storeName: false,
       _api: false,
@@ -30,12 +36,6 @@ export default class DomainObject<Model extends Document> {
       update: flow,
       delete: flow,
     });
-
-    this._storeName = storeName;
-    this._api = api;
-    this._data = source as Model;
-    this._filled = false;
-    this._saved = saved;
   }
 
   public get data() {
@@ -98,7 +98,7 @@ export default class DomainObject<Model extends Document> {
 
       yield this._api.updateById(this._data._id, source);
 
-      this._data = advancedDefaultsDeep(this.toJS, source);
+      this._data = advancedDefaultsDeep(source, this.toJS);
     } else {
       console.warn(`not saved domain object in ${this._storeName} store.`);
     }
@@ -109,6 +109,8 @@ export default class DomainObject<Model extends Document> {
       yield this._api.removeById(this._data._id);
 
       this._data = {} as Model;
+      this._filled = false;
+      this._saved = false;
     } else {
       console.warn(`not saved domain object in ${this._storeName} store.`);
     }

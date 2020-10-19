@@ -3,7 +3,7 @@ import { action, computed, flow, makeObservable, observable } from 'mobx';
 import { isEmpty } from 'lodash';
 import { Api } from '@classes/index';
 
-import DomainObject from './DomainObject';
+import DomainModel from './DomainModel';
 
 type PrivateMembers =
   | '_storeName'
@@ -15,10 +15,10 @@ type PrivateMembers =
   | '_limit'
   | '_search';
 
-export default class DomainList<Model extends Document> {
+export default class DomainModelList<Model extends Document> {
   private _storeName: string;
   private _api: Api<Model>;
-  private _data: DomainObject<Model>[];
+  private _data: DomainModel<Model>[];
   private _count: number;
   private _completed: boolean;
   private _skip: number;
@@ -26,6 +26,15 @@ export default class DomainList<Model extends Document> {
   private _search: string;
 
   constructor(storeName: string, api: Api<Model>, limit = 10) {
+    this._storeName = storeName;
+    this._api = api;
+    this._data = [];
+    this._count = -1;
+    this._completed = false;
+    this._skip = 0;
+    this._limit = limit;
+    this._search = '';
+
     makeObservable<this, PrivateMembers>(this, {
       _storeName: false,
       _api: false,
@@ -48,15 +57,6 @@ export default class DomainList<Model extends Document> {
       getOneById: false,
       removeById: action,
     });
-
-    this._storeName = storeName;
-    this._api = api;
-    this._data = [];
-    this._count = -1;
-    this._completed = false;
-    this._skip = 0;
-    this._limit = limit;
-    this._search = '';
   }
 
   public get data() {
@@ -91,7 +91,7 @@ export default class DomainList<Model extends Document> {
     return this._data.findIndex((obj) => obj.data._id === id);
   };
 
-  public add = (obj: DomainObject<Model>) => {
+  public add = (obj: DomainModel<Model>) => {
     if(obj.saved) {
       const objIndex = this.findIndexById(obj.data._id);
       const contains = objIndex !== -1;
@@ -106,7 +106,7 @@ export default class DomainList<Model extends Document> {
     }
   };
 
-  public put = (obj: DomainObject<Model>) => {
+  public put = (obj: DomainModel<Model>) => {
     if(obj.saved) {
       const id = obj.data._id;
       const index = this.findIndexById(id);
@@ -156,7 +156,7 @@ export default class DomainList<Model extends Document> {
         this._completed = true;
       } else {
         const data = sources.map((source) => {
-          return new DomainObject(this._storeName, this._api, source, true);
+          return new DomainModel(this._storeName, this._api, source, true);
         });
 
         this._data = this._data.slice().concat(data);
@@ -168,6 +168,11 @@ export default class DomainList<Model extends Document> {
   public getOneById = (id: number) => {
     return this._data.find((obj) => obj.data._id === id);
   };
+
+  // ? use self-update in DomainModel
+  // public updateById = () => {
+  //   update
+  // }
 
   public removeById = (id: number) => {
     const index = this.findIndexById(id);

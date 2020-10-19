@@ -1,6 +1,7 @@
 import { configure } from 'mobx';
 import { DomainStore } from '@classes/index';
 import api from '@api/index';
+import env from '@env';
 
 import GlobalStore, { ApiType } from './global/index';
 
@@ -36,8 +37,9 @@ class Stores {
   }
 }
 
+// consider of IE11 (not supported proxy)
 configure({
-  useProxies: 'ifavailable',
+  useProxies: env.isDev ? 'never' : 'ifavailable',
   enforceActions: 'observed',
 });
 

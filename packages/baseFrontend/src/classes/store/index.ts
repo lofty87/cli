@@ -1,3 +1,3 @@
-export { default as DomainList } from './DomainList';
-export { default as DomainObject } from './DomainObject';
+export { default as DomainModel } from './DomainModel';
+export { default as DomainModelList } from './DomainModelList';
 export { default as DomainStore } from './DomainStore';
