@@ -6,14 +6,44 @@ import { ModelPartial } from '@lofty87/types';
 import DomainModel from './DomainModel';
 import DomainModelList from './DomainModelList';
 
-type PrivateMembers = '_name' | '_stores' | '_api' | '_view' | '_list';
+/**
+ * * view comment is optional
+ */
 
-export default class DomainStore<Model extends Document, RootStore> {
+const viewCommentMembersExist = (
+  viewCommentApi: null | Api<any>,
+  viewCommentList: null | DomainModelList<any>
+) => {
+  if(!viewCommentApi || !viewCommentList) {
+    console.warn('required view comment api and list');
+
+    return false;
+  }
+
+  return true;
+};
+
+type PrivateMembers =
+  | '_name'
+  | '_stores'
+  | '_api'
+  | '_view'
+  | '_list'
+  | '_viewCommentApi'
+  | '_viewCommentList';
+
+export default class DomainStore<
+  Model extends Document,
+  RootStore,
+  Comment extends Document = any
+> {
   private _name: string;
   private _stores: RootStore;
   private _api: Api<Model>;
   private _view: null | DomainModel<Model>;
   private _list: DomainModelList<Model>;
+  private _viewCommentApi: null | Api<Comment>;
+  private _viewCommentList: null | DomainModelList<Comment>;
 
   constructor(name: string, stores: RootStore, api: Api<Model>, listLimit?: number) {
     this._name = name;
@@ -21,6 +51,8 @@ export default class DomainStore<Model extends Document, RootStore> {
     this._api = api;
     this._view = null;
     this._list = new DomainModelList<Model>(name, api, listLimit);
+    this._viewCommentApi = null;
+    this._viewCommentList = null;
 
     makeObservable<this, PrivateMembers>(this, {
       _name: false,
@@ -28,10 +60,15 @@ export default class DomainStore<Model extends Document, RootStore> {
       _api: false,
       _view: observable,
       _list: false,
+      _viewCommentApi: false,
+      _viewCommentList: observable,
       view: computed,
       list: false,
+      viewCommentList: computed,
+      setViewCommentMembers: action,
       initializeView: action,
       initializeList: false,
+      initializeViewCommentList: false,
       viewById: action,
       addInList: false,
       putInList: false,
@@ -39,6 +76,12 @@ export default class DomainStore<Model extends Document, RootStore> {
       getOneInListById: false,
       updateInListById: false,
       removeInListById: action,
+      addInViewCommentList: false,
+      putInViewCommentList: false,
+      getAllInViewCommentList: false,
+      getOneInViewCommentListById: false,
+      updateInViewCommentListById: false,
+      removeInViewCommentListById: false,
     });
   }
 
@@ -50,6 +93,22 @@ export default class DomainStore<Model extends Document, RootStore> {
     return this._list;
   }
 
+  public get viewCommentList() {
+    viewCommentMembersExist(this._viewCommentApi, this._viewCommentList);
+
+    return this._viewCommentList;
+  }
+
+  public setViewCommentMembers = (
+    viewCommentApi: Api<Comment>,
+    viewCommentList: DomainModelList<Comment>
+  ) => {
+    this._viewCommentApi = viewCommentApi;
+    this._viewCommentList = viewCommentList;
+
+    return this;
+  };
+
   public initializeView = () => {
     this._view = null;
   };
@@ -58,14 +117,20 @@ export default class DomainStore<Model extends Document, RootStore> {
     this._list.initialize();
   };
 
+  public initializeViewCommentList = () => {
+    if(viewCommentMembersExist(this._viewCommentApi, this._viewCommentList)) {
+      this._viewCommentList!.initialize();
+    }
+  };
+
   public viewById = async (id: number) => {
     const obj = await this.getOneInListById(id);
 
-    if(obj) {
-      runInAction(() => {
+    runInAction(() => {
+      if(obj) {
         this._view = obj;
-      });
-    }
+      }
+    });
   };
 
   public addInList = async (source: ModelPartial<Model>) => {
@@ -117,13 +182,84 @@ export default class DomainStore<Model extends Document, RootStore> {
     if(obj) {
       await flowResult(obj.delete());
 
-      if(this._view && this._view.data._id === id) {
-        runInAction(() => {
+      runInAction(() => {
+        const viewed = this._view && this._view.data._id === id;
+
+        if(viewed) {
           this._view = null;
-        });
+        }
+
+        this._list.removeById(id);
+      });
+    }
+  };
+
+  public addInViewCommentList = async (source: ModelPartial<Comment>) => {
+    if(viewCommentMembersExist(this._viewCommentApi, this._viewCommentList)) {
+      const comment = new DomainModel(this._name, this._viewCommentApi!, source);
+      const savedComment = await flowResult(comment.save());
+
+      this._viewCommentList!.add(savedComment);
+
+      return savedComment;
+    }
+
+    return null;
+  };
+
+  public putInViewCommentList = (comment: DomainModel<Comment>) => {
+    if(viewCommentMembersExist(this._viewCommentApi, this._viewCommentList)) {
+      this._viewCommentList!.put(comment);
+    }
+  };
+
+  public getAllInViewCommentList = async () => {
+    if(viewCommentMembersExist(this._viewCommentApi, this._viewCommentList)) {
+      await flowResult(this._viewCommentList!.getAll());
+    }
+  };
+
+  public getOneInViewCommentListById = async (id: number) => {
+    if(viewCommentMembersExist(this._viewCommentApi, this._viewCommentList)) {
+      const comment = this._viewCommentList!.getOneById(id);
+
+      if(!comment) {
+        const source = await this._viewCommentApi!.fetchOneById(id);
+
+        if(source) {
+          return new DomainModel(this._name, this._viewCommentApi!, source, true);
+        }
+
+        console.warn(`not existed comment in ${this._name} store. (id: ${id})`);
+
+        return null;
       }
 
-      this._list.removeById(id);
+      return comment;
+    }
+
+    return null;
+  };
+
+  public updateInViewCommentListById = async (id: number, source: ModelPartial<Comment>) => {
+    if(viewCommentMembersExist(this._viewCommentApi, this._viewCommentList)) {
+      const comment = await this.getOneInViewCommentListById(id);
+
+      if(comment) {
+        await flowResult(comment.update(source));
+      }
+    }
+  };
+
+  public removeInViewCommentListById = async (id: number) => {
+    if(viewCommentMembersExist(this._viewCommentApi, this._viewCommentList)) {
+      const comment = await this.getOneInViewCommentListById(id);
+
+      if(comment) {
+        await flowResult(comment.delete());
+
+        this._viewCommentList!.removeById(id);
+      }
     }
   };
 }
