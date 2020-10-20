@@ -8,7 +8,7 @@ import actions, { useStores } from '@stores/index';
 import { NCFC, SCP } from '$types/index';
 
 /**
- * * store 를 통해 modalAlert state 를 관리
+ * * store 를 통해 ModalAlert state 를 관리
  * * enter 키를 통해 close 가능
  *
  * ? fade 전환 효과중에 발생하는 initialize(), event issue 를

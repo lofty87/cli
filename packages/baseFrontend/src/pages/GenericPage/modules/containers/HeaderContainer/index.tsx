@@ -6,7 +6,7 @@ import { Props } from './HeaderContainer.props';
 
 import { NCFC } from '$types/index';
 
-// * process async, state data
+// * async, static data
 const HeaderContainer: NCFC<Props> = ({
   history
 }) => {

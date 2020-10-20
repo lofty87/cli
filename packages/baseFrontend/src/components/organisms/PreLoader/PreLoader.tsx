@@ -15,12 +15,12 @@ const PreLoader: NCFC<SCP & Props> = ({
   color = 'dark',
   verticalPadding = 3,
   reqState,
-  isLastData = false,
+  completed = false,
 }) => {
-  if(isLastData) {
+  if(completed) {
     return (
       <section
-        className={`${className} last-data`}
+        className={`${className} completed`}
       >
         모든 데이터가 로드되었습니다
       </section>

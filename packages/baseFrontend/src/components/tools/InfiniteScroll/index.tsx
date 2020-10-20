@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useStores } from '@stores/index';
 
@@ -8,10 +8,10 @@ import { CFC } from '$types/index';
 
 /**
  * * 1. axios 또는 api 를 사용하여 무한스크롤 구성.
- * ?    (RequestStore 를 통해 state 를 관리)
+ * ?    (store 를 통해 request state 를 관리)
  * * 2. document 의 bottom - 30px 부터 bottom 사이에서 scrollEvent 가 호출되도록 구현.
  * ?    (device issue 타협점)
- * * 3. request 가 pending 상태이거나 pause 가 true 일 때는 scrollEvent 가 호출되지 않도록 구현.
+ * * 3. request state 가 pending 상태이거나 pause 가 true 일 때는 scrollEvent 가 호출되지 않도록 구현.
  * ?    (중복 request 요청 및 무한스크롤링 issue 해결)
  * * 4. targetRef 를 설정하여 target 영역으로 무한스크롤 가능.
  *
@@ -98,7 +98,7 @@ const InfiniteScroll: CFC<Props> = ({
     return undefined as void;
   });
 
-  return children as React.ReactElement;
+  return useMemo(() => children as React.ReactElement, [ children ]);
 };
 
 export default observer(InfiniteScroll);

@@ -5,7 +5,7 @@ type CustomProps = {
   color?: 'main' | 'dark' | 'red' | 'blue' | 'green' | 'yellow';
   verticalPadding?: number;
   reqState: 'pending' | 'done';
-  isLastData?: boolean;
+  completed?: boolean;
 };
 
 export type Props = CustomProps & Omit<CustomProps, keyof SCP>;

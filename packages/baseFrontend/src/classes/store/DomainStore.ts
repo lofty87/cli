@@ -30,22 +30,19 @@ type PrivateMembers =
   | '_view'
   | '_list'
   | '_viewCommentApi'
-  | '_viewCommentList';
+  | '_viewCommentList'
+  | 'stores';
 
-export default class DomainStore<
-  Model extends Document,
-  RootStore,
-  Comment extends Document = any
-> {
+export default class DomainStore<Model extends Document, Stores, Comment extends Document = any> {
   private _name: string;
-  private _stores: RootStore;
+  private _stores: Stores;
   private _api: Api<Model>;
   private _view: null | DomainModel<Model>;
   private _list: DomainModelList<Model>;
   private _viewCommentApi: null | Api<Comment>;
   private _viewCommentList: null | DomainModelList<Comment>;
 
-  constructor(name: string, stores: RootStore, api: Api<Model>, listLimit?: number) {
+  constructor(name: string, stores: Stores, api: Api<Model>, listLimit?: number) {
     this._name = name;
     this._stores = stores;
     this._api = api;
@@ -62,6 +59,7 @@ export default class DomainStore<
       _list: false,
       _viewCommentApi: false,
       _viewCommentList: observable,
+      stores: false,
       view: computed,
       list: false,
       viewCommentList: computed,
@@ -83,6 +81,10 @@ export default class DomainStore<
       updateInViewCommentListById: false,
       removeInViewCommentListById: false,
     });
+  }
+
+  protected get stores() {
+    return this._stores;
   }
 
   public get view() {

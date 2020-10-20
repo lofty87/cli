@@ -1,11 +1,9 @@
 import { configure } from 'mobx';
-import { DomainStore } from '@classes/index';
+import { ExampleStore } from '@pages/stores';
 import api from '@api/index';
 import env from '@env';
 
 import GlobalStore, { ApiType } from './global/index';
-
-import { ExampleType } from '$types/example(delete)';
 
 /**
  * * 1. component 안에서 useStores() 를 통해 observable 값을 참조.
@@ -21,11 +19,11 @@ import { ExampleType } from '$types/example(delete)';
 
 class Stores {
   private _global: GlobalStore;
-  private _example: DomainStore<ExampleType, this>;
+  private _example: ExampleStore;
 
   constructor() {
     this._global = new GlobalStore();
-    this._example = new DomainStore<ExampleType, this>('example', this, api.example);
+    this._example = new ExampleStore('example', this, api.example);
   }
 
   public get global() {

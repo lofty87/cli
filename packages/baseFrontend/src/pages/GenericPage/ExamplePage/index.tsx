@@ -1,10 +1,13 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { ExampleTemplate } from '@components/templates';
+
+import { ExampleTemplate } from './modules';
 
 import { NCFC, RRP } from '$types/index';
 
-const ExamplePage: NCFC<RRP> = ({ match }) => {
+const ExamplePage: NCFC<RRP> = ({
+  match
+}) => {
   return (
     <ExampleTemplate>
       <Switch>

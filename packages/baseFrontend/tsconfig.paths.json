@@ -7,7 +7,6 @@
       "@classes*"   : ["src/classes*"],
       "@components*": ["src/components*"],
       "@constants*" : ["src/constants*"],
-      "@containers*": ["src/containers*"],
       "@lib*"       : ["src/lib*"],
       "@pages*"     : ["src/pages*"],
       "@stores*"    : ["src/stores*"],

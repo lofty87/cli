@@ -1,9 +1,9 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { Footer } from '@components/organisms';
-import { GenericTemplate } from '@components/templates';
-import { HeaderContainer, HomeContainer } from '@containers/index';
 
+import { GenericTemplate, HeaderContainer } from './modules';
+import { HomePage } from './HomePage';
 import ExamplePage from './ExamplePage';
 
 import { NCFC, RRP } from '$types/index';
@@ -23,7 +23,7 @@ const GenericPage: NCFC<RRP> = ({
       <Switch>
         <Route
           path="/"
-          component={HomeContainer}
+          component={HomePage}
           exact
         />
         <Route

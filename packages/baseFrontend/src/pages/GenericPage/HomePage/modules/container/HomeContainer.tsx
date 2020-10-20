@@ -2,7 +2,7 @@ import React from 'react';
 
 import { NCFC, SCP } from '$types/index';
 
-// * process async, state data
+// * async, static data
 const HomeContainer: NCFC<SCP> = ({
   className
 }) => {

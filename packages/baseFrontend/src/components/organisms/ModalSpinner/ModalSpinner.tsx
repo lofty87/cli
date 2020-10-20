@@ -6,7 +6,7 @@ import { useStores } from '@stores/index';
 import { NCFC, SCP } from '$types/index';
 
 /**
- * * store 를 통해 modalSpinner state 를 관리
+ * * store 를 통해 ModalSpinner state 를 관리
  *
  * * axios 또는 api 를 호출하기 전에 show() action 을 호출하면
  * * pending 상태에서 ModalSpinner 를 볼 수 있다.

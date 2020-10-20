@@ -205,7 +205,7 @@ const StyledPreLoader = styled(PreLoader).attrs((props) => ({
   text-align: center;
   background-color: transparent;
 
-  &.last-data {
+  &.completed {
     font-size: ${fontOf(({ body1 }) => body1.size)}rem;
     font-weight: ${fontOf(({ weight }) => weight.regular)};
     color: ${colorOf(({ dark }) => dark.thick7)};

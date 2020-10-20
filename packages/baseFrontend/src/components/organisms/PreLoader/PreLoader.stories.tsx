@@ -28,12 +28,12 @@ export const Default = () => (
     <br />
     <section>
       <h4>
-        isLastData=
+        completed=
         {'{true}'}
       </h4>
       <PreLoader
         reqState="done"
-        isLastData
+        completed
       />
     </section>
   </>
