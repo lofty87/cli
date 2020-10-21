@@ -15,7 +15,7 @@ const viewCommentMembersExist = (
   viewCommentList: null | DomainModelList<any>
 ) => {
   if(!viewCommentApi || !viewCommentList) {
-    console.warn('required view comment api and list');
+    console.warn('required view comment api and list, use setViewCommentMembers()');
 
     return false;
   }
