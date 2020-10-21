@@ -13,6 +13,11 @@ const StyledModalSpinner = styled(ModalSpinner)`
     height: 80px;
     transform: translate(-50%, -50%);
 
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
     div {
       position: absolute;
       border: 4px solid ${colorOf(({ white }) => white)};
