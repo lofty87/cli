@@ -108,7 +108,6 @@ export default class DomainModel<Model extends Document> {
     if(this._saved) {
       yield this._api.removeById(this._data._id);
 
-      this._data = {} as Model;
       this._filled = false;
       this._saved = false;
     } else {
