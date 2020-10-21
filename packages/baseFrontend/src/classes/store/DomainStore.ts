@@ -69,17 +69,21 @@ export default class DomainStore<Model extends Document, Stores, Comment extends
       initializeViewCommentList: false,
       viewById: action,
       addInList: false,
-      putInList: false,
       getAllInList: false,
       getOneInListById: false,
       updateInListById: false,
       removeInListById: action,
+      getCountInList: false,
+      putInList: false,
+      pullInListById: false,
       addInViewCommentList: false,
-      putInViewCommentList: false,
       getAllInViewCommentList: false,
       getOneInViewCommentListById: false,
       updateInViewCommentListById: false,
       removeInViewCommentListById: false,
+      getCountInViewCommentList: false,
+      putInViewCommentList: false,
+      pullInViewCommentListById: false,
     });
   }
 
@@ -144,10 +148,6 @@ export default class DomainStore<Model extends Document, Stores, Comment extends
     return savedObj;
   };
 
-  public putInList = (obj: DomainModel<Model>) => {
-    this._list.put(obj);
-  };
-
   public getAllInList = async () => {
     await flowResult(this._list.getAll());
   };
@@ -162,7 +162,7 @@ export default class DomainStore<Model extends Document, Stores, Comment extends
         return new DomainModel(this._name, this._api, source, true);
       }
 
-      console.warn(`not existed domain object in ${this._name} store. (id: ${id})`);
+      console.warn(`not existed domain object in ${this._name} store (id: ${id})`);
 
       return null;
     }
@@ -196,6 +196,18 @@ export default class DomainStore<Model extends Document, Stores, Comment extends
     }
   };
 
+  public getCountInList = async () => {
+    await flowResult(this._list.getCount());
+  };
+
+  public putInList = (obj: DomainModel<Model>) => {
+    this._list.put(obj);
+  };
+
+  public pullInListById = (id: number) => {
+    return this._list.pullById(id);
+  };
+
   public addInViewCommentList = async (source: ModelPartial<Comment>) => {
     if(viewCommentMembersExist(this._viewCommentApi, this._viewCommentList)) {
       const comment = new DomainModel(this._name, this._viewCommentApi!, source);
@@ -207,12 +219,6 @@ export default class DomainStore<Model extends Document, Stores, Comment extends
     }
 
     return null;
-  };
-
-  public putInViewCommentList = (comment: DomainModel<Comment>) => {
-    if(viewCommentMembersExist(this._viewCommentApi, this._viewCommentList)) {
-      this._viewCommentList!.put(comment);
-    }
   };
 
   public getAllInViewCommentList = async () => {
@@ -232,7 +238,7 @@ export default class DomainStore<Model extends Document, Stores, Comment extends
           return new DomainModel(this._name, this._viewCommentApi!, source, true);
         }
 
-        console.warn(`not existed comment in ${this._name} store. (id: ${id})`);
+        console.warn(`not existed comment in ${this._name} store (id: ${id})`);
 
         return null;
       }
@@ -263,5 +269,25 @@ export default class DomainStore<Model extends Document, Stores, Comment extends
         this._viewCommentList!.removeById(id);
       }
     }
+  };
+
+  public getCountInViewCommentList = async () => {
+    if(viewCommentMembersExist(this._viewCommentApi, this._viewCommentList)) {
+      await flowResult(this._viewCommentList!.getCount());
+    }
+  };
+
+  public putInViewCommentList = (comment: DomainModel<Comment>) => {
+    if(viewCommentMembersExist(this._viewCommentApi, this._viewCommentList)) {
+      this._viewCommentList!.put(comment);
+    }
+  };
+
+  public pullInViewCommentListById = (id: number) => {
+    if(viewCommentMembersExist(this._viewCommentApi, this._viewCommentList)) {
+      return this._viewCommentList!.pullById(id);
+    }
+
+    return null;
   };
 }

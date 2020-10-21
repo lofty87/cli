@@ -29,7 +29,7 @@ export default class DomainModelList<Model extends Document> {
     this._storeName = storeName;
     this._api = api;
     this._data = [];
-    this._count = -1;
+    this._count = 0;
     this._completed = false;
     this._skip = 0;
     this._limit = limit;
@@ -52,10 +52,12 @@ export default class DomainModelList<Model extends Document> {
       initialize: action,
       findIndexById: false,
       add: action,
-      put: action,
       getAll: flow,
       getOneById: false,
       removeById: action,
+      getCount: flow,
+      put: action,
+      pullById: action,
     });
   }
 
@@ -81,7 +83,7 @@ export default class DomainModelList<Model extends Document> {
 
   public initialize = () => {
     this._data = [];
-    this._count = -1;
+    this._count = 0;
     this._completed = false;
     this._skip = 0;
     this._search = '';
@@ -102,31 +104,7 @@ export default class DomainModelList<Model extends Document> {
         this._skip++;
       }
     } else {
-      console.warn(`not saved domain object in ${this._storeName} store.`);
-    }
-  };
-
-  public put = (obj: DomainModel<Model>) => {
-    if(obj.saved) {
-      const id = obj.data._id;
-      const index = this.findIndexById(id);
-      const contains = index !== -1;
-
-      if(!contains) {
-        const nextIndex = this._data.findIndex((obj) => obj.data._id < id);
-        const isLast = nextIndex === -1;
-
-        if(isLast) {
-          this._data.push(obj);
-        } else {
-          this._data.splice(nextIndex, 0, obj);
-        }
-
-        this._count++;
-        this._skip++;
-      }
-    } else {
-      console.warn(`not saved domain object in ${this._storeName} store.`);
+      console.warn(`not saved domain object in ${this._storeName} store`);
     }
   };
 
@@ -135,14 +113,6 @@ export default class DomainModelList<Model extends Document> {
       const skip = this._skip;
       const limit = this._limit;
       const search = this._search;
-
-      if(this._count === -1) {
-        this._count = yield this._api.fetchCount({
-          queryParams: {
-            search,
-          },
-        });
-      }
 
       const sources: Model[] = yield this._api.fetchAll({
         queryParams: {
@@ -183,5 +153,46 @@ export default class DomainModelList<Model extends Document> {
       this._count--;
       this._skip--;
     }
+  };
+
+  public* getCount() {
+    this._count = yield this._api.fetchCount({
+      queryParams: {
+        search: this._search,
+      },
+    });
+  }
+
+  // ? focused method on client side (put, pullById)
+  public put = (obj: DomainModel<Model>) => {
+    if(obj.saved) {
+      const id = obj.data._id;
+      const index = this.findIndexById(id);
+      const contains = index !== -1;
+
+      if(!contains) {
+        const nextIndex = this._data.findIndex((obj) => obj.data._id < id);
+        const isLast = nextIndex === -1;
+
+        if(isLast) {
+          this._data.push(obj);
+        } else {
+          this._data.splice(nextIndex, 0, obj);
+        }
+      }
+    } else {
+      console.warn(`not saved domain object in ${this._storeName} store`);
+    }
+  };
+
+  public pullById = (id: number) => {
+    const index = this.findIndexById(id);
+    const contains = index !== -1;
+
+    if(contains) {
+      return this._data.splice(index, 1)[0];
+    }
+
+    return null;
   };
 }
