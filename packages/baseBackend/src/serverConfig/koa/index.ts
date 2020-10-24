@@ -20,12 +20,13 @@ import {
 const { isDev } = env;
 const { assetsDir } = paths;
 
+const allowMethods = ALLOWED_METHOD.join(',');
+
+export const acceptedCookieNames = [ 'cookie' ];
+
 // ! keep order !!
 export default async () =>
   await new Promise<(koa: Koa) => Koa>((resolve) => {
-    const acceptedCookieNames = [ 'cookie' ];
-    const allowMethods = ALLOWED_METHOD.join(',');
-
     const middleware = compose([
       serve(basename(assetsDir)),
       bodyParser()

@@ -66,7 +66,7 @@ export const checkModelId = (name: string, id: any, parsedId: any) => {
   }
 };
 
-export const checkExistModel = (name: string, id: any, data: null | Document) => {
+export const checkModelExists = (name: string, id: any, data: null | Document) => {
   if(!data) {
     throw new NotFoundError(notFoundModelMessage(name, id));
   }
