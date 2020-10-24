@@ -131,7 +131,7 @@ export default class Model<M extends Document> {
     };
   };
 
-  public getCount = (filter?: ModelPartial<M>) => {
+  public count = (filter?: ModelPartial<M>) => {
     const convertedFilter = convertToDot<M>(filter);
 
     return this._Model.countDocuments(convertedFilter);

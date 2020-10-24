@@ -31,7 +31,7 @@ export const removeById = async (id: number) => {
 };
 
 export const getCount = async () => {
-  const data = await example.getCount();
+  const data = await example.count();
 
   return data;
 };
