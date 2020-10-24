@@ -36,12 +36,12 @@ export const checkTitleValidation = (title: string) => {
   const MIN = 1;
   const MAX = 50;
 
-  const options = {
-    min: MIN,
-    max: MAX,
-  };
-
-  if(!validator.isLength(title, options)) {
+  if(
+    !validator.isLength(title, {
+      min: MIN,
+      max: MAX,
+    })
+  ) {
     throw new BadRequestError(`제목은 최소 ${MIN}자에서 최대 ${MAX}자까지 가능합니다.`);
   }
 };
@@ -50,12 +50,12 @@ export const checkContentValidation = (content: string) => {
   const MIN = 1;
   const MAX = 1000;
 
-  const options = {
-    min: MIN,
-    max: MAX,
-  };
-
-  if(!validator.isLength(content, options)) {
+  if(
+    !validator.isLength(content, {
+      min: MIN,
+      max: MAX,
+    })
+  ) {
     throw new BadRequestError(`내용은 최소 ${MIN}자에서 최대 ${MAX}자까지 가능합니다.`);
   }
 };
