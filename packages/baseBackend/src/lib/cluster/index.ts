@@ -2,7 +2,7 @@ import cluster, { Worker } from 'cluster';
 import os from 'os';
 
 import chalk from 'chalk';
-import { defaultsDeep } from 'lodash';
+import { defaults } from 'lodash';
 
 /**
  * * worker count 기본값은 cpu core 수
@@ -23,7 +23,7 @@ export default (startApp: StartApp, customOptions: Options = {}) => {
     throw new Error(chalk.red(`workerCount option value must be (1 ~ ${MAX_WORKER_COUNT})`));
   }
 
-  const options: Required<Options> = defaultsDeep(customOptions, {
+  const options: Required<Options> = defaults(customOptions, {
     workerCount: MAX_WORKER_COUNT,
   });
 

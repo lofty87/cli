@@ -1,7 +1,7 @@
-import { Object } from '@lofty87/types';
 import jsonwebtoken, { SignOptions } from 'jsonwebtoken';
-import { defaultsDeep } from 'lodash';
+import { defaults } from 'lodash';
 import moment from 'moment';
+import { Object } from '@lofty87/types';
 import env from '@config/env';
 
 const { publicURL, jwtSecretKey } = env;
@@ -13,12 +13,10 @@ const defaultOptions: SignOptions = {
 };
 
 const sign = <Payload extends Object>(payload: Payload, options: SignOptions = {}) => {
-  defaultsDeep(payload, {
-    iat: moment()
-      .valueOf(),
-  });
+  const iat = moment()
+    .valueOf();
 
-  defaultsDeep(options, defaultOptions);
+  defaults(options, { iat }, defaultOptions);
 
   return jsonwebtoken.sign(payload, jwtSecretKey, options);
 };
@@ -32,7 +30,7 @@ type Result<Payload> = {
 } & Payload;
 
 const verify = <Payload extends Object>(token: string, options: SignOptions = {}) => {
-  defaultsDeep(options, defaultOptions);
+  defaults(options, defaultOptions);
 
   const { iat, exp, aud, iss, sub, ...ohters } = jsonwebtoken.verify(
     token,

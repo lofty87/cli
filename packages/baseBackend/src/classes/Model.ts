@@ -12,7 +12,8 @@ import {
   Schema,
 } from 'mongoose';
 import autoIncrement from 'mongoose-auto-increment';
-import { defaultsDeep, isEmpty, omit } from 'lodash';
+import { defaults, isEmpty, omit } from 'lodash';
+import { InternalServerError } from '@classes/index';
 import { ModelPartial } from '@lofty87/types';
 import { compactObject, isNotEmpty } from '@lofty87/util';
 import { convertToDot, convertToProjection, selectExtractingProjection } from '@lib/mongoose';
@@ -22,26 +23,38 @@ import { convertToDot, convertToProjection, selectExtractingProjection } from '@
  * * 1. 기본 CRUD 를 갖춘 mongoose model
  * * 2. id 에 auto_increment 가 적용된 model (not use hash id)
  * * 3. collection name 을 직접 지정
- * * 4. clientProjection 과 extractData 를 통해,
- * *    admin, manager 와 client 를 구분하여 결과값을 리턴
+ * * 4. clientFilter 와 clientProjection, extractData 를 통해,
+ * *    admin, manager 와 client 를 구분하여 결과값을 리턴할 수 있음
  */
+type ClientOptions<M extends Document> = {
+  clientFilter?: ModelPartial<M>;
+  clientProjection?: (keyof M)[];
+};
+
+const requiredClientOptions = (option: any) => {
+  if(!option) {
+    throw new InternalServerError('required client options');
+  }
+};
+
 export default class Model<M extends Document> {
-  private _collectionName: string;
-  private _clientProjection: (keyof M)[];
-  private _populateOptions?: QueryPopulateOptions | QueryPopulateOptions[];
-  public extractData: ReturnType<typeof selectExtractingProjection>;
   private _Model: MongooseModel<M>;
+  private _collectionName: string;
+  private _populateOptions?: QueryPopulateOptions | QueryPopulateOptions[];
+  private _clientFilter?: ModelPartial<M>;
+  private _clientProjection?: (keyof M)[];
+  private _extractData?: ReturnType<typeof selectExtractingProjection>;
 
   constructor(
     schema: Schema,
     collectionName: string,
-    clientProjection: (keyof M)[],
     populateOptions?: QueryPopulateOptions | QueryPopulateOptions[]
   ) {
     this._collectionName = collectionName;
-    this._clientProjection = clientProjection;
     this._populateOptions = populateOptions;
-    this.extractData = selectExtractingProjection<M>(clientProjection);
+    this._clientFilter = undefined;
+    this._clientProjection = undefined;
+    this._extractData = undefined;
 
     autoIncrement.initialize(connection);
     schema.plugin(autoIncrement.plugin, collectionName);
@@ -49,17 +62,40 @@ export default class Model<M extends Document> {
     this._Model = mongooseModel<M>(collectionName, schema, collectionName);
   }
 
+  public get Model() {
+    return this._Model;
+  }
+
   public get collectionName() {
     return this._collectionName;
   }
 
-  public get clientProjection() {
-    return this._clientProjection;
+  public get clientFilter() {
+    requiredClientOptions(this._clientFilter);
+
+    return this._clientFilter!;
   }
 
-  public get Model() {
-    return this._Model;
+  public get clientProjection() {
+    requiredClientOptions(this._clientProjection);
+
+    return this._clientProjection!;
   }
+
+  public get extractData() {
+    requiredClientOptions(this._clientProjection);
+
+    return this._extractData!;
+  }
+
+  public setClientOptions = (clientOptions: ClientOptions<M>) => {
+    this._clientFilter = clientOptions.clientFilter;
+    this._clientProjection = clientOptions.clientProjection;
+
+    if(this._clientProjection) {
+      this._extractData = selectExtractingProjection<M>(this._clientProjection);
+    }
+  };
 
   public add = async (source: ModelPartial<M>, options: SaveOptions = {}) => {
     source = compactObject(source, isNotEmpty);
@@ -89,7 +125,7 @@ export default class Model<M extends Document> {
     projection?: string[],
     options: QueryFindOptions = {}
   ) => {
-    filter = defaultsDeep({ _id: id }, filter);
+    filter = defaults({ _id: id }, filter);
 
     const convertedFilter = convertToDot<M>(filter);
     const convertedProjection = convertToProjection(projection);

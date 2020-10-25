@@ -1,5 +1,5 @@
 import { Context } from 'koa';
-import { defaultsDeep } from 'lodash';
+import { defaults } from 'lodash';
 import { SetOption } from 'cookies';
 
 import register from './register';
@@ -11,7 +11,7 @@ const defaultOptions: SetOption = {
 };
 
 const setCookie = (ctx: Context, name: string, value: string, options: SetOption = {}) => {
-  defaultsDeep(options, defaultOptions);
+  defaults(options, defaultOptions);
 
   ctx.cookies.set(name, value, options);
 };

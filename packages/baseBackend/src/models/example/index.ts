@@ -19,4 +19,17 @@ interface ExampleType extends Document {
   createdAt: number;
 }
 
-export default new Model<ExampleType>(schema, 'examples', [ '_id', 'profile', 'info', 'createdAt' ]);
+const model = new Model<ExampleType>(schema, 'examples');
+
+model.setClientOptions({
+  // clientFilter: {
+  //   info: {
+  //     status: {
+  //       $in: [ 'normal', 'limit' ],
+  //     },
+  //   },
+  // },
+  clientProjection: [ '_id', 'profile', 'info', 'createdAt' ],
+});
+
+export default model;
