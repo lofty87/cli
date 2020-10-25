@@ -11,7 +11,7 @@ const defaultOptions: SetOption = {
 };
 
 const setCookie = (ctx: Context, name: string, value: string, options: SetOption = {}) => {
-  defaults(options, defaultOptions);
+  options = defaults(options, defaultOptions);
 
   ctx.cookies.set(name, value, options);
 };

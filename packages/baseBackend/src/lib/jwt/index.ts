@@ -16,7 +16,8 @@ const sign = <Payload extends Object>(payload: Payload, options: SignOptions = {
   const iat = moment()
     .valueOf();
 
-  defaults(options, { iat }, defaultOptions);
+  payload = defaults({ iat }, payload);
+  options = defaults(options, defaultOptions);
 
   return jsonwebtoken.sign(payload, jwtSecretKey, options);
 };
@@ -30,7 +31,7 @@ type Result<Payload> = {
 } & Payload;
 
 const verify = <Payload extends Object>(token: string, options: SignOptions = {}) => {
-  defaults(options, defaultOptions);
+  options = defaults(options, defaultOptions);
 
   const { iat, exp, aud, iss, sub, ...ohters } = jsonwebtoken.verify(
     token,
