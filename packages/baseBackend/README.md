@@ -48,6 +48,20 @@ you can always work in watch mode.
 npm run start:dev
 ```
 
+#### pug :
+
+use [browser-sync](https://browsersync.io)(proxy).
+
+if you modify pug template, browser will be reloaded automatically.
+
+```bash
+npm run start:pug
+```
+
+**- template dir:** ***{app}/assets/templates***
+
+**- url location:** ***/{template-file-name}***
+
 ## 4. Production
 
 use **webpack** and is build.
