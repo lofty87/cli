@@ -30,7 +30,7 @@ const sendEmail = async (to: string, title: string, data: Data) => {
       {
         to,
         subject: title,
-        html: renderPug('template', data),
+        html: renderPug('example', data),
       },
       resolveCallback(resolve)
     );

@@ -54,8 +54,9 @@ use [browser-sync](https://browsersync.io)(proxy).
 
 if you modify pug template, browser will be reloaded automatically.
 
-- template dir: *{app}/assets/templates*
+- templates dir: *{app}/assets/templates*
 - url location: */{template-file-name}*
+- locals: **pass data to pug template**
 
 ```bash
 npm run start:pug
