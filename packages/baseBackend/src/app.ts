@@ -4,25 +4,32 @@ import { Koa } from '@classes/index';
 import cluster from '@lib/cluster';
 import env from '@config/env';
 
-const { port, nodeEnv } = env;
+const { port, nodeEnv, isDev } = env;
 
-cluster(async (worker) => {
-  const workerName = chalk.bgMagenta(`worker(pid:${worker.process.pid})`);
+const options = {
+  workerCount: 1,
+};
 
-  try {
-    const server = await serverConfig();
+cluster(
+  async (worker) => {
+    const workerName = chalk.bgMagenta(`worker(pid:${worker.process.pid})`);
 
-    const app = server(
-      new Koa({
-        env: nodeEnv,
-      })
-    );
+    try {
+      const server = await serverConfig();
 
-    app.listen(port, () => {
-      console.log(`${workerName}:`, chalk.green(`server is listening to port ${port}`));
-    });
-  } catch(error) {
-    console.error(`${workerName}:`, chalk.red(error.message));
-    console.error(error);
-  }
-});
+      const app = server(
+        new Koa({
+          env: nodeEnv,
+        })
+      );
+
+      app.listen(port, () => {
+        console.log(`${workerName}:`, chalk.green(`server is listening to port ${port}`));
+      });
+    } catch(error) {
+      console.error(`${workerName}:`, chalk.red(error.message));
+      console.error(error);
+    }
+  },
+  isDev ? options : undefined
+);

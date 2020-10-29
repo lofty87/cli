@@ -2,8 +2,8 @@ import { SchemaOptions } from 'mongoose';
 
 /**
  * * model schema common options
- * ? minimize       : contain empty sub-{}
- * ? toJSON.virtuals: contain schema.virtual
+ * ? minimize       : contains empty sub-{}
+ * ? toJSON.virtuals: contains schema.virtual
  */
 export const schemaOptions: SchemaOptions = {
   strict: 'throw',

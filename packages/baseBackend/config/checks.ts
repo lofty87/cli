@@ -4,7 +4,7 @@ import { parse } from 'path';
 import chalk from 'chalk';
 import nodemon from 'nodemon';
 
-export const existEnvFile = (envFilePath: string) => {
+export const envFileExists = (envFilePath: string) => {
   try {
     fs.accessSync(envFilePath, fs.constants.F_OK);
   } catch(error) {

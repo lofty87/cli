@@ -1,11 +1,11 @@
 import dotenv from 'dotenv';
 
-import { existEnvFile } from './checks';
+import { envFileExists } from './checks';
 import paths from './paths';
 
 const envFilePath = paths.dotEnv;
 
-existEnvFile(envFilePath);
+envFileExists(envFilePath);
 
 dotenv.config({
   path: envFilePath,
