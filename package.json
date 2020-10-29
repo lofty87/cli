@@ -1,6 +1,6 @@
 {
   "name": "@lofty87/cli",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "boilerplate cli for lofty87 project (backend, frontend, playground based on typescript)",
   "author": {
     "name": "lofty87",
@@ -32,8 +32,8 @@
   },
   "dependencies": {
     "@lofty87/eslint-config": "~1.1.22",
-    "@lofty87/types": "~1.0.11",
-    "@lofty87/util": "~1.0.2",
+    "@lofty87/types": "~1.0.12",
+    "@lofty87/util": "~1.0.3",
     "@types/app-root-path": "~1.2.4",
     "@types/chalk": "~2.2.0",
     "@types/clean-webpack-plugin": "~0.1.3",
