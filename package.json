@@ -1,6 +1,6 @@
 {
   "name": "@lofty87/cli",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "boilerplate cli for lofty87 project (backend, frontend, playground based on typescript)",
   "author": {
     "name": "lofty87",

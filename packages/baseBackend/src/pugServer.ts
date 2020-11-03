@@ -1,6 +1,8 @@
+import { basename } from 'path';
 import { URL } from 'url';
 
 import Koa from 'koa';
+import serve from 'koa-static';
 import Pug from 'koa-pug';
 import browserSync from 'browser-sync';
 import { defaults } from 'lodash';
@@ -45,6 +47,9 @@ const pug = new Pug({
     host,
   }),
 });
+
+// * static
+app.use(serve(basename(assetsDir)));
 
 // * binding ctx.render()
 pug.use(app);
