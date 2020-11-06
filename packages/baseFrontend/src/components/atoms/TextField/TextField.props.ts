@@ -2,7 +2,7 @@ import { PropTypes, TextFieldProps } from '@material-ui/core';
 
 import { SCP } from '$types/index';
 
-export type CustomProps = {
+type CustomProps = {
   textAlign?: PropTypes.Alignment;
 };
 

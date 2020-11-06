@@ -2,7 +2,7 @@ import { ButtonProps } from '@material-ui/core';
 
 import { SCP } from '$types/index';
 
-export type CustomProps = {
+type CustomProps = {
   color?: 'main' | 'dark' | 'red' | 'blue' | 'green' | 'yellow';
   length?: 'short' | 'medium' | 'long';
 };
