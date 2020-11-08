@@ -4,7 +4,7 @@ import url from 'url';
 import { Document } from 'mongoose';
 import { defaults } from 'lodash';
 import { ModelPartial, Object } from '@lofty87/types';
-import stores, { ApiType } from '@stores/index';
+import actions, { ApiType } from '@stores/index';
 import axios from '@lib/axios';
 
 import { QP } from '$types/index';
@@ -74,15 +74,15 @@ export default class Api<Model extends Document> {
 
   public add = async (source: ModelPartial<Model>) => {
     try {
-      stores.global.request.pendingOn(this._apiTypeAdd);
+      actions.global.request.pendingOn(this._apiTypeAdd);
 
       const data = await axios.api.post<any, Model>(this._pathname, source);
 
-      stores.global.request.doneOn(this._apiTypeAdd);
+      actions.global.request.doneOn(this._apiTypeAdd);
 
       return data;
     } catch(error) {
-      stores.global.request.doneOn(this._apiTypeAdd);
+      actions.global.request.doneOn(this._apiTypeAdd);
 
       throw error;
     }
@@ -92,7 +92,7 @@ export default class Api<Model extends Document> {
     const { subPathnames, queryParams } = defaults(customOptions, defaultOptions);
 
     try {
-      stores.global.request.pendingOn(this._apiTypeFetchAll);
+      actions.global.request.pendingOn(this._apiTypeFetchAll);
 
       const data = await axios.api.get<any, Model[]>(
         url.format({
@@ -101,11 +101,11 @@ export default class Api<Model extends Document> {
         })
       );
 
-      stores.global.request.doneOn(this._apiTypeFetchAll);
+      actions.global.request.doneOn(this._apiTypeFetchAll);
 
       return data;
     } catch(error) {
-      stores.global.request.doneOn(this._apiTypeFetchAll);
+      actions.global.request.doneOn(this._apiTypeFetchAll);
 
       throw error;
     }
@@ -113,15 +113,15 @@ export default class Api<Model extends Document> {
 
   public fetchOneById = async (id: number) => {
     try {
-      stores.global.request.pendingOn(this._apiTypeFetchOneById);
+      actions.global.request.pendingOn(this._apiTypeFetchOneById);
 
       const data = await axios.api.get<any, null | Model>(`${this._pathname}/${id}`);
 
-      stores.global.request.doneOn(this._apiTypeFetchOneById);
+      actions.global.request.doneOn(this._apiTypeFetchOneById);
 
       return data;
     } catch(error) {
-      stores.global.request.doneOn(this._apiTypeFetchOneById);
+      actions.global.request.doneOn(this._apiTypeFetchOneById);
 
       throw error;
     }
@@ -129,15 +129,15 @@ export default class Api<Model extends Document> {
 
   public updateById = async (id: number, source: ModelPartial<Model>) => {
     try {
-      stores.global.request.pendingOn(this._apiTypeUpdateById);
+      actions.global.request.pendingOn(this._apiTypeUpdateById);
 
       const data = await axios.api.patch<any, string>(`${this._pathname}/${id}`, source);
 
-      stores.global.request.doneOn(this._apiTypeUpdateById);
+      actions.global.request.doneOn(this._apiTypeUpdateById);
 
       return data;
     } catch(error) {
-      stores.global.request.doneOn(this._apiTypeUpdateById);
+      actions.global.request.doneOn(this._apiTypeUpdateById);
 
       throw error;
     }
@@ -145,15 +145,15 @@ export default class Api<Model extends Document> {
 
   public removeById = async (id: number) => {
     try {
-      stores.global.request.pendingOn(this._apiTypeRemoveById);
+      actions.global.request.pendingOn(this._apiTypeRemoveById);
 
       const data = await axios.api.delete<any, string>(`${this._pathname}/${id}`);
 
-      stores.global.request.doneOn(this._apiTypeRemoveById);
+      actions.global.request.doneOn(this._apiTypeRemoveById);
 
       return data;
     } catch(error) {
-      stores.global.request.doneOn(this._apiTypeRemoveById);
+      actions.global.request.doneOn(this._apiTypeRemoveById);
 
       throw error;
     }
@@ -163,7 +163,7 @@ export default class Api<Model extends Document> {
     const { subPathnames, queryParams } = defaults(customOptions, defaultOptions);
 
     try {
-      stores.global.request.pendingOn(this._apiTypeFetchCount);
+      actions.global.request.pendingOn(this._apiTypeFetchCount);
 
       const data = await axios.api.get<any, number>(
         url.format({
@@ -172,11 +172,11 @@ export default class Api<Model extends Document> {
         })
       );
 
-      stores.global.request.doneOn(this._apiTypeFetchCount);
+      actions.global.request.doneOn(this._apiTypeFetchCount);
 
       return data;
     } catch(error) {
-      stores.global.request.doneOn(this._apiTypeFetchCount);
+      actions.global.request.doneOn(this._apiTypeFetchCount);
 
       throw error;
     }

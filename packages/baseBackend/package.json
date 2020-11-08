@@ -8,9 +8,9 @@
   },
   "dependencies": {
     "@koa/cors": "~3.1.0",
-    "@lofty87/eslint-config": "~1.1.22",
-    "@lofty87/types": "~1.0.12",
-    "@lofty87/util": "~1.0.4",
+    "@lofty87/eslint-config": "~1.1.27",
+    "@lofty87/types": "~1.0.13",
+    "@lofty87/util": "~1.0.5",
     "@types/bcrypt": "~3.0.0",
     "@types/browser-sync": "~2.26.1",
     "@types/chalk": "~2.2.0",
